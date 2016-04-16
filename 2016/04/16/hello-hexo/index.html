@@ -3,18 +3,40 @@
 <head>
   <meta charset="utf-8">
   
-  <title>hello-hexo | 懒猪先生BiggerGao</title>
+  <title>数据结构Step by Step之树(1)- 二叉树 前序、中序、后序 LeetCode105根据前序中序的顺序构造树 | 懒猪先生BiggerGao</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="第一篇博客，Tks，Hexo。">
+  <meta name="description" content="####一、二叉树的基本概念每个结点最多有两棵子树，左子树和右子树，次序不可以颠倒。性质：
+
+非空二叉树的第n层上至多有2^(n-1)个元素。
+深度为h的二叉树至多有2^h-1个结点。
+
+完全二叉树：除了最大的层次即成为一颗满二叉树且层次最大那层所有的结点均向左靠齐，即集中在左面的位置上，不能有空位置。对于完全二叉树，设一个结点为i则其父节点为i/2，2i为左子节点，2i+1为右子节点。
+满二叉树">
 <meta property="og:type" content="article">
-<meta property="og:title" content="hello-hexo">
+<meta property="og:title" content="数据结构Step by Step之树(1)- 二叉树 前序、中序、后序 LeetCode105根据前序中序的顺序构造树">
 <meta property="og:url" content="http://biggergao.github.io/2016/04/16/hello-hexo/index.html">
 <meta property="og:site_name" content="懒猪先生BiggerGao">
-<meta property="og:description" content="第一篇博客，Tks，Hexo。">
-<meta property="og:updated_time" content="2016-04-16T14:24:53.000Z">
+<meta property="og:description" content="####一、二叉树的基本概念每个结点最多有两棵子树，左子树和右子树，次序不可以颠倒。性质：
+
+非空二叉树的第n层上至多有2^(n-1)个元素。
+深度为h的二叉树至多有2^h-1个结点。
+
+完全二叉树：除了最大的层次即成为一颗满二叉树且层次最大那层所有的结点均向左靠齐，即集中在左面的位置上，不能有空位置。对于完全二叉树，设一个结点为i则其父节点为i/2，2i为左子节点，2i+1为右子节点。
+满二叉树">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1727535-926466312224bc95.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1727535-76487d8e9fdccdd8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1727535-76487d8e9fdccdd8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2016-04-16T14:31:12.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="hello-hexo">
-<meta name="twitter:description" content="第一篇博客，Tks，Hexo。">
+<meta name="twitter:title" content="数据结构Step by Step之树(1)- 二叉树 前序、中序、后序 LeetCode105根据前序中序的顺序构造树">
+<meta name="twitter:description" content="####一、二叉树的基本概念每个结点最多有两棵子树，左子树和右子树，次序不可以颠倒。性质：
+
+非空二叉树的第n层上至多有2^(n-1)个元素。
+深度为h的二叉树至多有2^h-1个结点。
+
+完全二叉树：除了最大的层次即成为一颗满二叉树且层次最大那层所有的结点均向左靠齐，即集中在左面的位置上，不能有空位置。对于完全二叉树，设一个结点为i则其父节点为i/2，2i为左子节点，2i+1为右子节点。
+满二叉树">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1727535-926466312224bc95.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
   
     <link rel="alternate" href="/atom.xml" title="懒猪先生BiggerGao" type="application/atom+xml">
   
@@ -56,9 +78,9 @@
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Zoeken"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://biggergao.github.io"></form>
@@ -81,7 +103,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      hello-hexo
+      数据结构Step by Step之树(1)- 二叉树 前序、中序、后序 LeetCode105根据前序中序的顺序构造树
     </h1>
   
 
@@ -89,15 +111,36 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>第一篇博客，Tks，Hexo。</p>
+        <p>####一、二叉树的基本概念<br>每个结点最多有两棵子树，左子树和右子树，次序不可以颠倒。<br>性质：</p>
+<ol>
+<li>非空二叉树的第n层上至多有2^(n-1)个元素。</li>
+<li>深度为h的二叉树至多有2^h-1个结点。</li>
+</ol>
+<p>完全二叉树：除了最大的层次即成为一颗满二叉树且层次最大那层所有的结点均向左靠齐，即集中在左面的位置上，不能有空位置。<br>对于完全二叉树，设一个结点为<strong>i</strong>则其父节点为<strong>i/2</strong>，<strong>2i</strong>为左子节点，<strong>2i+1</strong>为右子节点。</p>
+<p>满二叉树：所有终端都在同一层次，且非终端结点的度数为<strong>2</strong>。<br>在满二叉树中若其深度为<strong>h</strong>，则其所包含的结点数必为<strong>2^h-1</strong>。<br><img src="http://upload-images.jianshu.io/upload_images/1727535-926466312224bc95.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="完全二叉树与满二叉树.jpg"></p>
+<p>####二、存储结构<br>1.通常以链式结构存储（<strong>主流</strong>）<br>struct TreeNode {<br>datatype val;<br>TreeNode <em>left,</em>right;<br>TreeNode(datatype x) : val(x), left(NULL), right(NULL) {}<br>};<br>2.也有用数组的顺序结构存储（非主流：速度较快，占有空间大）<br>struct TreeNode {<br>datatype val;<br>int left, int right;<br>TreeNode(datatype x) : val(x), left(NULL), right(NULL) {}<br>};</p>
+<p>####三、二叉树的遍历<br>遍历即将树的所有结点访问且仅访问一次。按照根节点位置的不同分为前序遍历，中序遍历，后序遍历。</p>
+<p>前序遍历：根节点-&gt;左子树-&gt;右子树<br>中序遍历：左子树-&gt;根节点-&gt;右子树<br>后序遍历：左子树-&gt;右子树-&gt;根节点<br>总结：就是遍历时 <strong>根节点</strong> 的位置不同。</p>
+<p>例如：求下面树的三种遍历顺序</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1727535-76487d8e9fdccdd8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="二叉树.png"><br>前序:abdfegc<br>中序:dfebgac<br>后序:fedgbca</p>
+<p>####<a href="https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/" target="_blank" rel="external">四、练习题LeetCode105 Construct Binary Tree from Preorder and Inorder Traversal</a><br>题目：给定一棵树的前序遍历和中序遍历序列，构建这棵树。<br>注意：可以假定树中不存在重复的值。<br>分析：</p>
+<ol>
+<li>前序遍历序列第一个点是根结点x</li>
+<li>中序遍历序列中找到这个点x的下标</li>
+<li>中序遍历序列中的x的左边序列对应左子树</li>
+<li>中序遍历序列中的x的右边序列对应右子树</li>
+</ol>
+<p>AC代码：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Solution &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line"><span class="function">TreeNode* <span class="title">help</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; preorder, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; inorder, <span class="keyword">int</span> fromp, <span class="keyword">int</span> fromi, <span class="keyword">int</span> size)</span> </span>&#123;</span><br><span class="line"><span class="keyword">if</span>(size == <span class="number">0</span>) return <span class="number">0</span>;</span><br><span class="line">TreeNode *root = new TreeNode(preorder[fromp]);</span><br><span class="line"><span class="keyword">int</span> i;</span><br><span class="line"><span class="keyword">for</span>(i = fromi; inorder[i] != preorder[fromp]; ++i)</span><br><span class="line">;</span><br><span class="line">root-&gt;left = help(preorder, inorder, fromp + <span class="number">1</span>, fromi, i - fromi);</span><br><span class="line">root-&gt;right = help(preorder, inorder, fromp + <span class="number">1</span> + i - fromi, i + <span class="number">1</span>, size - <span class="number">1</span> - i + fromi);</span><br><span class="line">return root;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">TreeNode* <span class="title">buildTree</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; preorder, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; inorder)</span> </span>&#123;</span><br><span class="line">return help(preorder, inorder, <span class="number">0</span>, <span class="number">0</span>, (unsigned int)preorder.size());</span><br><span class="line">&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>这里比较纠结的是递归的fromp和fromi，需要细心的思考。这里给出一个递归的样例，假设树是我们的这个例子，即给出的前序遍历和中序遍历序列的顺序为：<br>前序:abdfegc<br>中序:dfebgac<br>函数调用的顺序如下：<br>(‘-‘：表示深度，HELP函数，结点类型，结点值)：<br>HELP(Pre, In, 0, 0, 7) root  a<br>-HELP(Pre, In, 1, 0, 5) left  b<br>–HELP(Pre, In, 2, 0, 3) left  d<br>—HELP(Pre, In, 3, 0, 0) left  NULL<br>—HELP(Pre, In, 3, 1, 2) right  e<br>—-HELP(Pre, In, 4, 1, 1) left  f<br>—–HELP(Pre, In, 5, 1, 0) left  NULL<br>—–HELP(Pre, In, 5, 2, 0) right  NULL<br>—-HELP(Pre, In, 5, 3, 0) right  NULL<br>–HELP(Pre, In, 5, 4, 1) right  g<br>—HELP(Pre, In, 6, 4, 0) left  NULL<br>—HELP(Pre, In, 6, 5, 0) right  NULL<br>-HELP(Pre, In, 6, 6, 1) right  c<br>–HELP(Pre, In, 7, 6, 0) left  NULL<br>–HELP(Pre, In, 7, 7, 0) right  NULL<br><img src="http://upload-images.jianshu.io/upload_images/1727535-76487d8e9fdccdd8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="二叉树.png"></p>
+<p>####<a href="https://leetcode.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal/" target="_blank" rel="external">五、思考题:LeetCode106 根据前序和后序遍历序列构建树</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://biggergao.github.io/2016/04/16/hello-hexo/" data-id="cin38ly7v0000x75mmfwde3mz" class="article-share-link">Partager</a>
+      <a data-url="http://biggergao.github.io/2016/04/16/hello-hexo/" data-id="cin38s6q40000yj5m39ylc7sk" class="article-share-link">Delen</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据结构/">数据结构</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a></li></ul>
 
     </footer>
   </div>
@@ -115,9 +158,9 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Mot-clés</h3>
+    <h3 class="widget-title">Labels</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a></li></ul>
     </div>
   </div>
 
@@ -125,16 +168,16 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Nuage de mot-clés</h3>
+    <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a>
+      <a href="/tags/数据结构与算法/" style="font-size: 10px;">数据结构与算法</a>
     </div>
   </div>
 
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
+    <h3 class="widget-title">Archieven</h3>
     <div class="widget">
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a></li></ul>
     </div>
@@ -144,12 +187,12 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Articles récents</h3>
+    <h3 class="widget-title">Recente berichten</h3>
     <div class="widget">
       <ul>
         
           <li>
-            <a href="/2016/04/16/hello-hexo/">hello-hexo</a>
+            <a href="/2016/04/16/hello-hexo/">数据结构Step by Step之树(1)- 二叉树 前序、中序、后序 LeetCode105根据前序中序的顺序构造树</a>
           </li>
         
       </ul>
@@ -165,7 +208,7 @@
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2016 Mr. BiggerGao<br>
-      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>
