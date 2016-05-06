@@ -62,7 +62,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="XCode,bug," />
 
 
 
@@ -78,16 +78,25 @@
 
 
 
-<meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="标签">
-<meta property="og:url" content="http://biggergao.github.io/tags/index.html">
+<meta name="description" content="吐槽NNGD,写着写着代码又无法自动补全了，难道要我默写吗？做iOS的肯定都遇到过无法自动补全的问题，这里写出我遇到的一些BUG与解决办法。
+原因1.XCode自带BUG有些时候我们没有调用第三方库，发现UIkit的自动补全都没法触发了，这样的原因多半是因为XCode自带BUG，在你的注释里有中文的时候，不会触发自动补全，比如这个’年’，删掉过后再编译一下试试，再不行就重启一下XCode。
+2.要">
+<meta property="og:type" content="article">
+<meta property="og:title" content="XCode 无法自动补全">
+<meta property="og:url" content="http://biggergao.github.io/2016/05/07/XCode自动补全问题/index.html">
 <meta property="og:site_name" content="Mr. 码了戈壁">
-<meta property="og:description">
-<meta property="og:updated_time" content="2016-04-16T18:50:31.000Z">
+<meta property="og:description" content="吐槽NNGD,写着写着代码又无法自动补全了，难道要我默写吗？做iOS的肯定都遇到过无法自动补全的问题，这里写出我遇到的一些BUG与解决办法。
+原因1.XCode自带BUG有些时候我们没有调用第三方库，发现UIkit的自动补全都没法触发了，这样的原因多半是因为XCode自带BUG，在你的注释里有中文的时候，不会触发自动补全，比如这个’年’，删掉过后再编译一下试试，再不行就重启一下XCode。
+2.要">
+<meta property="og:image" content="http://7xtb7p.com1.z0.glb.clouddn.com/XCode_autocomplete_blogXCode%E8%87%AA%E5%8A%A8%E8%A1%A5%E5%85%A8.png">
+<meta property="og:image" content="http://7xtb7p.com1.z0.glb.clouddn.com/XCode_autocomplete_blogXCode%E8%87%AA%E5%8A%A8%E8%A1%A5%E5%85%A8%E9%97%AE%E9%A2%981.png">
+<meta property="og:updated_time" content="2016-05-06T17:17:54.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="标签">
-<meta name="twitter:description">
+<meta name="twitter:title" content="XCode 无法自动补全">
+<meta name="twitter:description" content="吐槽NNGD,写着写着代码又无法自动补全了，难道要我默写吗？做iOS的肯定都遇到过无法自动补全的问题，这里写出我遇到的一些BUG与解决办法。
+原因1.XCode自带BUG有些时候我们没有调用第三方库，发现UIkit的自动补全都没法触发了，这样的原因多半是因为XCode自带BUG，在你的注释里有中文的时候，不会触发自动补全，比如这个’年’，删掉过后再编译一下试试，再不行就重启一下XCode。
+2.要">
+<meta name="twitter:image" content="http://7xtb7p.com1.z0.glb.clouddn.com/XCode_autocomplete_blogXCode%E8%87%AA%E5%8A%A8%E8%A1%A5%E5%85%A8.png">
 
 
 
@@ -105,13 +114,7 @@
   };
 </script>
 
-  <title>
-  
-
-  
-    标签 | Mr. 码了戈壁
-  
-</title>
+  <title> XCode 无法自动补全 | Mr. 码了戈壁 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -142,7 +145,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -252,16 +255,180 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
     
-      <div class="tag-cloud">
-        <div class="tag-cloud-title">
-            目前共计 6 个标签
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                XCode 无法自动补全
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-07T00:53:46+08:00" content="2016-05-07">
+              2016-05-07
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/iOS开发/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS开发</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/07/XCode自动补全问题/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/07/XCode自动补全问题/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/05/07/XCode自动补全问题/" class="leancloud_visitors" data-flag-title="XCode 无法自动补全">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
         </div>
-        <div class="tag-cloud-tags">
-          <a href="/tags/AutoLayout/" style="font-size: 12px; color: #ccc">AutoLayout</a> <a href="/tags/Masonry/" style="font-size: 12px; color: #ccc">Masonry</a> <a href="/tags/XCode/" style="font-size: 12px; color: #ccc">XCode</a> <a href="/tags/bug/" style="font-size: 12px; color: #ccc">bug</a> <a href="/tags/书写方式/" style="font-size: 12px; color: #ccc">书写方式</a> <a href="/tags/数据结构与算法/" style="font-size: 12px; color: #ccc">数据结构与算法</a>
-        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="吐槽"><a href="#吐槽" class="headerlink" title="吐槽"></a>吐槽</h2><p>NNGD,写着写着代码又无法自动补全了，难道要我默写吗？做iOS的肯定都遇到过无法自动补全的问题，这里写出我遇到的一些BUG与解决办法。</p>
+<h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><h3 id="1-XCode自带BUG"><a href="#1-XCode自带BUG" class="headerlink" title="1.XCode自带BUG"></a>1.XCode自带BUG</h3><p>有些时候我们没有调用第三方库，发现UIkit的自动补全都没法触发了，这样的原因多半是因为XCode自带BUG，在你的注释里有中文的时候，不会触发自动补全，比如这个’年’，删掉过后再编译一下试试，再不行就重启一下XCode。<br><img src="http://7xtb7p.com1.z0.glb.clouddn.com/XCode_autocomplete_blogXCode%E8%87%AA%E5%8A%A8%E8%A1%A5%E5%85%A8.png" alt=""></p>
+<h3 id="2-要import-pods里的头文件"><a href="#2-要import-pods里的头文件" class="headerlink" title="2.要import pods里的头文件"></a>2.要import pods里的头文件</h3><p>有时候XCode搜索头文件不会去搜索Pods里的第三方库，我们需要在XCode里设置一下项目Target的Search Paths。</p>
+<p>如图，双击User Header Search Paths的空白处，填入”$(PODS_ROOT)”(没有引号), 设置为递归的搜索recursive，问题解决了。<br><img src="http://7xtb7p.com1.z0.glb.clouddn.com/XCode_autocomplete_blogXCode%E8%87%AA%E5%8A%A8%E8%A1%A5%E5%85%A8%E9%97%AE%E9%A2%981.png" alt=""></p>
+<h2 id="Done"><a href="#Done" class="headerlink" title="Done"></a>Done</h2><p>作者 <a href="http://www.github.com/biggergao" target="_blank" rel="external">@biggergao</a></p>
+<p>2016年05月07日</p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+<div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton", disable="enable", onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}", style="cursor: pointer; border: 0; outline: 0; border-radius: 100%; padding: 0; margin: 0; letter-spacing: normal; text-transform: none; text-indent: 0px; text-shadow: none">
+    <span onmouseover="this.style.color='rgb(236,96,0)';this.style.background='rgb(204,204,204)'" onMouseOut="this.style.color='#fff';this.style.background='rgb(236,96,0)'" style="display: inline-block; width: 70px; height: 70px; border-radius: 100%; line-height: 81px; color: #fff; font: 400 35px/75px 'microsofty'; background: rgb(236,96,0)">赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat-reward-image.png" alt="BiggerJoe WeChat Pay" style="width: 200px; max-width: 100%; display: inline-block"/>
+        <p>微信打赏</p>
       </div>
     
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay-reward-image.png" alt="BiggerJoe Alipay" style="width: 200px; max-width: 100%; display: inline-block"/>
+        <p>支付宝打赏</p>
+      </div>
+    
+  </div>
+</div>
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/XCode/" rel="tag">#XCode</a>
+          
+            <a href="/tags/bug/" rel="tag">#bug</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/04/24/通过Masonry学AutoLayout/" rel="next" title="通过Masonry学AutoLayout">
+                <i class="fa fa-chevron-left"></i> 通过Masonry学AutoLayout
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -270,6 +437,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/05/07/XCode自动补全问题/"
+           data-title="XCode 无法自动补全" data-url="http://biggergao.github.io/2016/05/07/XCode自动补全问题/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -289,8 +464,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.png"
@@ -360,6 +544,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#吐槽"><span class="nav-number">1.</span> <span class="nav-text">吐槽</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原因"><span class="nav-number">2.</span> <span class="nav-text">原因</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-XCode自带BUG"><span class="nav-number">2.1.</span> <span class="nav-text">1.XCode自带BUG</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-要import-pods里的头文件"><span class="nav-number">2.2.</span> <span class="nav-text">2.要import pods里的头文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Done"><span class="nav-number">3.</span> <span class="nav-text">Done</span></a></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -463,6 +658,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 
