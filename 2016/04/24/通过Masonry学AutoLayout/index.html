@@ -78,34 +78,31 @@
 
 
 
-<meta name="description" content="写在前面最近被实习搞得很乱，但是见识到很多。然后，见识多了，发现自己对力量一无所知。
-介绍Masonry源码
+<meta name="description" content="介绍Masonry源码
 先上个官方的栗子,效果大概是这样的:
 代码
-1234567UIEdgeInsets padding = UIEdgeInsetsMake(10, 10, 10, 10);[view1 mas_makeConstraints:^(MASConstraintMaker *make) &amp;#123">
+1234567UIEdgeInsets padding = UIEdgeInsetsMake(10, 10, 10, 10);[view1 mas_makeConstraints:^(MASConstraintMaker *make) &amp;#123;    make.top.equalTo(superview.mas_top).wi">
 <meta property="og:type" content="article">
 <meta property="og:title" content="通过Masonry学AutoLayout">
 <meta property="og:url" content="http://biggergao.github.io/2016/04/24/通过Masonry学AutoLayout/index.html">
 <meta property="og:site_name" content="Mr. 码了戈壁">
-<meta property="og:description" content="写在前面最近被实习搞得很乱，但是见识到很多。然后，见识多了，发现自己对力量一无所知。
-介绍Masonry源码
+<meta property="og:description" content="介绍Masonry源码
 先上个官方的栗子,效果大概是这样的:
 代码
-1234567UIEdgeInsets padding = UIEdgeInsetsMake(10, 10, 10, 10);[view1 mas_makeConstraints:^(MASConstraintMaker *make) &amp;#123">
+1234567UIEdgeInsets padding = UIEdgeInsetsMake(10, 10, 10, 10);[view1 mas_makeConstraints:^(MASConstraintMaker *make) &amp;#123;    make.top.equalTo(superview.mas_top).wi">
 <meta property="og:image" content="http://7xtb7p.com1.z0.glb.clouddn.com/masonry_autolayout_blogMas_sample1.png_jzz">
 <meta property="og:image" content="http://7xtb7p.com1.z0.glb.clouddn.com/masonry_autolayout_blogMas_sample1.gif_jzz">
 <meta property="og:image" content="http://7xtb7p.com1.z0.glb.clouddn.com/masonry_autolayout_blogMas_sample2.png_jzz">
 <meta property="og:image" content="http://7xtb7p.com1.z0.glb.clouddn.com/masonry_autolayout_blogMas_sample3.png_jzz">
 <meta property="og:image" content="http://7xtb7p.com1.z0.glb.clouddn.com/masonry_autolayout_blogMas_sample4.png_jzz">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1727535-b697669b31575854.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2016-04-23T17:51:54.000Z">
+<meta property="og:updated_time" content="2016-05-14T12:22:11.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="通过Masonry学AutoLayout">
-<meta name="twitter:description" content="写在前面最近被实习搞得很乱，但是见识到很多。然后，见识多了，发现自己对力量一无所知。
-介绍Masonry源码
+<meta name="twitter:description" content="介绍Masonry源码
 先上个官方的栗子,效果大概是这样的:
 代码
-1234567UIEdgeInsets padding = UIEdgeInsetsMake(10, 10, 10, 10);[view1 mas_makeConstraints:^(MASConstraintMaker *make) &amp;#123">
+1234567UIEdgeInsets padding = UIEdgeInsetsMake(10, 10, 10, 10);[view1 mas_makeConstraints:^(MASConstraintMaker *make) &amp;#123;    make.top.equalTo(superview.mas_top).wi">
 <meta name="twitter:image" content="http://7xtb7p.com1.z0.glb.clouddn.com/masonry_autolayout_blogMas_sample1.png_jzz">
 
 
@@ -359,8 +356,7 @@
       
 
       
-        <h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>最近被实习搞得很乱，但是见识到很多。然后，见识多了，发现自己对力量一无所知。</p>
-<h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p><a href="https://github.com/Masonry/Masonry" target="_blank" rel="external">Masonry源码</a></p>
+        <h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p><a href="https://github.com/Masonry/Masonry" target="_blank" rel="external">Masonry源码</a></p>
 <p>先上个官方的栗子,效果大概是这样的:<br><img src="http://7xtb7p.com1.z0.glb.clouddn.com/masonry_autolayout_blogMas_sample1.png_jzz" alt="@Mas_sample1.png"></p>
 <p>代码</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">UIEdgeInsets padding = UIEdgeInsetsMake(10, 10, 10, 10);</span><br><span class="line">[view1 mas_makeConstraints:^(MASConstraintMaker *make) &#123;</span><br><span class="line">    make.top.equalTo(superview.mas_top).with.offset(padding.top); //with is an optional semantic filler</span><br><span class="line">    make.left.equalTo(superview.mas_left).with.offset(padding.left);</span><br><span class="line">    make.bottom.equalTo(superview.mas_bottom).with.offset(-padding.bottom);</span><br><span class="line">    make.right.equalTo(superview.mas_right).with.offset(-padding.right);</span><br><span class="line">&#125;];</span><br></pre></td></tr></table></figure>
@@ -451,8 +447,8 @@ viewB.attributes = (viewA.attributes - constraint) / multiplier
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/04/16/tree/" rel="next" title="Markdown">
-                <i class="fa fa-chevron-left"></i> Markdown
+              <a href="/2016/04/16/hello-hexo/" rel="next" title="数据结构Step by Step之树(1)- 二叉树 前序、中序、后序 LeetCode105根据前序中序的顺序构造树">
+                <i class="fa fa-chevron-left"></i> 数据结构Step by Step之树(1)- 二叉树 前序、中序、后序 LeetCode105根据前序中序的顺序构造树
               </a>
             
           </div>
@@ -533,7 +529,7 @@ viewB.attributes = (viewA.attributes - constraint) / multiplier
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-count">6</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -550,7 +546,7 @@ viewB.attributes = (viewA.attributes - constraint) / multiplier
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -599,7 +595,7 @@ viewB.attributes = (viewA.attributes - constraint) / multiplier
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#介绍"><span class="nav-number">2.</span> <span class="nav-text">介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#offset只是简单的做了加法运算"><span class="nav-number">2.1.</span> <span class="nav-text">offset只是简单的做了加法运算</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注意约束的重复性"><span class="nav-number">3.</span> <span class="nav-text">注意约束的重复性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#作者的demo"><span class="nav-number">4.</span> <span class="nav-text">作者的demo</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#demo中的知识点和iOS中的坑"><span class="nav-number"></span> <span class="nav-text">demo中的知识点和iOS中的坑</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#利用class多态实现为控制器初始view"><span class="nav-number">1.</span> <span class="nav-text">利用class多态实现为控制器初始view</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#坑点"><span class="nav-number">2.</span> <span class="nav-text">坑点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#有两种办法可以解决这个问题"><span class="nav-number">3.</span> <span class="nav-text">有两种办法可以解决这个问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Done"><span class="nav-number"></span> <span class="nav-text">Done</span></a></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#介绍"><span class="nav-number">1.</span> <span class="nav-text">介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#offset只是简单的做了加法运算"><span class="nav-number">1.1.</span> <span class="nav-text">offset只是简单的做了加法运算</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注意约束的重复性"><span class="nav-number">2.</span> <span class="nav-text">注意约束的重复性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#作者的demo"><span class="nav-number">3.</span> <span class="nav-text">作者的demo</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#demo中的知识点和iOS中的坑"><span class="nav-number"></span> <span class="nav-text">demo中的知识点和iOS中的坑</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#利用class多态实现为控制器初始view"><span class="nav-number">1.</span> <span class="nav-text">利用class多态实现为控制器初始view</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#坑点"><span class="nav-number">2.</span> <span class="nav-text">坑点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#有两种办法可以解决这个问题"><span class="nav-number">3.</span> <span class="nav-text">有两种办法可以解决这个问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Done"><span class="nav-number"></span> <span class="nav-text">Done</span></a></div>
             
           </div>
         </section>
