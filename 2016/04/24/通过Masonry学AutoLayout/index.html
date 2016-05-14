@@ -90,20 +90,20 @@
 先上个官方的栗子,效果大概是这样的:
 代码
 1234567UIEdgeInsets padding = UIEdgeInsetsMake(10, 10, 10, 10);[view1 mas_makeConstraints:^(MASConstraintMaker *make) &amp;#123;    make.top.equalTo(superview.mas_top).wi">
-<meta property="og:image" content="http://7xtb7p.com1.z0.glb.clouddn.com/masonry_autolayout_blogMas_sample1.png_jzz">
-<meta property="og:image" content="http://7xtb7p.com1.z0.glb.clouddn.com/masonry_autolayout_blogMas_sample1.gif_jzz">
-<meta property="og:image" content="http://7xtb7p.com1.z0.glb.clouddn.com/masonry_autolayout_blogMas_sample2.png_jzz">
-<meta property="og:image" content="http://7xtb7p.com1.z0.glb.clouddn.com/masonry_autolayout_blogMas_sample3.png_jzz">
-<meta property="og:image" content="http://7xtb7p.com1.z0.glb.clouddn.com/masonry_autolayout_blogMas_sample4.png_jzz">
+<meta property="og:image" content="http://7xtb7p.com1.z0.glb.clouddn.com/masonry_autolayout_blogMas_sample1.png">
+<meta property="og:image" content="http://7xtb7p.com1.z0.glb.clouddn.com/masonry_autolayout_blogMas_sample1.gif">
+<meta property="og:image" content="http://7xtb7p.com1.z0.glb.clouddn.com/masonry_autolayout_blogMas_sample2.png">
+<meta property="og:image" content="http://7xtb7p.com1.z0.glb.clouddn.com/masonry_autolayout_blogMas_sample3.png">
+<meta property="og:image" content="http://7xtb7p.com1.z0.glb.clouddn.com/masonry_autolayout_blogMas_sample4.png">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1727535-b697669b31575854.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2016-05-14T12:22:11.000Z">
+<meta property="og:updated_time" content="2016-05-14T19:13:03.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="通过Masonry学AutoLayout">
 <meta name="twitter:description" content="介绍Masonry源码
 先上个官方的栗子,效果大概是这样的:
 代码
 1234567UIEdgeInsets padding = UIEdgeInsetsMake(10, 10, 10, 10);[view1 mas_makeConstraints:^(MASConstraintMaker *make) &amp;#123;    make.top.equalTo(superview.mas_top).wi">
-<meta name="twitter:image" content="http://7xtb7p.com1.z0.glb.clouddn.com/masonry_autolayout_blogMas_sample1.png_jzz">
+<meta name="twitter:image" content="http://7xtb7p.com1.z0.glb.clouddn.com/masonry_autolayout_blogMas_sample1.png">
 
 
 
@@ -357,7 +357,7 @@
 
       
         <h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p><a href="https://github.com/Masonry/Masonry" target="_blank" rel="external">Masonry源码</a></p>
-<p>先上个官方的栗子,效果大概是这样的:<br><img src="http://7xtb7p.com1.z0.glb.clouddn.com/masonry_autolayout_blogMas_sample1.png_jzz" alt="@Mas_sample1.png"></p>
+<p>先上个官方的栗子,效果大概是这样的:<br><img src="http://7xtb7p.com1.z0.glb.clouddn.com/masonry_autolayout_blogMas_sample1.png" alt="@Mas_sample1.png"></p>
 <p>代码</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">UIEdgeInsets padding = UIEdgeInsetsMake(10, 10, 10, 10);</span><br><span class="line">[view1 mas_makeConstraints:^(MASConstraintMaker *make) &#123;</span><br><span class="line">    make.top.equalTo(superview.mas_top).with.offset(padding.top); //with is an optional semantic filler</span><br><span class="line">    make.left.equalTo(superview.mas_left).with.offset(padding.left);</span><br><span class="line">    make.bottom.equalTo(superview.mas_bottom).with.offset(-padding.bottom);</span><br><span class="line">    make.right.equalTo(superview.mas_right).with.offset(-padding.right);</span><br><span class="line">&#125;];</span><br></pre></td></tr></table></figure>
 <p>也可以写成</p>
@@ -371,23 +371,23 @@
 <pre><code>viewA.attributes= viewB.attributes * multiplier + constraint
 换下位置就等价于
 viewB.attributes = (viewA.attributes - constraint) / multiplier
-</code></pre><h3 id="作者的demo"><a href="#作者的demo" class="headerlink" title="作者的demo"></a>作者的demo</h3><p>看看作者的demo效果<br><img src="http://7xtb7p.com1.z0.glb.clouddn.com/masonry_autolayout_blogMas_sample1.gif_jzz" alt="@Mas_sample1.png"></p>
+</code></pre><h3 id="作者的demo"><a href="#作者的demo" class="headerlink" title="作者的demo"></a>作者的demo</h3><p>看看作者的demo效果<br><img src="http://7xtb7p.com1.z0.glb.clouddn.com/masonry_autolayout_blogMas_sample1.gif" alt="@Mas_sample1.png"></p>
 <p>很多demo，不一一展示了，可以自己下下来看。</p>
 <hr>
 <p>正题分割线</p>
-<h2 id="demo中的知识点和iOS中的坑"><a href="#demo中的知识点和iOS中的坑" class="headerlink" title="demo中的知识点和iOS中的坑"></a>demo中的知识点和iOS中的坑</h2><p><img src="http://7xtb7p.com1.z0.glb.clouddn.com/masonry_autolayout_blogMas_sample2.png_jzz" alt="@Mas_sample1.png"></p>
+<h2 id="demo中的知识点和iOS中的坑"><a href="#demo中的知识点和iOS中的坑" class="headerlink" title="demo中的知识点和iOS中的坑"></a>demo中的知识点和iOS中的坑</h2><p><img src="http://7xtb7p.com1.z0.glb.clouddn.com/masonry_autolayout_blogMas_sample2.png" alt="@Mas_sample1.png"></p>
 <h3 id="利用class多态实现为控制器初始view"><a href="#利用class多态实现为控制器初始view" class="headerlink" title="利用class多态实现为控制器初始view"></a>利用class多态实现为控制器初始view</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">@interface MASExampleViewController ()</span><br><span class="line">@property (nonatomic, strong) Class viewClass;</span><br><span class="line">@end</span><br><span class="line">@implementation MASExampleViewController</span><br><span class="line">- (id)initWithTitle:(NSString *)title viewClass:(Class)viewClass &#123;</span><br><span class="line">    self = [super init];</span><br><span class="line">    if (!self) return nil;</span><br><span class="line">    self.title = title;</span><br><span class="line">    self.viewClass = viewClass;</span><br><span class="line">    return self;</span><br><span class="line">&#125;</span><br><span class="line">- (void)loadView &#123;</span><br><span class="line">    self.view = self.viewClass.new;</span><br><span class="line">    self.view.backgroundColor = [UIColor whiteColor];</span><br><span class="line">//    self.navigationController.navigationBar.translucent = NO;</span><br><span class="line">&#125;</span><br><span class="line"> #ifdef __IPHONE_7_0</span><br><span class="line">- (UIRectEdge)edgesForExtendedLayout &#123;</span><br><span class="line">    return UIRectEdgeNone;</span><br><span class="line">&#125; </span><br><span class="line"> #endif</span><br></pre></td></tr></table></figure>
 <p>在MASExampleViewController（展示控制器）中有一个Class属性</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@property (nonatomic, strong) Class viewClass;</span><br></pre></td></tr></table></figure>
 <p>并且在控制器init函数中初始化了viewClass</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">- (id)initWithTitle:(NSString *)title viewClass:(Class)viewClass &#123;</span><br><span class="line">    self = [super init];</span><br><span class="line">    if (!self) return nil;</span><br><span class="line">    </span><br><span class="line">    self.title = title;</span><br><span class="line">    self.viewClass = viewClass;</span><br><span class="line">    </span><br><span class="line">    return self;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在根tableviewController中为每个cell获得对应的View.class<br><img src="http://7xtb7p.com1.z0.glb.clouddn.com/masonry_autolayout_blogMas_sample3.png_jzz" alt="@Mas_sample1.png"></p>
+<p>在根tableviewController中为每个cell获得对应的View.class<br><img src="http://7xtb7p.com1.z0.glb.clouddn.com/masonry_autolayout_blogMas_sample3.png" alt="@Mas_sample1.png"></p>
 <p>进入load的时候直接new就获得了view</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">- (void)loadView &#123;</span><br><span class="line">    self.view = self.viewClass.new;</span><br><span class="line">    self.view.backgroundColor = [UIColor whiteColor];</span><br><span class="line">//    self.navigationController.navigationBar.translucent = NO;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="坑点"><a href="#坑点" class="headerlink" title="坑点"></a>坑点</h3><p>注意到最后的代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#ifdef __IPHONE_7_0</span><br><span class="line">- (UIRectEdge)edgesForExtendedLayout &#123;</span><br><span class="line">    return UIRectEdgeNone;</span><br><span class="line">&#125;</span><br><span class="line">#endif</span><br></pre></td></tr></table></figure></p>
 <p>这个是什么意思？<br><strong>你可以把它想象成往哪个方向拉伸</strong><br>我们可以看看所有的UIRectEdge属性<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">typedef NS_OPTIONS(NSUInteger, UIRectEdge) &#123;</span><br><span class="line">    UIRectEdgeNone   = 0,</span><br><span class="line">    UIRectEdgeTop    = 1 &lt;&lt; 0,</span><br><span class="line">    UIRectEdgeLeft   = 1 &lt;&lt; 1,</span><br><span class="line">    UIRectEdgeBottom = 1 &lt;&lt; 2,</span><br><span class="line">    UIRectEdgeRight  = 1 &lt;&lt; 3,</span><br><span class="line">    UIRectEdgeAll    = UIRectEdgeTop | UIRectEdgeLeft | UIRectEdgeBottom | UIRectEdgeRight</span><br><span class="line">&#125; NS_ENUM_AVAILABLE_IOS(7_0);</span><br></pre></td></tr></table></figure></p>
 <p>可以看到这个是iOS7后新出的一个特性，在iOS7后，我们总是遇到一个场景,明明控件的y坐标设置的0，却总是被可恶的导航栏遮住，比如这种情况：</p>
-<p><img src="http://7xtb7p.com1.z0.glb.clouddn.com/masonry_autolayout_blogMas_sample4.png_jzz" alt="@Mas_sample1.png"></p>
+<p><img src="http://7xtb7p.com1.z0.glb.clouddn.com/masonry_autolayout_blogMas_sample4.png" alt="@Mas_sample1.png"></p>
 <p>这是因为iOS7后默认UIRectEdge的是UIRectEdgeAll，所以会向四周拉伸。</p>
 <h3 id="有两种办法可以解决这个问题"><a href="#有两种办法可以解决这个问题" class="headerlink" title="有两种办法可以解决这个问题"></a>有两种办法可以解决这个问题</h3><p>第一种就是像作者这样重写edgesForExtendedLayout函数</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> #ifdef __IPHONE_7_0</span><br><span class="line">- (UIRectEdge)edgesForExtendedLayout &#123;</span><br><span class="line">    return UIRectEdgeNone;</span><br><span class="line">&#125;</span><br><span class="line"> #endif</span><br></pre></td></tr></table></figure>
