@@ -62,7 +62,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="效率,工具," />
+  <meta name="keywords" content="objc基础," />
 
 
 
@@ -78,19 +78,40 @@
 
 
 
-<meta name="description" content="###写在前面
-1curl -fsSL https://raw.githubusercontent.com/supermarin/Alcatraz/deploy/Scripts/install.sh | sh">
+<meta name="description" content="@property@property我们都是十分熟悉的，这条语句编译器会自动合成(auto synthesis)这样几个东西添加到类中：
+
+实例变量
+存取方法
+属性名
+
+我们不要忽略了属性名(无_) 和实例变量名(有_)的特性
+直接看这个：
+123@interface JZZPerson : NSObject@property (nonatomic, copy) NSString *name;@e">
 <meta property="og:type" content="article">
-<meta property="og:title" content="开发神器Injection与Masonry">
-<meta property="og:url" content="http://biggergao.github.io/2016/05/09/开发神器Injection与Masonry/index.html">
+<meta property="og:title" content="深入浅出@property 与 @synthesis">
+<meta property="og:url" content="http://biggergao.github.io/2016/05/15/深入浅出@property 与 @synthesis/index.html">
 <meta property="og:site_name" content="Mr. 码了戈壁">
-<meta property="og:description" content="###写在前面
-1curl -fsSL https://raw.githubusercontent.com/supermarin/Alcatraz/deploy/Scripts/install.sh | sh">
-<meta property="og:updated_time" content="2016-05-10T03:08:42.000Z">
+<meta property="og:description" content="@property@property我们都是十分熟悉的，这条语句编译器会自动合成(auto synthesis)这样几个东西添加到类中：
+
+实例变量
+存取方法
+属性名
+
+我们不要忽略了属性名(无_) 和实例变量名(有_)的特性
+直接看这个：
+123@interface JZZPerson : NSObject@property (nonatomic, copy) NSString *name;@e">
+<meta property="og:updated_time" content="2016-05-16T16:38:01.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="开发神器Injection与Masonry">
-<meta name="twitter:description" content="###写在前面
-1curl -fsSL https://raw.githubusercontent.com/supermarin/Alcatraz/deploy/Scripts/install.sh | sh">
+<meta name="twitter:title" content="深入浅出@property 与 @synthesis">
+<meta name="twitter:description" content="@property@property我们都是十分熟悉的，这条语句编译器会自动合成(auto synthesis)这样几个东西添加到类中：
+
+实例变量
+存取方法
+属性名
+
+我们不要忽略了属性名(无_) 和实例变量名(有_)的特性
+直接看这个：
+123@interface JZZPerson : NSObject@property (nonatomic, copy) NSString *name;@e">
 
 
 
@@ -108,7 +129,7 @@
   };
 </script>
 
-  <title> 开发神器Injection与Masonry | Mr. 码了戈壁 </title>
+  <title> 深入浅出@property 与 @synthesis | Mr. 码了戈壁 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -268,7 +289,7 @@
             
             
               
-                开发神器Injection与Masonry
+                深入浅出@property 与 @synthesis
               
             
           </h1>
@@ -280,8 +301,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-09T21:50:12+08:00" content="2016-05-09">
-              2016-05-09
+            <time itemprop="dateCreated" datetime="2016-05-15T17:35:33+08:00" content="2016-05-15">
+              2016-05-15
             </time>
           </span>
 
@@ -310,8 +331,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/05/09/开发神器Injection与Masonry/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/09/开发神器Injection与Masonry/" itemprop="commentsCount"></span>
+                <a href="/2016/05/15/深入浅出@property 与 @synthesis/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/15/深入浅出@property 与 @synthesis/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -321,7 +342,7 @@
 
           
           
-             <span id="/2016/05/09/开发神器Injection与Masonry/" class="leancloud_visitors" data-flag-title="开发神器Injection与Masonry">
+             <span id="/2016/05/15/深入浅出@property 与 @synthesis/" class="leancloud_visitors" data-flag-title="深入浅出@property 与 @synthesis">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -343,8 +364,69 @@
       
 
       
-        <p>###写在前面</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -fsSL https://raw.githubusercontent.com/supermarin/Alcatraz/deploy/Scripts/install.sh | sh</span><br></pre></td></tr></table></figure>
+        <h2 id="property"><a href="#property" class="headerlink" title="@property"></a>@property</h2><p>@property我们都是十分熟悉的，这条语句编译器会自动合成(auto synthesis)这样几个东西添加到类中：</p>
+<ul>
+<li>实例变量</li>
+<li>存取方法</li>
+<li>属性名</li>
+</ul>
+<p><b>我们不要忽略了属性名(无_) 和实例变量名(有_)的特性</b></p>
+<p>直接看这个：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@interface JZZPerson : NSObject</span><br><span class="line">@property (nonatomic, copy) NSString *name;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<p>编译器就会自动生成这些：</p>
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>instanceVariableName</td>
+<td>_name</td>
+</tr>
+<tr>
+<td>propertyName</td>
+<td>name</td>
+</tr>
+<tr>
+<td>getter</td>
+<td>name()</td>
+</tr>
+<tr>
+<td>setter</td>
+<td>setName:(NSString*)name</td>
+</tr>
+</tbody>
+</table>
+<p>此时的JZZPerson中有这些东西：</p>
+<ul>
+<li>OBJC<em>IVAR</em>$JZZPerson$name (OBJC<em>IVAR</em>$类名$属性名称)</li>
+<li>setter 和 getter方法对应的<font color="red">实现</font></li>
+<li>ivar_list : 成员实例变量列表</li>
+<li>method_list : 方法列表</li>
+<li>prop_list : 属性列表</li>
+</ul>
+<p>也就是说如果我们添加一个age属性：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@interface JZZPerson : NSObject</span><br><span class="line">@property (nonatomic, copy) NSString *name;</span><br><span class="line">@property (nonatomic, copy) NSString *age;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<ul>
+<li>ivar_list会增加一个_age</li>
+<li>prop_list会增加一个age</li>
+<li>method_list会增加setter和getter方法的<font color="red">描述</font></li>
+<li>增加age的setter和getter的实现</li>
+</ul>
+<h2 id="synthesis"><a href="#synthesis" class="headerlink" title="@synthesis"></a>@synthesis</h2><p>synthesis意为合成，可以用来自定义实例变量(ivar)的名称</p>
+<p>官方语法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@implement YourClass</span><br><span class="line">@synthesize propertyName = instanceVariableName;</span><br><span class="line">...</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<p>注意我们这里用的是<b>propertyName</b></p>
+<p>例如我们的JZZPerson中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@implement JZZPerson</span><br><span class="line">@synthesize name = _JZZName;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<p>这样就会生成_JZZName实例变量，<br>那么以后我们访问name就不能用_name，而是用_JZZName,<br>但是我们的getter和setter还是name()和setName:(NSString *)name。虽然有人不喜欢下划线开头的实例变量名，但是笔者还是推荐默认的命名方案，毕竟大家都这样用。</p>
+<p>注意，如果你的@synthesis后跟实例变量名在原来的类中不存在，如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@synthesize sex;</span><br></pre></td></tr></table></figure>
+<p>那么就会生成一个sex属性名和sex实例变量名（即名称相同且不带下划线）。</p>
+
       
     </div>
     
@@ -385,9 +467,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/效率/" rel="tag">#效率</a>
-          
-            <a href="/tags/工具/" rel="tag">#工具</a>
+            <a href="/tags/objc基础/" rel="tag">#objc基础</a>
           
         </div>
       
@@ -396,17 +476,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/05/07/XCode自动补全问题/" rel="next" title="XCode 无法自动补全">
-                <i class="fa fa-chevron-left"></i> XCode 无法自动补全
+              <a href="/2016/05/14/iOS定位-核心定位框架CLLocation/" rel="next" title="iOS定位-核心定位框架CLLocation定位经纬度、所在城市">
+                <i class="fa fa-chevron-left"></i> iOS定位-核心定位框架CLLocation定位经纬度、所在城市
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/05/14/iOS定位-核心定位框架CLLocation/" rel="prev" title="iOS定位-核心定位框架CLLocation定位经纬度、所在城市">
-                iOS定位-核心定位框架CLLocation定位经纬度、所在城市 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -432,8 +508,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/05/09/开发神器Injection与Masonry/"
-           data-title="开发神器Injection与Masonry" data-url="http://biggergao.github.io/2016/05/09/开发神器Injection与Masonry/">
+      <div class="ds-thread" data-thread-key="2016/05/15/深入浅出@property 与 @synthesis/"
+           data-title="深入浅出@property 与 @synthesis" data-url="http://biggergao.github.io/2016/05/15/深入浅出@property 与 @synthesis/">
       </div>
     
   </div>
@@ -478,7 +554,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-count">6</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -544,7 +620,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#property"><span class="nav-number">1.</span> <span class="nav-text">@property</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#synthesis"><span class="nav-number">2.</span> <span class="nav-text">@synthesis</span></a></li></ol></div>
             
           </div>
         </section>
