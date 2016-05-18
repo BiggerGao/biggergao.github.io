@@ -96,7 +96,7 @@
 <meta property="og:image" content="http://7xtb7p.com1.z0.glb.clouddn.com/masonry_autolayout_blogMas_sample3.png">
 <meta property="og:image" content="http://7xtb7p.com1.z0.glb.clouddn.com/masonry_autolayout_blogMas_sample4.png">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1727535-b697669b31575854.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2016-05-14T19:13:03.000Z">
+<meta property="og:updated_time" content="2016-05-18T16:02:17.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="通过Masonry学AutoLayout">
 <meta name="twitter:description" content="介绍Masonry源码
@@ -394,7 +394,7 @@ viewB.attributes = (viewA.attributes - constraint) / multiplier
 <p>这个办法有几个控件就会调用几次edgesForExtendedLayout函数。<br>第二种就是修改导航栏的translucent为NO，iOS6(包括)前导航栏的translucent默认都是NO的，但是iOS7后translucent默认是YES的，我们修改一下透明度即可。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">- (void)loadView &#123;</span><br><span class="line">    self.view = self.viewClass.new;</span><br><span class="line">    self.view.backgroundColor = [UIColor whiteColor];</span><br><span class="line">    self.navigationController.navigationBar.translucent = NO;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p><img src="http://upload-images.jianshu.io/upload_images/1727535-b697669b31575854.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Mas_sample5.png"></p>
 <p>参考博客：<br><a href="http://tutuge.me/2015/08/08/autolayout-example-with-masonry2/" target="_blank" rel="external">有趣的Autolayout示例2-Masonry实现</a><br><a href="http://www.superqq.com/blog/2015/10/09/uiviewcontroller-rectedge" target="_blank" rel="external">UIViewController的edgesForExtendedLayout属性</a></p>
-<h2 id="Done"><a href="#Done" class="headerlink" title="Done"></a>Done</h2><p>作者 <a href="http://weibo.com/3184193244" target="_blank" rel="external">@biggergao</a><br>2016 年 04月 24日    </p>
+<h2 id="Done"><a href="#Done" class="headerlink" title="Done"></a>Done</h2><p>作者 <a href="http://www.github.com/biggergao" target="_blank" rel="external">@biggergao</a><br>2016 年 04月 24日    </p>
 
       
     </div>
@@ -447,8 +447,8 @@ viewB.attributes = (viewA.attributes - constraint) / multiplier
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/04/16/hello-hexo/" rel="next" title="数据结构Step by Step之树(1)- 二叉树 前序、中序、后序 LeetCode105根据前序中序的顺序构造树">
-                <i class="fa fa-chevron-left"></i> 数据结构Step by Step之树(1)- 二叉树 前序、中序、后序 LeetCode105根据前序中序的顺序构造树
+              <a href="/2016/04/16/tree/" rel="next" title="Markdown">
+                <i class="fa fa-chevron-left"></i> Markdown
               </a>
             
           </div>
@@ -529,7 +529,7 @@ viewB.attributes = (viewA.attributes - constraint) / multiplier
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-count">8</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

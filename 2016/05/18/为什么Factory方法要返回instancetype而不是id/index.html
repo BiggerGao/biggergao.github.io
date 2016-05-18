@@ -62,7 +62,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="效率,工具," />
+  <meta name="keywords" content="objc基础," />
 
 
 
@@ -78,19 +78,25 @@
 
 
 
-<meta name="description" content="###写在前面
-1curl -fsSL https://raw.githubusercontent.com/supermarin/Alcatraz/deploy/Scripts/install.sh | sh">
+<meta name="description" content="前言四年前Clang添加了关键字instancetype，目的在于取代-alloc和-init等方法的返回类型id，那么使用instancetype到底比id好在哪里？
+instancetype宣言不管何时，只要一个class要返回它相同的类实例，使用instancetype都是更加合适的。
+我们知道，当调用类中（或者子类）的-alloc、-init或者class factory(+)方法，使用i">
 <meta property="og:type" content="article">
-<meta property="og:title" content="开发神器Injection与Masonry">
-<meta property="og:url" content="http://biggergao.github.io/2016/05/09/开发神器Injection与Masonry/index.html">
+<meta property="og:title" content="为什么你需要使用instancetype而不是id">
+<meta property="og:url" content="http://biggergao.github.io/2016/05/18/为什么Factory方法要返回instancetype而不是id/index.html">
 <meta property="og:site_name" content="Mr. 码了戈壁">
-<meta property="og:description" content="###写在前面
-1curl -fsSL https://raw.githubusercontent.com/supermarin/Alcatraz/deploy/Scripts/install.sh | sh">
-<meta property="og:updated_time" content="2016-05-10T03:08:42.000Z">
+<meta property="og:description" content="前言四年前Clang添加了关键字instancetype，目的在于取代-alloc和-init等方法的返回类型id，那么使用instancetype到底比id好在哪里？
+instancetype宣言不管何时，只要一个class要返回它相同的类实例，使用instancetype都是更加合适的。
+我们知道，当调用类中（或者子类）的-alloc、-init或者class factory(+)方法，使用i">
+<meta property="og:image" content="http://biggergao.github.io/Users/Echo/HexoBlog/source/Images/为什么你需要使用instancetype而不是id2.png">
+<meta property="og:image" content="http://biggergao.github.io/Users/Echo/HexoBlog/source/Images/为什么你需要使用instancetype而不是id1.png">
+<meta property="og:updated_time" content="2016-05-18T16:03:42.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="开发神器Injection与Masonry">
-<meta name="twitter:description" content="###写在前面
-1curl -fsSL https://raw.githubusercontent.com/supermarin/Alcatraz/deploy/Scripts/install.sh | sh">
+<meta name="twitter:title" content="为什么你需要使用instancetype而不是id">
+<meta name="twitter:description" content="前言四年前Clang添加了关键字instancetype，目的在于取代-alloc和-init等方法的返回类型id，那么使用instancetype到底比id好在哪里？
+instancetype宣言不管何时，只要一个class要返回它相同的类实例，使用instancetype都是更加合适的。
+我们知道，当调用类中（或者子类）的-alloc、-init或者class factory(+)方法，使用i">
+<meta name="twitter:image" content="http://biggergao.github.io/Users/Echo/HexoBlog/source/Images/为什么你需要使用instancetype而不是id2.png">
 
 
 
@@ -108,7 +114,7 @@
   };
 </script>
 
-  <title> 开发神器Injection与Masonry | Mr. 码了戈壁 </title>
+  <title> 为什么你需要使用instancetype而不是id | Mr. 码了戈壁 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -268,7 +274,7 @@
             
             
               
-                开发神器Injection与Masonry
+                为什么你需要使用instancetype而不是id
               
             
           </h1>
@@ -280,8 +286,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-09T21:50:12+08:00" content="2016-05-09">
-              2016-05-09
+            <time itemprop="dateCreated" datetime="2016-05-18T20:46:05+08:00" content="2016-05-18">
+              2016-05-18
             </time>
           </span>
 
@@ -310,8 +316,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/05/09/开发神器Injection与Masonry/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/09/开发神器Injection与Masonry/" itemprop="commentsCount"></span>
+                <a href="/2016/05/18/为什么Factory方法要返回instancetype而不是id/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/18/为什么Factory方法要返回instancetype而不是id/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -321,7 +327,7 @@
 
           
           
-             <span id="/2016/05/09/开发神器Injection与Masonry/" class="leancloud_visitors" data-flag-title="开发神器Injection与Masonry">
+             <span id="/2016/05/18/为什么Factory方法要返回instancetype而不是id/" class="leancloud_visitors" data-flag-title="为什么你需要使用instancetype而不是id">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -343,8 +349,46 @@
       
 
       
-        <p>###写在前面</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -fsSL https://raw.githubusercontent.com/supermarin/Alcatraz/deploy/Scripts/install.sh | sh</span><br></pre></td></tr></table></figure>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>四年前Clang添加了关键字instancetype，目的在于取代<b>-alloc</b>和<b>-init</b>等方法的返回类型id，那么使用instancetype到底比id好在哪里？</p>
+<h2 id="instancetype宣言"><a href="#instancetype宣言" class="headerlink" title="instancetype宣言"></a>instancetype宣言</h2><p><b>不管何时，只要一个class要返回它相同的类实例，使用instancetype都是更加合适的。</b></p>
+<p>我们知道，当调用类中（或者子类）的<b>-alloc</b>、<b>-init</b>或者<b>class factory(+)</b>方法，使用<b>instancetype</b>关键字会返回它的类实例。<b>在这种情况下用instancetype而不是id有100个好处</b>。<br>苹果也这样说：</p>
+<blockquote>
+<p>In your code, replace occurrences of id as a return value with instancetype where appropriate. This is typically the case for init methods and class factory methods. Even though the compiler automatically converts methods that begin with “alloc,” “init,” or “new” and have a return type of id to return instancetype, it doesn’t convert other methods. Objective-C convention is to write instancetype explicitly for all methods.</p>
+</blockquote>
+<p>更加有力的证据：<a href="https://developer.apple.com/library/ios/releasenotes/ObjectiveC/ModernizationObjC/AdoptingModernObjective-C/AdoptingModernObjective-C.html#//apple_ref/doc/uid/TP40014150-CH1-SW11" target="_blank" rel="external">Adopting Modern Objective-C</a></p>
+<h2 id="为什么？"><a href="#为什么？" class="headerlink" title="为什么？"></a>为什么？</h2><p>首先你可能需要知道编译器会做什么</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@interface Foo:NSObject</span><br><span class="line">- (id)initWithBar:(NSInteger)bar; // initializer</span><br><span class="line">+ (id)fooWithBar:(NSInteger)bar;  // convenience constructor</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<p>对于convenience constructor，你必须要使用instancetype，因为编译器不会把id自动转换成instancetype。</p>
+<p>而对于initializer，当你的代码是这样的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- (id)initWithBar:(NSInteger)bar; // initializer</span><br></pre></td></tr></table></figure>
+<p>ARC下，编译器会把它变成这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- (instancetype)initWithBar:(NSInteger)bar; // initializer</span><br></pre></td></tr></table></figure>
+<p>这也是为什么有人告诉你用instancetype是没有必要的，但是我建议你使用instancetype，原因有三：</p>
+<ol>
+<li><b>明确性：</b>你的代码含义明确，绝不会做其他事。</li>
+<li><b>模式化：</b>你建立了一个良好的习惯，这确实是很重要的。</li>
+<li><b>一致性：</b>让你的代码更一致，并且增加可读性。</li>
+</ol>
+<h3 id="1-明确性"><a href="#1-明确性" class="headerlink" title="1.明确性"></a>1.明确性</h3><p>在-init方法中返回instancetype确实是没有太多的好处，这是因为编译器会自动把id转换成instancetype。</p>
+<p>这对于编译器来讲是等价的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">- (id)initWithBar:(NSInteger)bar;</span><br><span class="line">- (instancetype)initWithBar:(NSInteger)bar;</span><br></pre></td></tr></table></figure>
+<p>但是至少这在你眼中是不同的。</p>
+<h3 id="2-模式化"><a href="#2-模式化" class="headerlink" title="2.模式化"></a>2.模式化</h3><p>虽然对init或者其他方法，返回id和instancetype没什么不同，但是在convenient constructor(+)方法中他们是有区别的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">+ (id)fooWithBar:(NSInteger)bar;</span><br><span class="line">+ (instancetype)fooWithBar:(NSInteger)bar;</span><br></pre></td></tr></table></figure>
+<p>你必须要用第二条才能保证你每次运行的结果正确，为什么？<br>考虑这样的情况：<br><img src="/Users/Echo/HexoBlog/source/Images/为什么你需要使用instancetype而不是id2.png" alt=""></p>
+<p>然后我们这样调用：</p>
+<p><img src="/Users/Echo/HexoBlog/source/Images/为什么你需要使用instancetype而不是id1.png" alt=""></p>
+<p>发现x出现编译警告，因为我们的+factoryMethodA返回的是instancetype，它表示的是MyObject*，因为MyObject没有<b>-count</b>方法，所以出现了编译警告。</p>
+<p>然而，因为我们的+factoryMethodB返回的是id，编译器没有在y行给警告，因为Objc语言动态类型和动态绑定的特性，id可能是任何class，又因为<b>-count</b>方法可能于存在某个类的某个地方，因此对于编译器而言，+factoryMethodB方法返回的东西是可能实现-count方法的。</p>
+<h3 id="3-一致性"><a href="#3-一致性" class="headerlink" title="3.一致性"></a>3.一致性</h3><p>在init中可以返回id，因此你可能会这样写：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">- (id)initWithBar:(NSInteger)bar;</span><br><span class="line">+ (instancetype)fooWithBar:(NSInteger)bar;</span><br></pre></td></tr></table></figure>
+<p>但是如果你使用instancetype，结果会是这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">- (instancetype)initWithBar:(NSInteger)bar;</span><br><span class="line">+ (instancetype)fooWithBar:(NSInteger)bar;</span><br></pre></td></tr></table></figure>
+<p>这样看起来更加一致并且可读性更高。他们返回同样的东西，但是后者看起来更明显，不是吗？</p>
+<h1 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h1><p>当要返回id类型的时候，你应该思考它是否会返回一个类的实例，如果是，请使用instancetype。</p>
+<h2 id="Done"><a href="#Done" class="headerlink" title="Done"></a>Done</h2><p>作者 <a href="http://www.github.com/biggergao" target="_blank" rel="external">@biggergao</a></p>
+<p>2016年05月18日</p>
+
       
     </div>
     
@@ -385,9 +429,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/效率/" rel="tag">#效率</a>
-          
-            <a href="/tags/工具/" rel="tag">#工具</a>
+            <a href="/tags/objc基础/" rel="tag">#objc基础</a>
           
         </div>
       
@@ -396,17 +438,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/05/07/XCode自动补全问题/" rel="next" title="XCode 无法自动补全">
-                <i class="fa fa-chevron-left"></i> XCode 无法自动补全
+              <a href="/2016/05/15/123/" rel="next" title="深入浅出@property 与 @synthesis">
+                <i class="fa fa-chevron-left"></i> 深入浅出@property 与 @synthesis
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/05/14/iOS定位-核心定位框架CLLocation/" rel="prev" title="iOS定位-核心定位框架CLLocation定位经纬度、所在城市">
-                iOS定位-核心定位框架CLLocation定位经纬度、所在城市 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -432,8 +470,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/05/09/开发神器Injection与Masonry/"
-           data-title="开发神器Injection与Masonry" data-url="http://biggergao.github.io/2016/05/09/开发神器Injection与Masonry/">
+      <div class="ds-thread" data-thread-key="2016/05/18/为什么Factory方法要返回instancetype而不是id/"
+           data-title="为什么你需要使用instancetype而不是id" data-url="http://biggergao.github.io/2016/05/18/为什么Factory方法要返回instancetype而不是id/">
       </div>
     
   </div>
@@ -544,7 +582,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#instancetype宣言"><span class="nav-number">2.</span> <span class="nav-text">instancetype宣言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么？"><span class="nav-number">3.</span> <span class="nav-text">为什么？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-明确性"><span class="nav-number">3.1.</span> <span class="nav-text">1.明确性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-模式化"><span class="nav-number">3.2.</span> <span class="nav-text">2.模式化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-一致性"><span class="nav-number">3.3.</span> <span class="nav-text">3.一致性</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#结论"><span class="nav-number"></span> <span class="nav-text">结论</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Done"><span class="nav-number">1.</span> <span class="nav-text">Done</span></a></li></ol></div>
             
           </div>
         </section>
