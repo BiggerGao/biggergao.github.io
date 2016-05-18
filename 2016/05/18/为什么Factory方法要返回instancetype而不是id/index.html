@@ -88,15 +88,15 @@ instancetype宣言不管何时，只要一个class要返回它相同的类实例
 <meta property="og:description" content="前言四年前Clang添加了关键字instancetype，目的在于取代-alloc和-init等方法的返回类型id，那么使用instancetype到底比id好在哪里？
 instancetype宣言不管何时，只要一个class要返回它相同的类实例，使用instancetype都是更加合适的。
 我们知道，当调用类中（或者子类）的-alloc、-init或者class factory(+)方法，使用i">
-<meta property="og:image" content="http://biggergao.github.io/Users/Echo/HexoBlog/source/Images/为什么你需要使用instancetype而不是id2.png">
-<meta property="og:image" content="http://biggergao.github.io/Users/Echo/HexoBlog/source/Images/为什么你需要使用instancetype而不是id1.png">
-<meta property="og:updated_time" content="2016-05-18T16:03:42.000Z">
+<meta property="og:image" content="http://7xtb7p.com1.z0.glb.clouddn.com/%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%A0%E9%9C%80%E8%A6%81%E4%BD%BF%E7%94%A8instancetype%E8%80%8C%E4%B8%8D%E6%98%AFid%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%A0%E9%9C%80%E8%A6%81%E4%BD%BF%E7%94%A8instancetype%E8%80%8C%E4%B8%8D%E6%98%AFid2.png">
+<meta property="og:image" content="http://7xtb7p.com1.z0.glb.clouddn.com/%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%A0%E9%9C%80%E8%A6%81%E4%BD%BF%E7%94%A8instancetype%E8%80%8C%E4%B8%8D%E6%98%AFid%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%A0%E9%9C%80%E8%A6%81%E4%BD%BF%E7%94%A8instancetype%E8%80%8C%E4%B8%8D%E6%98%AFid1.png">
+<meta property="og:updated_time" content="2016-05-18T16:10:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="为什么你需要使用instancetype而不是id">
 <meta name="twitter:description" content="前言四年前Clang添加了关键字instancetype，目的在于取代-alloc和-init等方法的返回类型id，那么使用instancetype到底比id好在哪里？
 instancetype宣言不管何时，只要一个class要返回它相同的类实例，使用instancetype都是更加合适的。
 我们知道，当调用类中（或者子类）的-alloc、-init或者class factory(+)方法，使用i">
-<meta name="twitter:image" content="http://biggergao.github.io/Users/Echo/HexoBlog/source/Images/为什么你需要使用instancetype而不是id2.png">
+<meta name="twitter:image" content="http://7xtb7p.com1.z0.glb.clouddn.com/%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%A0%E9%9C%80%E8%A6%81%E4%BD%BF%E7%94%A8instancetype%E8%80%8C%E4%B8%8D%E6%98%AFid%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%A0%E9%9C%80%E8%A6%81%E4%BD%BF%E7%94%A8instancetype%E8%80%8C%E4%B8%8D%E6%98%AFid2.png">
 
 
 
@@ -375,9 +375,9 @@ instancetype宣言不管何时，只要一个class要返回它相同的类实例
 <p>但是至少这在你眼中是不同的。</p>
 <h3 id="2-模式化"><a href="#2-模式化" class="headerlink" title="2.模式化"></a>2.模式化</h3><p>虽然对init或者其他方法，返回id和instancetype没什么不同，但是在convenient constructor(+)方法中他们是有区别的：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">+ (id)fooWithBar:(NSInteger)bar;</span><br><span class="line">+ (instancetype)fooWithBar:(NSInteger)bar;</span><br></pre></td></tr></table></figure>
-<p>你必须要用第二条才能保证你每次运行的结果正确，为什么？<br>考虑这样的情况：<br><img src="/Users/Echo/HexoBlog/source/Images/为什么你需要使用instancetype而不是id2.png" alt=""></p>
+<p>你必须要用第二条才能保证你每次运行的结果正确，为什么？<br>考虑这样的情况：<br><img src="http://7xtb7p.com1.z0.glb.clouddn.com/%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%A0%E9%9C%80%E8%A6%81%E4%BD%BF%E7%94%A8instancetype%E8%80%8C%E4%B8%8D%E6%98%AFid%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%A0%E9%9C%80%E8%A6%81%E4%BD%BF%E7%94%A8instancetype%E8%80%8C%E4%B8%8D%E6%98%AFid2.png" alt=""></p>
 <p>然后我们这样调用：</p>
-<p><img src="/Users/Echo/HexoBlog/source/Images/为什么你需要使用instancetype而不是id1.png" alt=""></p>
+<p><img src="http://7xtb7p.com1.z0.glb.clouddn.com/%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%A0%E9%9C%80%E8%A6%81%E4%BD%BF%E7%94%A8instancetype%E8%80%8C%E4%B8%8D%E6%98%AFid%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%A0%E9%9C%80%E8%A6%81%E4%BD%BF%E7%94%A8instancetype%E8%80%8C%E4%B8%8D%E6%98%AFid1.png" alt=""></p>
 <p>发现x出现编译警告，因为我们的+factoryMethodA返回的是instancetype，它表示的是MyObject*，因为MyObject没有<b>-count</b>方法，所以出现了编译警告。</p>
 <p>然而，因为我们的+factoryMethodB返回的是id，编译器没有在y行给警告，因为Objc语言动态类型和动态绑定的特性，id可能是任何class，又因为<b>-count</b>方法可能于存在某个类的某个地方，因此对于编译器而言，+factoryMethodB方法返回的东西是可能实现-count方法的。</p>
 <h3 id="3-一致性"><a href="#3-一致性" class="headerlink" title="3.一致性"></a>3.一致性</h3><p>在init中可以返回id，因此你可能会这样写：</p>
@@ -386,6 +386,14 @@ instancetype宣言不管何时，只要一个class要返回它相同的类实例
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">- (instancetype)initWithBar:(NSInteger)bar;</span><br><span class="line">+ (instancetype)fooWithBar:(NSInteger)bar;</span><br></pre></td></tr></table></figure>
 <p>这样看起来更加一致并且可读性更高。他们返回同样的东西，但是后者看起来更明显，不是吗？</p>
 <h1 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h1><p>当要返回id类型的时候，你应该思考它是否会返回一个类的实例，如果是，请使用instancetype。</p>
+<p>参考链接：</p>
+<ol>
+<li><a href="http://tewha.net/2013/02/why-you-should-use-instancetype-instead-of-id/" target="_blank" rel="external">Why you should use instancetype instead of id</a></li>
+</ol>
+<ul>
+<li><a href="http://stackoverflow.com/questions/8972221/would-it-be-beneficial-to-begin-using-instancetype-instead-of-id" target="_blank" rel="external">stackoverflow</a></li>
+<li><a href="https://developer.apple.com/library/ios/releasenotes/ObjectiveC/ModernizationObjC/AdoptingModernObjective-C/AdoptingModernObjective-C.html#//apple_ref/doc/uid/TP40014150-CH1-SW11" target="_blank" rel="external">Adopting Modern Objective-C</a></li>
+</ul>
 <h2 id="Done"><a href="#Done" class="headerlink" title="Done"></a>Done</h2><p>作者 <a href="http://www.github.com/biggergao" target="_blank" rel="external">@biggergao</a></p>
 <p>2016年05月18日</p>
 
