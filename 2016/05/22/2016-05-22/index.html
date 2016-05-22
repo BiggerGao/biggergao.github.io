@@ -78,23 +78,23 @@
 
 
 
-<meta name="description" content="前言Enum，枚举，相信大部分编程语言都有对应的枚举类型，功能可能有多有少，但是枚举最核心的功能是规范的定义代码中的状态、状态码、选项。
+<meta name="description" content="前言Enum，枚举，相信大部分编程语言都有对应的枚举类型，功能可能有多有少，但是枚举最核心的功能是  “规范的定义代码中的状态、状态码、选项”。
 状态、状态码、选项什么是状态：同时只能出现一个值(状态码就是他的值)，比如这个ScrollView里的枚举：
-12345typedef NS_ENUM(NSInteger, UIScrollViewKeyboardDismissMode) &amp;#123;    U">
+12345typedef NS_ENUM(NSInteger, UIScrollViewKeyboardDismissMode) &amp;#123;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="枚举的正确使用姿势-Enumeration宏">
+<meta property="og:title" content="5分钟学会枚举的正确使用姿势-Enumeration宏">
 <meta property="og:url" content="http://biggergao.github.io/2016/05/22/2016-05-22/index.html">
 <meta property="og:site_name" content="Mr. 码了戈壁">
-<meta property="og:description" content="前言Enum，枚举，相信大部分编程语言都有对应的枚举类型，功能可能有多有少，但是枚举最核心的功能是规范的定义代码中的状态、状态码、选项。
+<meta property="og:description" content="前言Enum，枚举，相信大部分编程语言都有对应的枚举类型，功能可能有多有少，但是枚举最核心的功能是  “规范的定义代码中的状态、状态码、选项”。
 状态、状态码、选项什么是状态：同时只能出现一个值(状态码就是他的值)，比如这个ScrollView里的枚举：
-12345typedef NS_ENUM(NSInteger, UIScrollViewKeyboardDismissMode) &amp;#123;    U">
+12345typedef NS_ENUM(NSInteger, UIScrollViewKeyboardDismissMode) &amp;#123;">
 <meta property="og:image" content="http://7xtb7p.com1.z0.glb.clouddn.com/2016-05-222016-05-22-1.png">
-<meta property="og:updated_time" content="2016-05-22T14:00:05.000Z">
+<meta property="og:updated_time" content="2016-05-22T14:06:59.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="枚举的正确使用姿势-Enumeration宏">
-<meta name="twitter:description" content="前言Enum，枚举，相信大部分编程语言都有对应的枚举类型，功能可能有多有少，但是枚举最核心的功能是规范的定义代码中的状态、状态码、选项。
+<meta name="twitter:title" content="5分钟学会枚举的正确使用姿势-Enumeration宏">
+<meta name="twitter:description" content="前言Enum，枚举，相信大部分编程语言都有对应的枚举类型，功能可能有多有少，但是枚举最核心的功能是  “规范的定义代码中的状态、状态码、选项”。
 状态、状态码、选项什么是状态：同时只能出现一个值(状态码就是他的值)，比如这个ScrollView里的枚举：
-12345typedef NS_ENUM(NSInteger, UIScrollViewKeyboardDismissMode) &amp;#123;    U">
+12345typedef NS_ENUM(NSInteger, UIScrollViewKeyboardDismissMode) &amp;#123;">
 <meta name="twitter:image" content="http://7xtb7p.com1.z0.glb.clouddn.com/2016-05-222016-05-22-1.png">
 
 
@@ -113,7 +113,7 @@
   };
 </script>
 
-  <title> 枚举的正确使用姿势-Enumeration宏 | Mr. 码了戈壁 </title>
+  <title> 5分钟学会枚举的正确使用姿势-Enumeration宏 | Mr. 码了戈壁 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -273,7 +273,7 @@
             
             
               
-                枚举的正确使用姿势-Enumeration宏
+                5分钟学会枚举的正确使用姿势-Enumeration宏
               
             
           </h1>
@@ -307,7 +307,7 @@
 
           
           
-             <span id="/2016/05/22/2016-05-22/" class="leancloud_visitors" data-flag-title="枚举的正确使用姿势-Enumeration宏">
+             <span id="/2016/05/22/2016-05-22/" class="leancloud_visitors" data-flag-title="5分钟学会枚举的正确使用姿势-Enumeration宏">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -329,16 +329,16 @@
       
 
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Enum，枚举，相信大部分编程语言都有对应的枚举类型，功能可能有多有少，但是枚举最核心的功能是<b>规范的定义代码中的<font color="red">状态、状态码、选项</font></b>。</p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Enum，枚举，相信大部分编程语言都有对应的枚举类型，功能可能有多有少，但是枚举最核心的功能是  “规范的定义代码中的<b>状态、状态码、选项</b>”。</p>
 <h3 id="状态、状态码、选项"><a href="#状态、状态码、选项" class="headerlink" title="状态、状态码、选项"></a>状态、状态码、选项</h3><p>什么是状态：同时只能出现一个值(状态码就是他的值)，比如这个ScrollView里的枚举：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">typedef NS_ENUM(NSInteger, UIScrollViewKeyboardDismissMode) &#123;</span><br><span class="line">    UIScrollViewKeyboardDismissModeNone,</span><br><span class="line">    UIScrollViewKeyboardDismissModeOnDrag,          </span><br><span class="line">   	UIScrollViewKeyboardDismissModeInteractive</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>什么是选项：同时可以出现多个值：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">typedef NS_ENUM(NSInteger, UIScrollViewKeyboardDismissMode) &#123;</span><br><span class="line">    UIScrollViewKeyboardDismissModeNone,</span><br><span class="line">    UIScrollViewKeyboardDismissModeOnDrag,          </span><br><span class="line">    UIScrollViewKeyboardDismissModeInteractive</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>什么是选项：同时可以出现一个或多个值：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">typedef NS_OPTIONS(NSUInteger, UIViewAutoresizing) &#123;</span><br><span class="line">        UIViewAutoresizingNone                 = 0,</span><br><span class="line">        UIViewAutoresizingFlexibleLeftMargin   = 1 &lt;&lt; 0,</span><br><span class="line">        UIViewAutoresizingFlexibleWidth        = 1 &lt;&lt; 1,</span><br><span class="line">        UIViewAutoresizingFlexibleRightMargin  = 1 &lt;&lt; 2,</span><br><span class="line">        UIViewAutoresizingFlexibleTopMargin    = 1 &lt;&lt; 3,</span><br><span class="line">        UIViewAutoresizingFlexibleHeight       = 1 &lt;&lt; 4,</span><br><span class="line">        UIViewAutoresizingFlexibleBottomMargin = 1 &lt;&lt; 5</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <h2 id="为什么要使用NS-ENUM-状态-和-NS-OPTIONS-选项"><a href="#为什么要使用NS-ENUM-状态-和-NS-OPTIONS-选项" class="headerlink" title="为什么要使用NS_ENUM(状态) 和 NS_OPTIONS(选项)?"></a>为什么要使用NS_ENUM(状态) 和 NS_OPTIONS(选项)?</h2><ol>
 <li><a href="https://developer.apple.com/library/ios/releasenotes/ObjectiveC/ModernizationObjC/AdoptingModernObjective-C/AdoptingModernObjective-C.html#//apple_ref/doc/uid/TP40014150-CH1-SW11" target="_blank" rel="external">苹果推荐。</a></li>
 <li>大家都这样写。</li>
 <li>其他的不好学。</li>
-<li><font color="red">以上的都不重要，看我的证明就行了</font>。</li>
+<li><b>以上的都不重要，看我的证明就行了</b>。</li>
 </ol>
 <h2 id="状态的表示姿势"><a href="#状态的表示姿势" class="headerlink" title="状态的表示姿势"></a>状态的表示姿势</h2><h3 id="错误姿势"><a href="#错误姿势" class="headerlink" title="错误姿势"></a>错误姿势</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#define UIScrollViewKeyboardDismissModeNone 0</span><br><span class="line">#define UIScrollViewKeyboardDismissModeOnDrag 1          </span><br><span class="line">#define UIScrollViewKeyboardDismissModeInteractive 2</span><br><span class="line"></span><br><span class="line">// 接收值就得这样：</span><br><span class="line">int UIScrollViewKeyboardDismissMode = UIScrollViewKeyboardDismissModeNone;</span><br></pre></td></tr></table></figure>
 <p>为什么这样做不好：</p>
@@ -349,22 +349,24 @@
 <li>可读性较差。</li>
 <li>可以用int也可以用UIInteger来接收。</li>
 </ul>
-<h3 id="正确姿势"><a href="#正确姿势" class="headerlink" title="正确姿势"></a>正确姿势</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">typedef enum &#123;</span><br><span class="line">	UIScrollViewKeyboardDismissModeNone = 0,</span><br><span class="line">    UIScrollViewKeyboardDismissModeOnDrag,          </span><br><span class="line">   	UIScrollViewKeyboardDismissModeInteractive</span><br><span class="line">&#125; UIScrollViewKeyboardDismissMode;</span><br><span class="line"></span><br><span class="line">// 指明枚举类型</span><br><span class="line">UIScrollViewKeyboardDismissMode mode = UIScrollViewKeyboardDismissModeNone;</span><br></pre></td></tr></table></figure>
+<h3 id="正确姿势"><a href="#正确姿势" class="headerlink" title="正确姿势"></a>正确姿势</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">typedef enum &#123;</span><br><span class="line">	UIScrollViewKeyboardDismissModeNone = 0,</span><br><span class="line">    UIScrollViewKeyboardDismissModeOnDrag,          </span><br><span class="line">    UIScrollViewKeyboardDismissModeInteractive</span><br><span class="line">&#125; UIScrollViewKeyboardDismissMode;</span><br><span class="line"></span><br><span class="line">// 指明枚举类型</span><br><span class="line">UIScrollViewKeyboardDismissMode mode = UIScrollViewKeyboardDismissModeNone;</span><br></pre></td></tr></table></figure>
 <p>用起来就是这样的：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">- (void)dealWithMode:(UIScrollViewKeyboardDismissMode)mode &#123;</span><br><span class="line">    switch (mode) &#123;</span><br><span class="line">        case UIScrollViewKeyboardDismissModeNone:</span><br><span class="line">            //...</span><br><span class="line">            break;</span><br><span class="line">        case UIScrollViewKeyboardDismissModeOnDrag:</span><br><span class="line">            //...</span><br><span class="line">            break;</span><br><span class="line">        case UIScrollViewKeyboardDismissModeInteractive:</span><br><span class="line">            //...</span><br><span class="line">            break;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>这样枚举解决了上面1和2的缺点，但是第3点还是没有解决，我依然可以这样搞:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">int mode = UIScrollViewKeyboardDismissModeNone;</span><br><span class="line">// or</span><br><span class="line">UIInteger mode = UIScrollViewKeyboardDismissModeNone;</span><br></pre></td></tr></table></figure>
 <h3 id="完美姿势"><a href="#完美姿势" class="headerlink" title="完美姿势"></a>完美姿势</h3><p>NS_ENUM是枚举在Objective-C中的”升级版”,改进后代码如下:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">typedef NS_ENUM(NSInteger, UIScrollViewKeyboardDismissMode) &#123;</span><br><span class="line">    UIScrollViewKeyboardDismissModeNone,</span><br><span class="line">    UIScrollViewKeyboardDismissModeOnDrag,          </span><br><span class="line">   	UIScrollViewKeyboardDismissModeInteractive</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>代码很简单，不理解可以评论求解答。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">typedef NS_ENUM(NSInteger, UIScrollViewKeyboardDismissMode) &#123;</span><br><span class="line">    UIScrollViewKeyboardDismissModeNone,</span><br><span class="line">    UIScrollViewKeyboardDismissModeOnDrag,          </span><br><span class="line">    UIScrollViewKeyboardDismissModeInteractive</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>代码很简单，不理解的话可以评论求解答。</p>
 <h2 id="选项的使用姿势"><a href="#选项的使用姿势" class="headerlink" title="选项的使用姿势"></a>选项的使用姿势</h2><p>如果有一个”选项变量”要同时表示一个或者多个值肿么办？这时就得上我们的NS_OPTIONS了。<br>比如有这样一个简单的例子:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">typedef NS_OPTIONS(NSUInteger, JZZPersonType) &#123;</span><br><span class="line">        JZZPersonTypeHigh          = 0,</span><br><span class="line">        JZZPersonTypeRich   	   = 1 &lt;&lt; 0,</span><br><span class="line">        JZZPersonTypePretty        = 1 &lt;&lt; 1</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p>可以看到，我们这里的选项是用的<b>位运算</b>的方式定义的，这样的好处就是我们的选项变量可以这样来表示：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">// 用“或|”运算同时赋值多个选项</span><br><span class="line">JZZPersonType personType = JZZPersonTypeHigh | JZZPersonTypeRich | JZZPersonTypePretty;</span><br><span class="line"></span><br><span class="line">// 用“与&amp;”运算取出对应位</span><br><span class="line">if (personType &amp; JZZPersonTypeHigh) &#123;</span><br><span class="line">	NSLog(@&quot;高&quot;);</span><br><span class="line">&#125;</span><br><span class="line">if (personType &amp; JZZPersonTypeRich) &#123;</span><br><span class="line">	NSLog(@&quot;富&quot;);</span><br><span class="line">&#125;</span><br><span class="line">if (personType &amp; JZZPersonTypePretty) &#123;</span><br><span class="line">	NSLog(@&quot;帅&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>“|”赋值完后，富帅的内心(内存)其实是长这样的：</p>
 <p><img src="http://7xtb7p.com1.z0.glb.clouddn.com/2016-05-222016-05-22-1.png" alt="富帅的内心"></p>
-<p>如果你就是这个富帅，欢迎打赏我，穷屌只是JZZPersonTypePretty。</p>
+<h2 id="写在结尾"><a href="#写在结尾" class="headerlink" title="写在结尾"></a>写在结尾</h2><p>富帅点个赞呗。</p>
 <h2 id="Done"><a href="#Done" class="headerlink" title="Done"></a>Done</h2><p>作者 <a href="http://www.github.com/biggergao" target="_blank" rel="external">@biggergao</a></p>
+<p>2016年05月22日</p>
+<h2 id="Done-1"><a href="#Done-1" class="headerlink" title="Done"></a>Done</h2><p>作者 <a href="http://www.github.com/biggergao" target="_blank" rel="external">@biggergao</a></p>
 <p>2016年05月22日</p>
 
       
@@ -449,7 +451,7 @@
   <div class="comments" id="comments">
     
       <div class="ds-thread" data-thread-key="2016/05/22/2016-05-22/"
-           data-title="枚举的正确使用姿势-Enumeration宏" data-url="http://biggergao.github.io/2016/05/22/2016-05-22/">
+           data-title="5分钟学会枚举的正确使用姿势-Enumeration宏" data-url="http://biggergao.github.io/2016/05/22/2016-05-22/">
       </div>
     
   </div>
@@ -560,7 +562,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#状态、状态码、选项"><span class="nav-number">1.1.</span> <span class="nav-text">状态、状态码、选项</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么要使用NS-ENUM-状态-和-NS-OPTIONS-选项"><span class="nav-number">2.</span> <span class="nav-text">为什么要使用NS_ENUM(状态) 和 NS_OPTIONS(选项)?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#状态的表示姿势"><span class="nav-number">3.</span> <span class="nav-text">状态的表示姿势</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#错误姿势"><span class="nav-number">3.1.</span> <span class="nav-text">错误姿势</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#正确姿势"><span class="nav-number">3.2.</span> <span class="nav-text">正确姿势</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#完美姿势"><span class="nav-number">3.3.</span> <span class="nav-text">完美姿势</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#选项的使用姿势"><span class="nav-number">4.</span> <span class="nav-text">选项的使用姿势</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Done"><span class="nav-number">5.</span> <span class="nav-text">Done</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#状态、状态码、选项"><span class="nav-number">1.1.</span> <span class="nav-text">状态、状态码、选项</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么要使用NS-ENUM-状态-和-NS-OPTIONS-选项"><span class="nav-number">2.</span> <span class="nav-text">为什么要使用NS_ENUM(状态) 和 NS_OPTIONS(选项)?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#状态的表示姿势"><span class="nav-number">3.</span> <span class="nav-text">状态的表示姿势</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#错误姿势"><span class="nav-number">3.1.</span> <span class="nav-text">错误姿势</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#正确姿势"><span class="nav-number">3.2.</span> <span class="nav-text">正确姿势</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#完美姿势"><span class="nav-number">3.3.</span> <span class="nav-text">完美姿势</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#选项的使用姿势"><span class="nav-number">4.</span> <span class="nav-text">选项的使用姿势</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#写在结尾"><span class="nav-number">5.</span> <span class="nav-text">写在结尾</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Done"><span class="nav-number">6.</span> <span class="nav-text">Done</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Done-1"><span class="nav-number">7.</span> <span class="nav-text">Done</span></a></li></ol></div>
             
           </div>
         </section>
