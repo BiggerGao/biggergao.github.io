@@ -62,7 +62,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content=",,," />
 
 
 
@@ -78,15 +78,23 @@
 
 
 
-<meta name="description">
+<meta name="description" content="前言本文随笔者知识更新而更新，不保证完全正确，笔者对ARC也有几处有疑问，欢迎各位批评指正。本文将主要讲解ARC对weak、autorelease以及self对象的内存管理。
+谈谈ARC面试官如果问这个问题，很多人可能都会这样说：
+ARC 是 Automatic Reference Counting 的缩写, 即自动引用计数. 这是苹果在 iOS5 中引入的内存管理机制. Objective-C">
+<meta name="keywords">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Mr. 码了戈壁">
-<meta property="og:url" content="http://biggergao.github.io/tags/categories/index.html">
+<meta property="og:title" content="不该面试才学ARC">
+<meta property="og:url" content="http://biggergao.github.io/2016-05-26-ARC.html">
 <meta property="og:site_name" content="Mr. 码了戈壁">
-<meta property="og:description">
+<meta property="og:description" content="前言本文随笔者知识更新而更新，不保证完全正确，笔者对ARC也有几处有疑问，欢迎各位批评指正。本文将主要讲解ARC对weak、autorelease以及self对象的内存管理。
+谈谈ARC面试官如果问这个问题，很多人可能都会这样说：
+ARC 是 Automatic Reference Counting 的缩写, 即自动引用计数. 这是苹果在 iOS5 中引入的内存管理机制. Objective-C">
+<meta property="og:updated_time" content="2016-05-26T12:38:39.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Mr. 码了戈壁">
-<meta name="twitter:description">
+<meta name="twitter:title" content="不该面试才学ARC">
+<meta name="twitter:description" content="前言本文随笔者知识更新而更新，不保证完全正确，笔者对ARC也有几处有疑问，欢迎各位批评指正。本文将主要讲解ARC对weak、autorelease以及self对象的内存管理。
+谈谈ARC面试官如果问这个问题，很多人可能都会这样说：
+ARC 是 Automatic Reference Counting 的缩写, 即自动引用计数. 这是苹果在 iOS5 中引入的内存管理机制. Objective-C">
 
 
 
@@ -104,7 +112,13 @@
   };
 </script>
 
-  <title> 标签: categories | Mr. 码了戈壁 </title>
+  <title>
+  
+
+  
+    不该面试才学ARC | Mr. 码了戈壁
+  
+</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -243,46 +257,26 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        categories
-        <small>标签</small>
-      </h2>
-    </div>
-
+  <div id="posts" class="posts-expand">
     
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/05/26/2016-05-26-ARC/" itemprop="url">
-              
-                <span itemprop="name">不该面试才学ARC</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-05-26T20:13:14+08:00"
-              content="2016-05-26" >
-          05-26
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+    
+      <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本文随笔者知识更新而更新，不保证完全正确，笔者对ARC也有几处有疑问，欢迎各位批评指正。本文将主要讲解ARC对weak、autorelease以及self对象的内存管理。</p>
+<h3 id="谈谈ARC"><a href="#谈谈ARC" class="headerlink" title="谈谈ARC"></a>谈谈ARC</h3><p>面试官如果问这个问题，很多人可能都会这样说：</p>
+<pre><code>ARC 是 Automatic Reference Counting 的缩写, 即自动引用计数. 这是苹果在 iOS5 中引入的内存管理机制. Objective-C 和 Swift 使用 ARC 追踪和管理应用的内存使用. 这一机制使得开发者无需键入 retain 和 release, 这不仅能够降低程序崩溃和内存泄露的风险, 而且可以减少开发者的工作量, 能够大幅度提升程序的流畅性和可预测性. 但是 ARC 不适用于 Core Foundation 框架中, 仍然需要手动管理内存。
+</code></pre><p>我觉得能说出这个或许面试官可以给60分，确认了你知道什么是ARC，但是我觉得这些还是不够，甚至觉得有些废话。</p>
+<h2 id="ARC的实现"><a href="#ARC的实现" class="headerlink" title="ARC的实现"></a>ARC的实现</h2><p>ARC是“由编译器进行内存管理”的，但是实际上只有编译器是无法完成的，在此基础上还需要Objective-C运行时库的协助。也就是说，ARC由以下工具完成：</p>
+<ul>
+<li>clang(LLVM编译器) 3.0以上</li>
+<li>objc4 Objective-C运行时库(runtime)493.9以上</li>
+</ul>
+<p>## </p>
+<h2 id="weak"><a href="#weak" class="headerlink" title="__weak"></a>__weak</h2><p>参考链接：</p>
+<p><a href="http://draveness.me/guan-yu-xie-ios-wen-ti-de-jie-da/" target="_blank" rel="external">http://draveness.me/guan-yu-xie-ios-wen-ti-de-jie-da/</a></p>
+<h2 id="Done"><a href="#Done" class="headerlink" title="Done"></a>Done</h2><p>作者 <a href="http://weibo.com/u/3184193244?is_all=1" target="_blank" rel="external">@biggergao</a></p>
+<p>2016年05月22日</p>
 
     
   </div>
-
-  
 
 
           </div>
@@ -290,6 +284,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016-05-26-ARC.html"
+           data-title="不该面试才学ARC" data-url="http://biggergao.github.io/2016-05-26-ARC.html">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -321,7 +323,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">11</span>
+              <span class="site-state-item-count">10</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
