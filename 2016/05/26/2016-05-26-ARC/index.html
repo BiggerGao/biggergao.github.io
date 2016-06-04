@@ -62,7 +62,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="iOS开发,categories,深入学习," />
 
 
 
@@ -78,16 +78,22 @@
 
 
 
-<meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="标签">
-<meta property="og:url" content="http://biggergao.github.io/tags/index.html">
+<meta name="description" content="前言本文随笔者知识更新而更新，不保证完全正确，笔者对ARC也有几处有疑问，欢迎各位批评指正。本文将主要讲解ARC对weak、autorelease以及self对象的内存管理。
+谈谈ARC面试官如果问这个问题，很多人可能都会这样说：
+ARC 是 Automatic Reference Counting 的缩写, 即自动引用计数. 这是苹果在 iOS5 中引入的内存管理机制. Objective-C">
+<meta property="og:type" content="article">
+<meta property="og:title" content="不该面试才学ARC">
+<meta property="og:url" content="http://biggergao.github.io/2016/05/26/2016-05-26-ARC/index.html">
 <meta property="og:site_name" content="Mr. 码了戈壁">
-<meta property="og:description">
-<meta property="og:updated_time" content="2016-04-16T18:50:31.000Z">
+<meta property="og:description" content="前言本文随笔者知识更新而更新，不保证完全正确，笔者对ARC也有几处有疑问，欢迎各位批评指正。本文将主要讲解ARC对weak、autorelease以及self对象的内存管理。
+谈谈ARC面试官如果问这个问题，很多人可能都会这样说：
+ARC 是 Automatic Reference Counting 的缩写, 即自动引用计数. 这是苹果在 iOS5 中引入的内存管理机制. Objective-C">
+<meta property="og:updated_time" content="2016-05-26T12:38:39.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="标签">
-<meta name="twitter:description">
+<meta name="twitter:title" content="不该面试才学ARC">
+<meta name="twitter:description" content="前言本文随笔者知识更新而更新，不保证完全正确，笔者对ARC也有几处有疑问，欢迎各位批评指正。本文将主要讲解ARC对weak、autorelease以及self对象的内存管理。
+谈谈ARC面试官如果问这个问题，很多人可能都会这样说：
+ARC 是 Automatic Reference Counting 的缩写, 即自动引用计数. 这是苹果在 iOS5 中引入的内存管理机制. Objective-C">
 
 
 
@@ -105,13 +111,7 @@
   };
 </script>
 
-  <title>
-  
-
-  
-    标签 | Mr. 码了戈壁
-  
-</title>
+  <title> 不该面试才学ARC | Mr. 码了戈壁 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -142,7 +142,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -252,16 +252,171 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
     
-      <div class="tag-cloud">
-        <div class="tag-cloud-title">
-            目前共计 15 个标签
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                不该面试才学ARC
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-26T20:13:14+08:00" content="2016-05-26">
+              2016-05-26
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/26/2016-05-26-ARC/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/26/2016-05-26-ARC/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/05/26/2016-05-26-ARC/" class="leancloud_visitors" data-flag-title="不该面试才学ARC">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
         </div>
-        <div class="tag-cloud-tags">
-          <a href="/tags/AutoLayout/" style="font-size: 12px; color: #ccc">AutoLayout</a> <a href="/tags/CLLocation/" style="font-size: 12px; color: #ccc">CLLocation</a> <a href="/tags/Masonry/" style="font-size: 12px; color: #ccc">Masonry</a> <a href="/tags/XCode/" style="font-size: 12px; color: #ccc">XCode</a> <a href="/tags/bug/" style="font-size: 12px; color: #ccc">bug</a> <a href="/tags/categories/" style="font-size: 12px; color: #ccc">categories</a> <a href="/tags/iOS开发/" style="font-size: 30px; color: #111">iOS开发</a> <a href="/tags/objc基础/" style="font-size: 30px; color: #111">objc基础</a> <a href="/tags/书写方式/" style="font-size: 12px; color: #ccc">书写方式</a> <a href="/tags/工具/" style="font-size: 12px; color: #ccc">工具</a> <a href="/tags/操作系统/" style="font-size: 12px; color: #ccc">操作系统</a> <a href="/tags/效率/" style="font-size: 12px; color: #ccc">效率</a> <a href="/tags/数据结构与算法/" style="font-size: 12px; color: #ccc">数据结构与算法</a> <a href="/tags/模拟器定位/" style="font-size: 12px; color: #ccc">模拟器定位</a> <a href="/tags/深入学习/" style="font-size: 12px; color: #ccc">深入学习</a>
-        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本文随笔者知识更新而更新，不保证完全正确，笔者对ARC也有几处有疑问，欢迎各位批评指正。本文将主要讲解ARC对weak、autorelease以及self对象的内存管理。</p>
+<h3 id="谈谈ARC"><a href="#谈谈ARC" class="headerlink" title="谈谈ARC"></a>谈谈ARC</h3><p>面试官如果问这个问题，很多人可能都会这样说：</p>
+<pre><code>ARC 是 Automatic Reference Counting 的缩写, 即自动引用计数. 这是苹果在 iOS5 中引入的内存管理机制. Objective-C 和 Swift 使用 ARC 追踪和管理应用的内存使用. 这一机制使得开发者无需键入 retain 和 release, 这不仅能够降低程序崩溃和内存泄露的风险, 而且可以减少开发者的工作量, 能够大幅度提升程序的流畅性和可预测性. 但是 ARC 不适用于 Core Foundation 框架中, 仍然需要手动管理内存。
+</code></pre><p>我觉得能说出这个或许面试官可以给60分，确认了你知道什么是ARC，但是我觉得这些还是不够，甚至觉得有些废话。</p>
+<h2 id="ARC的实现"><a href="#ARC的实现" class="headerlink" title="ARC的实现"></a>ARC的实现</h2><p>ARC是“由编译器进行内存管理”的，但是实际上只有编译器是无法完成的，在此基础上还需要Objective-C运行时库的协助。也就是说，ARC由以下工具完成：</p>
+<ul>
+<li>clang(LLVM编译器) 3.0以上</li>
+<li>objc4 Objective-C运行时库(runtime)493.9以上</li>
+</ul>
+<p>## </p>
+<h2 id="weak"><a href="#weak" class="headerlink" title="__weak"></a>__weak</h2><p>参考链接：</p>
+<p><a href="http://draveness.me/guan-yu-xie-ios-wen-ti-de-jie-da/" target="_blank" rel="external">http://draveness.me/guan-yu-xie-ios-wen-ti-de-jie-da/</a></p>
+<h2 id="Done"><a href="#Done" class="headerlink" title="Done"></a>Done</h2><p>作者 <a href="http://weibo.com/u/3184193244?is_all=1" target="_blank" rel="external">@biggergao</a></p>
+<p>2016年05月22日</p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+<div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton", disable="enable", onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}", style="cursor: pointer; border: 0; outline: 0; border-radius: 100%; padding: 0; margin: 0; letter-spacing: normal; text-transform: none; text-indent: 0px; text-shadow: none">
+    <span onmouseover="this.style.color='rgb(236,96,0)';this.style.background='rgb(204,204,204)'" onMouseOut="this.style.color='#fff';this.style.background='rgb(236,96,0)'" style="display: inline-block; width: 70px; height: 70px; border-radius: 100%; line-height: 81px; color: #fff; font: 400 35px/75px 'microsofty'; background: rgb(236,96,0)">赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat-reward-image.png" alt="BiggerJoe WeChat Pay" style="width: 200px; max-width: 100%; display: inline-block"/>
+        <p>微信打赏</p>
       </div>
     
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay-reward-image.png" alt="BiggerJoe Alipay" style="width: 200px; max-width: 100%; display: inline-block"/>
+        <p>支付宝打赏</p>
+      </div>
+    
+  </div>
+</div>
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS开发/" rel="tag">#iOS开发</a>
+          
+            <a href="/tags/categories/" rel="tag">#categories</a>
+          
+            <a href="/tags/深入学习/" rel="tag">#深入学习</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/22/2016-06-04/" rel="next" title="懒猪学习系列-内存管理">
+                <i class="fa fa-chevron-left"></i> 懒猪学习系列-内存管理
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -270,6 +425,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/05/26/2016-05-26-ARC/"
+           data-title="不该面试才学ARC" data-url="http://biggergao.github.io/2016/05/26/2016-05-26-ARC/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -289,8 +452,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.png"
@@ -360,6 +532,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#谈谈ARC"><span class="nav-number">1.1.</span> <span class="nav-text">谈谈ARC</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ARC的实现"><span class="nav-number">2.</span> <span class="nav-text">ARC的实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#weak"><span class="nav-number">3.</span> <span class="nav-text">__weak</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Done"><span class="nav-number">4.</span> <span class="nav-text">Done</span></a></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -463,6 +646,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 

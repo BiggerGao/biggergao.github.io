@@ -62,7 +62,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="XCode,bug," />
+  <meta name="keywords" content="操作系统," />
 
 
 
@@ -78,25 +78,24 @@
 
 
 
-<meta name="description" content="吐槽NNGD,写着写着代码又无法自动补全了，难道要我默写吗？做iOS的肯定都遇到过无法自动补全的问题，这里写出我遇到的一些BUG与解决办法。
-原因1.XCode自带BUG有些时候我们没有调用第三方库，发现UIkit的自动补全都没法触发了，这样的原因多半是因为XCode自带BUG，在你的注释里有中文的时候，不会触发自动补全，比如这个’年’，删掉过后再编译一下试试，再不行就重启一下XCode。
-2.要">
+<meta name="description" content="前言懒得复习操作系统，导致面百度的时候在这个问题上栽了两次，网上也没有太好的文章，这里好好总结一下。关于内存管理，现在要我回答这个问题，我觉得只答出分段和分页是什么是不够的，答出前因后果，才能体现你不是低端码农，而是具有工程师潜力的码农，对吧？其实最主要是自己更不容易忘记，我是不是码农又咋地。希望读者能从本文有所收获。
+历史在早期的计算机，程序是直接运行在物理内存上的，也就是说，程序所访问的地址都">
 <meta property="og:type" content="article">
-<meta property="og:title" content="XCode 无法自动补全">
-<meta property="og:url" content="http://biggergao.github.io/2016/05/07/XCode自动补全问题/index.html">
+<meta property="og:title" content="懒猪学习系列-内存管理">
+<meta property="og:url" content="http://biggergao.github.io/2016/05/22/2016-06-04/index.html">
 <meta property="og:site_name" content="Mr. 码了戈壁">
-<meta property="og:description" content="吐槽NNGD,写着写着代码又无法自动补全了，难道要我默写吗？做iOS的肯定都遇到过无法自动补全的问题，这里写出我遇到的一些BUG与解决办法。
-原因1.XCode自带BUG有些时候我们没有调用第三方库，发现UIkit的自动补全都没法触发了，这样的原因多半是因为XCode自带BUG，在你的注释里有中文的时候，不会触发自动补全，比如这个’年’，删掉过后再编译一下试试，再不行就重启一下XCode。
-2.要">
-<meta property="og:image" content="http://7xtb7p.com1.z0.glb.clouddn.com/XCode_autocomplete_blogXCode%E8%87%AA%E5%8A%A8%E8%A1%A5%E5%85%A8.png">
-<meta property="og:image" content="http://7xtb7p.com1.z0.glb.clouddn.com/XCode_autocomplete_blogXCode%E8%87%AA%E5%8A%A8%E8%A1%A5%E5%85%A8%E9%97%AE%E9%A2%981.png">
-<meta property="og:updated_time" content="2016-05-06T17:17:54.000Z">
+<meta property="og:description" content="前言懒得复习操作系统，导致面百度的时候在这个问题上栽了两次，网上也没有太好的文章，这里好好总结一下。关于内存管理，现在要我回答这个问题，我觉得只答出分段和分页是什么是不够的，答出前因后果，才能体现你不是低端码农，而是具有工程师潜力的码农，对吧？其实最主要是自己更不容易忘记，我是不是码农又咋地。希望读者能从本文有所收获。
+历史在早期的计算机，程序是直接运行在物理内存上的，也就是说，程序所访问的地址都">
+<meta property="og:image" content="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-042016-06-04-1.png">
+<meta property="og:image" content="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-042016-06-04-2.png">
+<meta property="og:image" content="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-042016-06-04-3.png">
+<meta property="og:image" content="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-042016-06-04-4.png">
+<meta property="og:updated_time" content="2016-06-04T09:11:50.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="XCode 无法自动补全">
-<meta name="twitter:description" content="吐槽NNGD,写着写着代码又无法自动补全了，难道要我默写吗？做iOS的肯定都遇到过无法自动补全的问题，这里写出我遇到的一些BUG与解决办法。
-原因1.XCode自带BUG有些时候我们没有调用第三方库，发现UIkit的自动补全都没法触发了，这样的原因多半是因为XCode自带BUG，在你的注释里有中文的时候，不会触发自动补全，比如这个’年’，删掉过后再编译一下试试，再不行就重启一下XCode。
-2.要">
-<meta name="twitter:image" content="http://7xtb7p.com1.z0.glb.clouddn.com/XCode_autocomplete_blogXCode%E8%87%AA%E5%8A%A8%E8%A1%A5%E5%85%A8.png">
+<meta name="twitter:title" content="懒猪学习系列-内存管理">
+<meta name="twitter:description" content="前言懒得复习操作系统，导致面百度的时候在这个问题上栽了两次，网上也没有太好的文章，这里好好总结一下。关于内存管理，现在要我回答这个问题，我觉得只答出分段和分页是什么是不够的，答出前因后果，才能体现你不是低端码农，而是具有工程师潜力的码农，对吧？其实最主要是自己更不容易忘记，我是不是码农又咋地。希望读者能从本文有所收获。
+历史在早期的计算机，程序是直接运行在物理内存上的，也就是说，程序所访问的地址都">
+<meta name="twitter:image" content="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-042016-06-04-1.png">
 
 
 
@@ -114,7 +113,7 @@
   };
 </script>
 
-  <title> XCode 无法自动补全 | Mr. 码了戈壁 </title>
+  <title> 懒猪学习系列-内存管理 | Mr. 码了戈壁 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -274,7 +273,7 @@
             
             
               
-                XCode 无法自动补全
+                懒猪学习系列-内存管理
               
             
           </h1>
@@ -286,38 +285,19 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-07T00:53:46+08:00" content="2016-05-07">
-              2016-05-07
+            <time itemprop="dateCreated" datetime="2016-05-22T20:38:17+08:00" content="2016-05-22">
+              2016-05-22
             </time>
           </span>
 
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/iOS开发/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS开发</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
           
 
           
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/05/07/XCode自动补全问题/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/07/XCode自动补全问题/" itemprop="commentsCount"></span>
+                <a href="/2016/05/22/2016-06-04/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/22/2016-06-04/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -327,7 +307,7 @@
 
           
           
-             <span id="/2016/05/07/XCode自动补全问题/" class="leancloud_visitors" data-flag-title="XCode 无法自动补全">
+             <span id="/2016/05/22/2016-06-04/" class="leancloud_visitors" data-flag-title="懒猪学习系列-内存管理">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -349,12 +329,48 @@
       
 
       
-        <h2 id="吐槽"><a href="#吐槽" class="headerlink" title="吐槽"></a>吐槽</h2><p>NNGD,写着写着代码又无法自动补全了，难道要我默写吗？做iOS的肯定都遇到过无法自动补全的问题，这里写出我遇到的一些BUG与解决办法。</p>
-<h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><h3 id="1-XCode自带BUG"><a href="#1-XCode自带BUG" class="headerlink" title="1.XCode自带BUG"></a>1.XCode自带BUG</h3><p>有些时候我们没有调用第三方库，发现UIkit的自动补全都没法触发了，这样的原因多半是因为XCode自带BUG，在你的注释里有中文的时候，不会触发自动补全，比如这个’年’，删掉过后再编译一下试试，再不行就重启一下XCode。<br><img src="http://7xtb7p.com1.z0.glb.clouddn.com/XCode_autocomplete_blogXCode%E8%87%AA%E5%8A%A8%E8%A1%A5%E5%85%A8.png" alt=""></p>
-<h3 id="2-要import-pods里的头文件"><a href="#2-要import-pods里的头文件" class="headerlink" title="2.要import pods里的头文件"></a>2.要import pods里的头文件</h3><p>有时候XCode搜索头文件不会去搜索Pods里的第三方库，我们需要在XCode里设置一下项目Target的Search Paths。</p>
-<p>如图，双击User Header Search Paths的空白处，填入”$(PODS_ROOT)”(没有引号), 设置为递归的搜索recursive，问题解决了。<br><img src="http://7xtb7p.com1.z0.glb.clouddn.com/XCode_autocomplete_blogXCode%E8%87%AA%E5%8A%A8%E8%A1%A5%E5%85%A8%E9%97%AE%E9%A2%981.png" alt=""></p>
-<h2 id="Done"><a href="#Done" class="headerlink" title="Done"></a>Done</h2><p>作者 <a href="http://www.github.com/biggergao" target="_blank" rel="external">@biggergao</a></p>
-<p>2016年05月07日</p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>懒得复习操作系统，导致面百度的时候在这个问题上栽了两次，网上也没有太好的文章，这里好好总结一下。关于内存管理，现在要我回答这个问题，我觉得只答出分段和分页是什么是不够的，答出前因后果，才能体现你不是低端码农，而是具有工程师潜力的码农，对吧？其实最主要是自己更不容易忘记，我是不是码农又咋地。希望读者能从本文有所收获。</p>
+<h2 id="历史"><a href="#历史" class="headerlink" title="历史"></a>历史</h2><p>在早期的计算机，程序是直接运行在物理内存上的，也就是说，程序所访问的地址都是物理内存。但是我们往往需要同时运行多个程序，所以就有一个很明显的问题<code>如何把计算机上有限的物理内存分配给多个程序使用</code>？</p>
+<h2 id="举个例子"><a href="#举个例子" class="headerlink" title="举个例子"></a>举个例子</h2><p>假如我们计算机有128M内存，现在：</p>
+<ul>
+<li>程序A需要10M内存</li>
+<li>程序B需要100M内存</li>
+<li>程序C需要20M内存</li>
+</ul>
+<p>如果我们需要同时运行A和B，那么比较直接的做法是这样的，0-10M分给A，10-110M分给B，如下：<br><img src="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-042016-06-04-1.png" alt="2016-06-04-1"></p>
+<p>这样分配，问题会有很多，大致有以下三个：</p>
+<ol>
+<li><strong>地址空间不隔离</strong>： 恶意程序可以很容易改写其他程序的内存数据，如A可以通过类似<code>*(p + 1024 * 1024 * 10) = xxx</code>来访问到B里的内存，这是很危险的。</li>
+<li><strong>内存使用率低</strong>： 比如我们在A、B同时运行的时候，突然要运行C。这个时候内存已经不够，我们可以采取的一个办法是把某个程序的数据暂时写到磁盘里，等到需要的时候再读回来。这个时候问题来了，由于地址空间是连续的，我们取出A也没法把C放入内存运行，只能取出B，可以看到这是一个巨大的IO操作，会导致效率十分低下。</li>
+<li><strong>程序运行的地址不确定</strong>：因为程序每次需要装入运行时我们都需要一块足够大的空闲区域，这个区域是不确定的，就需要程序重定位。</li>
+</ol>
+<p>怎么办？还是那个熟悉的配方，熟悉的味道：<strong>增加中间层。</strong></p>
+<blockquote>
+<p>一切计算机的问题都可以通过增加中间层来解决。</p>
+</blockquote>
+<p>思想：我们把程序的地址视为一种<strong>虚拟地址</strong>，然后通过映射的方式将这个虚拟地址转换成实际的物理地址。只要我们妥善的处理<strong>映射的方式</strong>，就能达到空间隔离的效果。</p>
+<h2 id="分段管理"><a href="#分段管理" class="headerlink" title="分段管理"></a>分段管理</h2><p>这个时候分段的管理方法就出现了，先上图：<br><img src="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-042016-06-04-2.png" alt="2016-06-04-2"></p>
+<p>分段管理：把一段程序<strong>所需要的内存大小</strong>的虚拟空间映射到某个地址空间。<br>零散论点：分段的虚拟空间大小不一定相等，这是一个和分页不同的特点。<br>如上图，我们A需要10M的大小，那么我们的虚拟空间就是从0x00000000开始到0x00A00000结束。所以：</p>
+<ol>
+<li>如果A访问的地址空间超过了0x00A00000，那么硬件就会判断这是个非法访问，就会拒绝这个请求，从而实现了隔离。</li>
+<li>对于程序来说，我们只在0x00000000到0x00A00000来编写程序、放置变量，所以程序不需要再重定位。</li>
+</ol>
+<p>分段解决了但是分段还是没有解决我们第二个问题-内存使用效率问题。人们很自然的就想到了更小粒度的内存分割和映射方法，于是，<strong>分页</strong>出现了。</p>
+<h2 id="分页管理"><a href="#分页管理" class="headerlink" title="分页管理"></a>分页管理</h2><p>分页的基本方法是把地址空间人为的分成固定大小的页，一般都是4KB。<br>首先我们要知道三种页：</p>
+<ul>
+<li>磁盘页：磁盘中的页。</li>
+<li>虚拟页：虚拟空间的页。</li>
+<li>物理页：物理内存中的页。</li>
+</ul>
+<p>程序会放在虚拟页中，最后进行映射。<br><img src="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-042016-06-04-3.png" alt="2016-06-04-3"></p>
+<p>我们把程序中常用的数据和代码页装到内存中(虚拟页中0、1、7)，把不常用的放在磁盘页(虚拟页中2、3)，暂未用到的不映射(虚拟页中的4、5、6)。</p>
+<h3 id="页错误"><a href="#页错误" class="headerlink" title="页错误"></a>页错误</h3><p>如果进程需要使用虚拟页的2、3，但是这时它们在磁盘页中，硬件会捕获这个消息，这就是所谓的<strong>页错误</strong>。</p>
+<p>这时操作系统会用自己的办法(用空再写，就是TLB那块)把磁盘中表示虚拟页2、3的数据读出来并且装入内存。</p>
+<p>以页为单位来存取和交换这些数据非常方便，硬件本身就支持这种以页为单位的操作方式。</p>
+<h3 id="MMU"><a href="#MMU" class="headerlink" title="MMU"></a>MMU</h3><p>映射需要硬件来实现，几乎所有的硬件都采用一个叫MMU的部件来进行映射，如图所示。<br><img src="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-042016-06-04-4.png" alt="2016-06-04-4"></p>
+<h2 id="写在结尾"><a href="#写在结尾" class="headerlink" title="写在结尾"></a>写在结尾</h2><p>如果您有所收获，希望点个赞支持，谢谢。</p>
+<h2 id="Done"><a href="#Done" class="headerlink" title="Done"></a>Done</h2><p>作者 <a href="http://weibo.com/u/3184193244?is_all=1" target="_blank" rel="external">@biggergao</a></p>
+<p>2016年05月22日</p>
 
       
     </div>
@@ -396,9 +412,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/XCode/" rel="tag">#XCode</a>
-          
-            <a href="/tags/bug/" rel="tag">#bug</a>
+            <a href="/tags/操作系统/" rel="tag">#操作系统</a>
           
         </div>
       
@@ -407,16 +421,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/04/24/通过Masonry学AutoLayout/" rel="next" title="通过Masonry学AutoLayout">
-                <i class="fa fa-chevron-left"></i> 通过Masonry学AutoLayout
+              <a href="/2016/05/22/2016-05-22/" rel="next" title="5分钟学会枚举的正确使用姿势-Enumeration宏">
+                <i class="fa fa-chevron-left"></i> 5分钟学会枚举的正确使用姿势-Enumeration宏
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/05/09/开发神器Injection与Masonry/" rel="prev" title="开发神器Injection与Masonry">
-                开发神器Injection与Masonry <i class="fa fa-chevron-right"></i>
+              <a href="/2016/05/26/2016-05-26-ARC/" rel="prev" title="不该面试才学ARC">
+                不该面试才学ARC <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -443,8 +457,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/05/07/XCode自动补全问题/"
-           data-title="XCode 无法自动补全" data-url="http://biggergao.github.io/2016/05/07/XCode自动补全问题/">
+      <div class="ds-thread" data-thread-key="2016/05/22/2016-06-04/"
+           data-title="懒猪学习系列-内存管理" data-url="http://biggergao.github.io/2016/05/22/2016-06-04/">
       </div>
     
   </div>
@@ -555,7 +569,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#吐槽"><span class="nav-number">1.</span> <span class="nav-text">吐槽</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原因"><span class="nav-number">2.</span> <span class="nav-text">原因</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-XCode自带BUG"><span class="nav-number">2.1.</span> <span class="nav-text">1.XCode自带BUG</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-要import-pods里的头文件"><span class="nav-number">2.2.</span> <span class="nav-text">2.要import pods里的头文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Done"><span class="nav-number">3.</span> <span class="nav-text">Done</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#历史"><span class="nav-number">2.</span> <span class="nav-text">历史</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#举个例子"><span class="nav-number">3.</span> <span class="nav-text">举个例子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分段管理"><span class="nav-number">4.</span> <span class="nav-text">分段管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分页管理"><span class="nav-number">5.</span> <span class="nav-text">分页管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#页错误"><span class="nav-number">5.1.</span> <span class="nav-text">页错误</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MMU"><span class="nav-number">5.2.</span> <span class="nav-text">MMU</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#写在结尾"><span class="nav-number">6.</span> <span class="nav-text">写在结尾</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Done"><span class="nav-number">7.</span> <span class="nav-text">Done</span></a></li></ol></div>
             
           </div>
         </section>
