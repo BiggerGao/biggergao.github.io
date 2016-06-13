@@ -62,7 +62,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="objc基础," />
+  <meta name="keywords" content="数据库," />
 
 
 
@@ -78,25 +78,44 @@
 
 
 
-<meta name="description" content="前言四年前Clang添加了关键字instancetype，目的在于取代-alloc和-init等方法的返回类型id，那么使用instancetype到底比id好在哪里？
-instancetype宣言不管何时，只要一个class要返回它相同的类实例，使用instancetype都是更加合适的。
-我们知道，当调用类中（或者子类）的-alloc、-init或者class factory(+)方法，使用i">
+<meta name="description" content="##前言静下心来写的1NF、2NF、3NF与BCNF范式。
+##整体关系他们的约束如上图，也就是说：
+
+满足1NF的约束一定满足2NF。
+满足2NF的约束一定满足3NF。
+满足3NF的约束一定满足BCNF范式。
+
+##从1NF说起1NF是最宽松的范式，只要属性不可分割就满足1NF。什么是属性？属性就是表中的字段。也就是说，只要存在于数据库里表都满足1NF。那么什么样的表不满足1NF？比如这样一个关">
 <meta property="og:type" content="article">
-<meta property="og:title" content="为什么你需要使用instancetype而不是id">
-<meta property="og:url" content="http://biggergao.github.io/2016/05/18/为什么Factory方法要返回instancetype而不是id/index.html">
+<meta property="og:title" content="白话数据库范式">
+<meta property="og:url" content="http://biggergao.github.io/2016/05/22/2016-06-14/index.html">
 <meta property="og:site_name" content="Mr. 码了戈壁">
-<meta property="og:description" content="前言四年前Clang添加了关键字instancetype，目的在于取代-alloc和-init等方法的返回类型id，那么使用instancetype到底比id好在哪里？
-instancetype宣言不管何时，只要一个class要返回它相同的类实例，使用instancetype都是更加合适的。
-我们知道，当调用类中（或者子类）的-alloc、-init或者class factory(+)方法，使用i">
-<meta property="og:image" content="http://7xtb7p.com1.z0.glb.clouddn.com/%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%A0%E9%9C%80%E8%A6%81%E4%BD%BF%E7%94%A8instancetype%E8%80%8C%E4%B8%8D%E6%98%AFid%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%A0%E9%9C%80%E8%A6%81%E4%BD%BF%E7%94%A8instancetype%E8%80%8C%E4%B8%8D%E6%98%AFid2.png">
-<meta property="og:image" content="http://7xtb7p.com1.z0.glb.clouddn.com/%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%A0%E9%9C%80%E8%A6%81%E4%BD%BF%E7%94%A8instancetype%E8%80%8C%E4%B8%8D%E6%98%AFid%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%A0%E9%9C%80%E8%A6%81%E4%BD%BF%E7%94%A8instancetype%E8%80%8C%E4%B8%8D%E6%98%AFid1.png">
-<meta property="og:updated_time" content="2016-05-18T16:13:30.000Z">
+<meta property="og:description" content="##前言静下心来写的1NF、2NF、3NF与BCNF范式。
+##整体关系他们的约束如上图，也就是说：
+
+满足1NF的约束一定满足2NF。
+满足2NF的约束一定满足3NF。
+满足3NF的约束一定满足BCNF范式。
+
+##从1NF说起1NF是最宽松的范式，只要属性不可分割就满足1NF。什么是属性？属性就是表中的字段。也就是说，只要存在于数据库里表都满足1NF。那么什么样的表不满足1NF？比如这样一个关">
+<meta property="og:image" content="http://biggergao.github.io/media/14658192948693/14658198102023.jpg">
+<meta property="og:image" content="http://biggergao.github.io/media/14658192948693/14658344914302.jpg">
+<meta property="og:image" content="http://biggergao.github.io/media/14658192948693/14658364587217.jpg">
+<meta property="og:image" content="http://biggergao.github.io/media/14658192948693/14658364712723.jpg">
+<meta property="og:image" content="http://biggergao.github.io/media/14658192948693/14658372058091.jpg">
+<meta property="og:image" content="http://biggergao.github.io/media/14658192948693/14658378601845.jpg">
+<meta property="og:updated_time" content="2016-06-13T17:33:26.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="为什么你需要使用instancetype而不是id">
-<meta name="twitter:description" content="前言四年前Clang添加了关键字instancetype，目的在于取代-alloc和-init等方法的返回类型id，那么使用instancetype到底比id好在哪里？
-instancetype宣言不管何时，只要一个class要返回它相同的类实例，使用instancetype都是更加合适的。
-我们知道，当调用类中（或者子类）的-alloc、-init或者class factory(+)方法，使用i">
-<meta name="twitter:image" content="http://7xtb7p.com1.z0.glb.clouddn.com/%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%A0%E9%9C%80%E8%A6%81%E4%BD%BF%E7%94%A8instancetype%E8%80%8C%E4%B8%8D%E6%98%AFid%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%A0%E9%9C%80%E8%A6%81%E4%BD%BF%E7%94%A8instancetype%E8%80%8C%E4%B8%8D%E6%98%AFid2.png">
+<meta name="twitter:title" content="白话数据库范式">
+<meta name="twitter:description" content="##前言静下心来写的1NF、2NF、3NF与BCNF范式。
+##整体关系他们的约束如上图，也就是说：
+
+满足1NF的约束一定满足2NF。
+满足2NF的约束一定满足3NF。
+满足3NF的约束一定满足BCNF范式。
+
+##从1NF说起1NF是最宽松的范式，只要属性不可分割就满足1NF。什么是属性？属性就是表中的字段。也就是说，只要存在于数据库里表都满足1NF。那么什么样的表不满足1NF？比如这样一个关">
+<meta name="twitter:image" content="http://biggergao.github.io/media/14658192948693/14658198102023.jpg">
 
 
 
@@ -114,7 +133,7 @@ instancetype宣言不管何时，只要一个class要返回它相同的类实例
   };
 </script>
 
-  <title> 为什么你需要使用instancetype而不是id | Mr. 码了戈壁 </title>
+  <title> 白话数据库范式 | Mr. 码了戈壁 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -274,7 +293,7 @@ instancetype宣言不管何时，只要一个class要返回它相同的类实例
             
             
               
-                为什么你需要使用instancetype而不是id
+                白话数据库范式
               
             
           </h1>
@@ -286,38 +305,19 @@ instancetype宣言不管何时，只要一个class要返回它相同的类实例
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-18T20:46:05+08:00" content="2016-05-18">
-              2016-05-18
+            <time itemprop="dateCreated" datetime="2016-05-22T20:38:17+08:00" content="2016-05-22">
+              2016-05-22
             </time>
           </span>
 
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/iOS开发/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS开发</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
           
 
           
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/05/18/为什么Factory方法要返回instancetype而不是id/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/18/为什么Factory方法要返回instancetype而不是id/" itemprop="commentsCount"></span>
+                <a href="/2016/05/22/2016-06-14/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/22/2016-06-14/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -327,7 +327,7 @@ instancetype宣言不管何时，只要一个class要返回它相同的类实例
 
           
           
-             <span id="/2016/05/18/为什么Factory方法要返回instancetype而不是id/" class="leancloud_visitors" data-flag-title="为什么你需要使用instancetype而不是id">
+             <span id="/2016/05/22/2016-06-14/" class="leancloud_visitors" data-flag-title="白话数据库范式">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -349,51 +349,90 @@ instancetype宣言不管何时，只要一个class要返回它相同的类实例
       
 
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>四年前Clang添加了关键字instancetype，目的在于取代<b>-alloc</b>和<b>-init</b>等方法的返回类型id，那么使用instancetype到底比id好在哪里？</p>
-<h2 id="instancetype宣言"><a href="#instancetype宣言" class="headerlink" title="instancetype宣言"></a>instancetype宣言</h2><p><b>不管何时，只要一个class要返回它相同的类实例，使用instancetype都是更加合适的。</b></p>
-<p>我们知道，当调用类中（或者子类）的<b>-alloc</b>、<b>-init</b>或者<b>class factory(+)</b>方法，使用<b>instancetype</b>关键字会返回它的类实例。<b>在这种情况下用instancetype而不是id有100个好处</b>。<br>苹果也这样说：</p>
+        <p>##前言<br>静下心来写的1NF、2NF、3NF与BCNF范式。</p>
+<p>##整体关系<br><img src="media/14658192948693/14658198102023.jpg" alt=""><br>他们的约束如上图，也就是说：</p>
+<ul>
+<li>满足1NF的约束一定满足2NF。</li>
+<li>满足2NF的约束一定满足3NF。</li>
+<li>满足3NF的约束一定满足BCNF范式。</li>
+</ul>
+<p>##从1NF说起<br>1NF是最宽松的范式，只要属性不可分割就满足1NF。什么是属性？属性就是表中的字段。也就是说，只要存在于数据库里表都满足1NF。那么什么样的表不满足1NF？比如这样一个关于客户信用卡交易的表：<br><img src="media/14658192948693/14658344914302.jpg" alt=""></p>
+<p>因为我们不知道具体的用户、具体的信用卡信息、具体的交易信息，所以无法存入数据，为了满足1NF我们需要对其细化，如下：<br><img src="media/14658192948693/14658364587217.jpg" alt=""></p>
+<p>我们细化了表属性，同时存入了一些数据。那么你发现有什么问题了吗？</p>
+<p>细思极恐，你会发现这样一些问题：</p>
+<ol>
+<li>数据冗余：<br>想一下，比如我们的用户Alan，如果有上百条他的交易信息，那么他的用户ID、用户姓名、办卡日期信息会造成大量冗余。</li>
+</ol>
+<p>2.插入操作异常：<br>如果我们有一名新会员Joe办了卡，但是没有交易信息，那么在这个表里，我们应该怎么插入这条信息？答案是不能插。</p>
+<p>3.更新操作复杂：<br>如果我们的用户姓名更改了，比如Alan名字改成了Joe，那么我们每条信息都必须要更改，是否有点愚蠢？</p>
+<p>4.删除操作异常：<br>如果Alan这个用户卡注销了，我们必须把所有关于Alan的信息删除点，这很愚蠢。并且如果我们想把他的交易信息保留下来，是不能做到的。</p>
+<p>所以，人们为了解决这些问题，对表有了更加严谨的约束。</p>
+<p>##2NF<br>2NF做了什么？他的改进是:</p>
 <blockquote>
-<p>In your code, replace occurrences of id as a return value with instancetype where appropriate. This is typically the case for init methods and class factory methods. Even though the compiler automatically converts methods that begin with “alloc,” “init,” or “new” and have a return type of id to return instancetype, it doesn’t convert other methods. Objective-C convention is to write instancetype explicitly for all methods.</p>
+<p>在1NF的基础上，消除了非主属性对于码的部分函数依赖。</p>
 </blockquote>
-<p>更加有力的证据：<a href="https://developer.apple.com/library/ios/releasenotes/ObjectiveC/ModernizationObjC/AdoptingModernObjective-C/AdoptingModernObjective-C.html#//apple_ref/doc/uid/TP40014150-CH1-SW11" target="_blank" rel="external">Adopting Modern Objective-C</a></p>
-<h2 id="为什么？"><a href="#为什么？" class="headerlink" title="为什么？"></a>为什么？</h2><p>首先你可能需要知道编译器会做什么</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@interface Foo:NSObject</span><br><span class="line">- (id)initWithBar:(NSInteger)bar; // initializer</span><br><span class="line">+ (id)fooWithBar:(NSInteger)bar;  // convenience constructor</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
-<p>对于convenience constructor，你必须要使用instancetype，因为编译器不会把id自动转换成instancetype。</p>
-<p>而对于initializer，当你的代码是这样的：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- (id)initWithBar:(NSInteger)bar; // initializer</span><br></pre></td></tr></table></figure>
-<p>ARC下，编译器会把它变成这样：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- (instancetype)initWithBar:(NSInteger)bar; // initializer</span><br></pre></td></tr></table></figure>
-<p>这也是为什么有人告诉你用instancetype是没有必要的，但是我建议你使用instancetype，原因有三：</p>
+<p>这里有几个概念需要复习一下：</p>
+<ul>
+<li>函数依赖</li>
+<li>码</li>
+<li>非主属性。</li>
+</ul>
+<hr>
+<p>复习分根线</p>
+<p>###函数依赖<br>这是在范式中很重要的概念，也很好理解。简单，</p>
+<blockquote>
+<p>知道A就能推出B，就称B对于A函数依赖，记做A→B。</p>
+</blockquote>
+<p>比如本例中：<br><img src="media/14658192948693/14658364712723.jpg" alt=""></p>
+<p>（用户ID）→（用户姓名）<br>即知道了<strong>用户ID</strong> 就知道了<strong>用户姓名</strong>，所以，<strong>用户姓名</strong> 对于 <strong>用户ID</strong> 函数依赖。</p>
+<p>那么函数依赖有哪些类型呢？它有三种类型：</p>
+<ul>
+<li>完全函数依赖</li>
+<li>部分函数依赖</li>
+<li>传递函数依赖。</li>
+</ul>
+<p>####完全函数依赖</p>
+<blockquote>
+<p>在一张表中，若X→Y，且对于X的任何一个真子集X’，X’→Y都不成立，那么称Y对于X完全依赖。</p>
+</blockquote>
+<p>比如(用户ID) → (用户姓名)，<strong>用户姓名</strong>对于<strong>用户ID</strong>就是完全函数依赖。</p>
+<p>####部分函数依赖</p>
+<blockquote>
+<p>假如X→Y，但是Y不完全依赖于X，那么就称Y部分依赖于X。</p>
+</blockquote>
+<p>比如本例的(用户ID，交易ID)→(交易日期，金额)就是部分函数依赖。因为(交易ID)→(交易日期，金额)，所以(交易日期，金额)部分依赖于(用户ID)。</p>
+<p>####传递函数依赖</p>
+<blockquote>
+<p>假如Z依赖于Y，Y依赖于X，那么就称Z传递依赖于X。</p>
+</blockquote>
+<p>###码</p>
+<blockquote>
+<p>设 K 为某表中的一个属性或属性组，若除 K 之外的所有属性都<strong>完全</strong>函数依赖于 K（注意是完全），那么我们称 K 为候选码，简称为码。</p>
+</blockquote>
+<p>比如本例中(用户ID，信用卡ID，交易ID)能推出所有属性，那么(用户ID，信用卡ID，交易ID)就是码。码就不细说了，不然篇幅较长。</p>
+<p>###非主属性</p>
+<blockquote>
+<p>不是码的属性。</p>
+</blockquote>
+<p>比如本例中 <strong>用户ID</strong>、 <strong>信用卡ID</strong>、<strong>交易ID</strong>是主属性，<strong>用户姓名、办卡日期、交易日期、金额</strong>是非主属性。</p>
+<hr>
+<p>###回到主线<br>终于可以接着讲2NF了，再读这句话，我们有了不一样的理解：</p>
+<blockquote>
+<p>在1NF的基础上，消除了非主属性对于码的部分函数依赖。</p>
+</blockquote>
+<p> <img src="media/14658192948693/14658372058091.jpg" alt=""></p>
+<p>我们列出所有的函数依赖：</p>
 <ol>
-<li><b>明确性：</b>你的代码含义明确，绝不会做其他事。</li>
-<li><b>模式化：</b>你建立了一个良好的习惯，这确实是很重要的。</li>
-<li><b>一致性：</b>让你的代码更一致，并且增加可读性。</li>
+<li>(用户ID，信用卡ID，交易ID)→（用户姓名，交易日期，金额）</li>
+<li>(用户ID)→(用户姓名)</li>
+<li>(交易ID)→(交易日期，金额)</li>
 </ol>
-<h3 id="1-明确性"><a href="#1-明确性" class="headerlink" title="1.明确性"></a>1.明确性</h3><p>在-init方法中返回instancetype确实是没有太多的好处，这是因为编译器会自动把id转换成instancetype。</p>
-<p>这对于编译器来讲是等价的：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">- (id)initWithBar:(NSInteger)bar;</span><br><span class="line">- (instancetype)initWithBar:(NSInteger)bar;</span><br></pre></td></tr></table></figure>
-<p>但是至少这在你眼中是不同的。</p>
-<h3 id="2-模式化"><a href="#2-模式化" class="headerlink" title="2.模式化"></a>2.模式化</h3><p>虽然对init或者其他方法，返回id和instancetype没什么不同，但是在convenient constructor(+)方法中他们是有区别的：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">+ (id)fooWithBar:(NSInteger)bar;</span><br><span class="line">+ (instancetype)fooWithBar:(NSInteger)bar;</span><br></pre></td></tr></table></figure>
-<p>你必须要用第二条才能保证你每次运行的结果正确，为什么？<br>考虑这样的情况：<br><img src="http://7xtb7p.com1.z0.glb.clouddn.com/%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%A0%E9%9C%80%E8%A6%81%E4%BD%BF%E7%94%A8instancetype%E8%80%8C%E4%B8%8D%E6%98%AFid%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%A0%E9%9C%80%E8%A6%81%E4%BD%BF%E7%94%A8instancetype%E8%80%8C%E4%B8%8D%E6%98%AFid2.png" alt=""></p>
-<p>然后我们这样调用：</p>
-<p><img src="http://7xtb7p.com1.z0.glb.clouddn.com/%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%A0%E9%9C%80%E8%A6%81%E4%BD%BF%E7%94%A8instancetype%E8%80%8C%E4%B8%8D%E6%98%AFid%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%A0%E9%9C%80%E8%A6%81%E4%BD%BF%E7%94%A8instancetype%E8%80%8C%E4%B8%8D%E6%98%AFid1.png" alt=""></p>
-<p>发现x出现编译警告，因为我们的+factoryMethodA返回的是instancetype，它表示的是MyObject*，因为MyObject没有<b>-count</b>方法，所以出现了编译警告。</p>
-<p>然而，因为我们的+factoryMethodB返回的是id，编译器没有在y行给警告，因为Objc语言动态类型和动态绑定的特性，id可能是任何class，又因为<b>-count</b>方法可能于存在某个类的某个地方，因此对于编译器而言，+factoryMethodB方法返回的东西是可能实现-count方法的。</p>
-<h3 id="3-一致性"><a href="#3-一致性" class="headerlink" title="3.一致性"></a>3.一致性</h3><p>在init中可以返回id，因此你可能会这样写：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">- (id)initWithBar:(NSInteger)bar;</span><br><span class="line">+ (instancetype)fooWithBar:(NSInteger)bar;</span><br></pre></td></tr></table></figure>
-<p>但是如果你使用instancetype，结果会是这样：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">- (instancetype)initWithBar:(NSInteger)bar;</span><br><span class="line">+ (instancetype)fooWithBar:(NSInteger)bar;</span><br></pre></td></tr></table></figure>
-<p>这样看起来更加一致并且可读性更高。他们返回同样的东西，但是后者看起来更明显，不是吗？</p>
-<h1 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h1><p>当要返回id类型的时候，你应该思考它是否会返回一个类的实例，如果是，请使用instancetype。</p>
-<p>参考链接：</p>
-<ol>
-<li><a href="http://tewha.net/2013/02/why-you-should-use-instancetype-instead-of-id/" target="_blank" rel="external">Why you should use instancetype instead of id</a></li>
-<li><a href="http://stackoverflow.com/questions/8972221/would-it-be-beneficial-to-begin-using-instancetype-instead-of-id" target="_blank" rel="external">stackoverflow</a></li>
-<li><a href="https://developer.apple.com/library/ios/releasenotes/ObjectiveC/ModernizationObjC/AdoptingModernObjective-C/AdoptingModernObjective-C.html#//apple_ref/doc/uid/TP40014150-CH1-SW11" target="_blank" rel="external">Adopting Modern Objective-C</a></li>
-</ol>
-<h2 id="Done"><a href="#Done" class="headerlink" title="Done"></a>Done</h2><p>作者 <a href="http://www.github.com/biggergao" target="_blank" rel="external">@biggergao</a></p>
-<p>2016年05月18日</p>
+<p>发现存在(用户ID)→(用户姓名)，(交易ID)→(交易日期，金额)的部分依赖，所以我们对表进行分解，如下：<br><img src="media/14658192948693/14658378601845.jpg" alt=""></p>
+<p>分解后R1、R2、R3均不存在部分函数依赖，符合2NF。</p>
+<p>###3NF<br>例子举得不好，后面来补坑。。。</p>
+<h2 id="写在结尾"><a href="#写在结尾" class="headerlink" title="写在结尾"></a>写在结尾</h2><p>希望您有所收获，谢谢。</p>
+<h2 id="Done"><a href="#Done" class="headerlink" title="Done"></a>Done</h2><p>作者 <a href="http://weibo.com/u/3184193244?is_all=1" target="_blank" rel="external">@biggergao</a></p>
+<p>2016年06月14日</p>
 
       
     </div>
@@ -435,7 +474,7 @@ instancetype宣言不管何时，只要一个class要返回它相同的类实例
       
         <div class="post-tags">
           
-            <a href="/tags/objc基础/" rel="tag">#objc基础</a>
+            <a href="/tags/数据库/" rel="tag">#数据库</a>
           
         </div>
       
@@ -444,17 +483,13 @@ instancetype宣言不管何时，只要一个class要返回它相同的类实例
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/05/15/123/" rel="next" title="深入浅出@property 与 @synthesis">
-                <i class="fa fa-chevron-left"></i> 深入浅出@property 与 @synthesis
+              <a href="/2016/05/22/2016-05-22/" rel="next" title="5分钟学会枚举的正确使用姿势-Enumeration宏">
+                <i class="fa fa-chevron-left"></i> 5分钟学会枚举的正确使用姿势-Enumeration宏
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/05/22/2016-06-04/" rel="prev" title="简单说说内存管理">
-                简单说说内存管理 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -480,8 +515,8 @@ instancetype宣言不管何时，只要一个class要返回它相同的类实例
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/05/18/为什么Factory方法要返回instancetype而不是id/"
-           data-title="为什么你需要使用instancetype而不是id" data-url="http://biggergao.github.io/2016/05/18/为什么Factory方法要返回instancetype而不是id/">
+      <div class="ds-thread" data-thread-key="2016/05/22/2016-06-14/"
+           data-title="白话数据库范式" data-url="http://biggergao.github.io/2016/05/22/2016-06-14/">
       </div>
     
   </div>
@@ -592,7 +627,7 @@ instancetype宣言不管何时，只要一个class要返回它相同的类实例
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#instancetype宣言"><span class="nav-number">2.</span> <span class="nav-text">instancetype宣言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么？"><span class="nav-number">3.</span> <span class="nav-text">为什么？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-明确性"><span class="nav-number">3.1.</span> <span class="nav-text">1.明确性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-模式化"><span class="nav-number">3.2.</span> <span class="nav-text">2.模式化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-一致性"><span class="nav-number">3.3.</span> <span class="nav-text">3.一致性</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#结论"><span class="nav-number"></span> <span class="nav-text">结论</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Done"><span class="nav-number">1.</span> <span class="nav-text">Done</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#写在结尾"><span class="nav-number">1.</span> <span class="nav-text">写在结尾</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Done"><span class="nav-number">2.</span> <span class="nav-text">Done</span></a></li></ol></div>
             
           </div>
         </section>

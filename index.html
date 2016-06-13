@@ -267,8 +267,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/05/22/2016-06-04/" itemprop="url">
-                  简单说说内存管理
+                <a class="post-title-link" href="/2016/05/22/2016-06-14/" itemprop="url">
+                  白话数据库范式
                 </a>
               
             
@@ -292,8 +292,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/05/22/2016-06-04/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/22/2016-06-04/" itemprop="commentsCount"></span>
+                <a href="/2016/05/22/2016-06-14/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/22/2016-06-14/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -303,7 +303,7 @@
 
           
           
-             <span id="/2016/05/22/2016-06-04/" class="leancloud_visitors" data-flag-title="简单说说内存管理">
+             <span id="/2016/05/22/2016-06-14/" class="leancloud_visitors" data-flag-title="白话数据库范式">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -327,16 +327,18 @@
       
         
           
-          历史在早期的计算机，程序是直接运行在物理内存上的，也就是说，程序所访问的地址都是物理内存。但是我们往往需要同时运行多个程序，所以就有一个很明显的问题如何把计算机上有限的物理内存分配给多个程序使用？
-举个例子假如我们计算机有128M内存，现在：
+          ##前言静下心来写的1NF、2NF、3NF与BCNF范式。
+##整体关系他们的约束如上图，也就是说：
 
-程序A需要10M内存
-程序B需要100M内存
-程序C需
+满足1NF的约束一定满足2NF。
+满足2NF的约束一定满足3NF。
+满足3NF的约束一定满足BCNF范式。
+
+##从1NF说起1NF是最宽松的范式，只要属性不可分割就满足1NF。什么是属性？属性就
           ...
 
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/05/22/2016-06-04/#more" rel="contents">
+            <a class="btn" href="/2016/05/22/2016-06-14/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -454,6 +456,126 @@
 
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/05/22/2016-05-22/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+    
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/05/22/2016-06-04/" itemprop="url">
+                  简单说说内存管理
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-22T20:38:17+08:00" content="2016-05-22">
+              2016-05-22
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/22/2016-06-04/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/22/2016-06-04/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/05/22/2016-06-04/" class="leancloud_visitors" data-flag-title="简单说说内存管理">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          历史在早期的计算机，程序是直接运行在物理内存上的，也就是说，程序所访问的地址都是物理内存。但是我们往往需要同时运行多个程序，所以就有一个很明显的问题如何把计算机上有限的物理内存分配给多个程序使用？
+举个例子假如我们计算机有128M内存，现在：
+
+程序A需要10M内存
+程序B需要100M内存
+程序C需
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/05/22/2016-06-04/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1426,129 +1548,13 @@ instancetype宣言不管何时，只要一个class要返回它相同的类实例
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/04/16/tree/" itemprop="url">
-                  Markdown
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-16T21:59:34+08:00" content="2016-04-16">
-              2016-04-16
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/04/16/tree/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/16/tree/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-             <span id="/2016/04/16/tree/" class="leancloud_visitors" data-flag-title="Markdown">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          欢迎使用 Cmd Markdown 编辑阅读器
-我们理解您需要更便捷更高效的工具记录思想，整理笔记、知识，并将其中承载的价值传播给他人，Cmd Markdown 是我们给出的答案 —— 我们为记录思想和分享知识提供更专业的工具。 您可以使用 Cmd Markdown：
-
-
-整理知识，学习笔记
-发布日
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/04/16/tree/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-    
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
 
 
           </div>
@@ -1587,7 +1593,7 @@ instancetype宣言不管何时，只要一个class要返回它相同的类实例
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-count">11</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1604,7 +1610,7 @@ instancetype宣言不管何时，只要一个class要返回它相同的类实例
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
