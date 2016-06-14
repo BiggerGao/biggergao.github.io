@@ -78,43 +78,52 @@
 
 
 
-<meta name="description" content="##前言静下心来写的1NF、2NF、3NF与BCNF范式。希望对你有所帮助。
-##整体关系他们的约束如上图，也就是说：
+<meta name="description" content="##前言
+静下心来写的1NF、2NF、3NF与BCNF范式。希望对你有所帮助。
+##整体关系
+他们的约束如上图，也就是说：
 
 满足1NF的约束一定满足2NF。
 满足2NF的约束一定满足3NF。
 满足3NF的约束一定满足BCNF范式。
 
-##从1NF说起1NF是最宽松的范式，只要属性不可分割就满足1NF。什么是属性？属性就是表中的字段。也就是说，只要存在于数据库里表都满足1NF。那么什么样的表不满足1N">
+##从1NF说起
+1NF是最宽松的范式，只要属性不可分割就满足1NF。什么是属性？属性就是表中的字段。也就是说，只要存在于数据库里表都满足1NF。那么什么样的表不满">
 <meta property="og:type" content="article">
 <meta property="og:title" content="白话数据库范式">
 <meta property="og:url" content="http://biggergao.github.io/2016/05/22/2016-06-14/index.html">
 <meta property="og:site_name" content="Mr. 码了戈壁">
-<meta property="og:description" content="##前言静下心来写的1NF、2NF、3NF与BCNF范式。希望对你有所帮助。
-##整体关系他们的约束如上图，也就是说：
+<meta property="og:description" content="##前言
+静下心来写的1NF、2NF、3NF与BCNF范式。希望对你有所帮助。
+##整体关系
+他们的约束如上图，也就是说：
 
 满足1NF的约束一定满足2NF。
 满足2NF的约束一定满足3NF。
 满足3NF的约束一定满足BCNF范式。
 
-##从1NF说起1NF是最宽松的范式，只要属性不可分割就满足1NF。什么是属性？属性就是表中的字段。也就是说，只要存在于数据库里表都满足1NF。那么什么样的表不满足1N">
+##从1NF说起
+1NF是最宽松的范式，只要属性不可分割就满足1NF。什么是属性？属性就是表中的字段。也就是说，只要存在于数据库里表都满足1NF。那么什么样的表不满">
 <meta property="og:image" content="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-14-14658198102023.jpg">
 <meta property="og:image" content="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-14-14658344914302.jpg">
 <meta property="og:image" content="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-14-14658364587217.jpg">
 <meta property="og:image" content="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-14-14658364712723.jpg">
 <meta property="og:image" content="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-14-14658372058091.jpg">
 <meta property="og:image" content="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-14-14658378601845.jpg">
-<meta property="og:updated_time" content="2016-06-14T03:52:19.000Z">
+<meta property="og:updated_time" content="2016-06-14T03:55:32.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="白话数据库范式">
-<meta name="twitter:description" content="##前言静下心来写的1NF、2NF、3NF与BCNF范式。希望对你有所帮助。
-##整体关系他们的约束如上图，也就是说：
+<meta name="twitter:description" content="##前言
+静下心来写的1NF、2NF、3NF与BCNF范式。希望对你有所帮助。
+##整体关系
+他们的约束如上图，也就是说：
 
 满足1NF的约束一定满足2NF。
 满足2NF的约束一定满足3NF。
 满足3NF的约束一定满足BCNF范式。
 
-##从1NF说起1NF是最宽松的范式，只要属性不可分割就满足1NF。什么是属性？属性就是表中的字段。也就是说，只要存在于数据库里表都满足1NF。那么什么样的表不满足1N">
+##从1NF说起
+1NF是最宽松的范式，只要属性不可分割就满足1NF。什么是属性？属性就是表中的字段。也就是说，只要存在于数据库里表都满足1NF。那么什么样的表不满">
 <meta name="twitter:image" content="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-14-14658198102023.jpg">
 
 
@@ -349,14 +358,17 @@
       
 
       
-        <p>##前言<br>静下心来写的1NF、2NF、3NF与BCNF范式。希望对你有所帮助。</p>
-<p>##整体关系<br><img src="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-14-14658198102023.jpg" alt=""><br>他们的约束如上图，也就是说：</p>
+        <p>##前言</p>
+<p>静下心来写的1NF、2NF、3NF与BCNF范式。希望对你有所帮助。</p>
+<p>##整体关系</p>
+<p><img src="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-14-14658198102023.jpg" alt=""><br>他们的约束如上图，也就是说：</p>
 <ul>
 <li>满足1NF的约束一定满足2NF。</li>
 <li>满足2NF的约束一定满足3NF。</li>
 <li>满足3NF的约束一定满足BCNF范式。</li>
 </ul>
-<p>##从1NF说起<br>1NF是最宽松的范式，只要属性不可分割就满足1NF。什么是属性？属性就是表中的字段。也就是说，只要存在于数据库里表都满足1NF。那么什么样的表不满足1NF？比如这样一个关于客户信用卡交易的表：<br><img src="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-14-14658344914302.jpg" alt=""></p>
+<p>##从1NF说起</p>
+<p>1NF是最宽松的范式，只要属性不可分割就满足1NF。什么是属性？属性就是表中的字段。也就是说，只要存在于数据库里表都满足1NF。那么什么样的表不满足1NF？比如这样一个关于客户信用卡交易的表：<br><img src="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-14-14658344914302.jpg" alt=""></p>
 <p>因为我们不知道具体的用户、具体的信用卡信息、具体的交易信息，所以无法存入数据，为了满足1NF我们需要对其细化，如下：<br><img src="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-14-14658364587217.jpg" alt=""></p>
 <p>我们细化了表属性，同时存入了一些数据。那么你发现有什么问题了吗？</p>
 <p>细思极恐，你会发现这样一些问题：</p>
@@ -367,7 +379,8 @@
 <p>3.更新操作复杂：<br>如果我们的用户姓名更改了，比如Alan名字改成了Joe，那么我们每条信息都必须要更改，是否有点愚蠢？</p>
 <p>4.删除操作异常：<br>如果Alan这个用户卡注销了，我们必须把所有关于Alan的信息删除点，这很愚蠢。并且如果我们想把他的交易信息保留下来，是不能做到的。</p>
 <p>所以，人们为了解决这些问题，对表有了更加严谨的约束。</p>
-<p>##2NF<br>2NF做了什么？他的改进是:</p>
+<p>##2NF</p>
+<p>2NF做了什么？他的改进是:</p>
 <blockquote>
 <p>在1NF的基础上，消除了非主属性对于码的部分函数依赖。</p>
 </blockquote>
@@ -379,7 +392,8 @@
 </ul>
 <hr>
 <p>复习分根线</p>
-<p>###函数依赖<br>这是在范式中很重要的概念，也很好理解。简单，</p>
+<p>###函数依赖</p>
+<p>这是在范式中很重要的概念，也很好理解。简单，</p>
 <blockquote>
 <p>知道A就能推出B，就称B对于A函数依赖，记做A→B。</p>
 </blockquote>
@@ -416,7 +430,8 @@
 </blockquote>
 <p>比如本例中 <strong>用户ID</strong>、 <strong>信用卡ID</strong>、<strong>交易ID</strong>是主属性，<strong>用户姓名、办卡日期、交易日期、金额</strong>是非主属性。</p>
 <hr>
-<p>###回到主线<br>终于可以接着讲2NF了，再读这句话，我们有了不一样的理解：</p>
+<p>###回到主线</p>
+<p>终于可以接着讲2NF了，再读这句话，我们有了不一样的理解：</p>
 <blockquote>
 <p>在1NF的基础上，消除了非主属性对于码的部分函数依赖。</p>
 </blockquote>
@@ -429,7 +444,8 @@
 </ol>
 <p>发现存在(用户ID)→(用户姓名)，(交易ID)→(交易日期，金额)的部分依赖，所以我们对表进行分解，如下：<br><img src="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-14-14658378601845.jpg" alt=""></p>
 <p>分解后R1、R2、R3均不存在部分函数依赖，符合2NF。</p>
-<p>###3NF<br>例子举得不好，后面来补坑。。。</p>
+<p>###3NF</p>
+<p>例子举得不好，后面来补坑。。。</p>
 <h2 id="写在结尾"><a href="#写在结尾" class="headerlink" title="写在结尾"></a>写在结尾</h2><p>希望您有所收获，谢谢。</p>
 <h2 id="Done"><a href="#Done" class="headerlink" title="Done"></a>Done</h2><p>作者 <a href="http://weibo.com/u/3184193244?is_all=1" target="_blank" rel="external">@biggergao</a></p>
 <p>2016年06月14日</p>
