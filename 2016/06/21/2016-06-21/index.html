@@ -78,33 +78,33 @@
 
 
 
-<meta name="description" content="前言这是一篇我记录对alloc、init分析思考的笔记。如果读者想看懂我的第二个思考，可能需要您至少了解内存的分段分页管理，如果您对其一点都不知道，可以先看这篇软文简单了解一下。另外很重要的一点是，请保持思考。
+<meta name="description" content="前言这是一篇我记录对alloc、init分析思考的笔记。如果读者想看懂我的第二个思考，可能需要您至少了解内存的分段分页管理，如果您对其一点都不知道，可以先看这篇软文简单了解一下。另外很重要的一点是，请先思考。
 思考1.对象为什么要alloc，init又是干嘛的？很多人都知道，初始化一个对象应该这么写:
 1MyClass* myObj = [MyClass alloc] init];
-那么有没有思">
+那么有没有思考">
 <meta property="og:type" content="article">
 <meta property="og:title" content="如何深入理解学习alloc、init">
 <meta property="og:url" content="http://www.iosxxoo.com/2016/06/21/2016-06-21/index.html">
 <meta property="og:site_name" content="Mr. 码了戈壁">
-<meta property="og:description" content="前言这是一篇我记录对alloc、init分析思考的笔记。如果读者想看懂我的第二个思考，可能需要您至少了解内存的分段分页管理，如果您对其一点都不知道，可以先看这篇软文简单了解一下。另外很重要的一点是，请保持思考。
+<meta property="og:description" content="前言这是一篇我记录对alloc、init分析思考的笔记。如果读者想看懂我的第二个思考，可能需要您至少了解内存的分段分页管理，如果您对其一点都不知道，可以先看这篇软文简单了解一下。另外很重要的一点是，请先思考。
 思考1.对象为什么要alloc，init又是干嘛的？很多人都知道，初始化一个对象应该这么写:
 1MyClass* myObj = [MyClass alloc] init];
-那么有没有思">
-<meta property="og:image" content="http://www.iosxxoo.com/media/14664804932763/14664805905977.jpg">
-<meta property="og:image" content="http://www.iosxxoo.com/media/14664804932763/14664810118315.jpg">
-<meta property="og:image" content="http://www.iosxxoo.com/media/14664804932763/14664828087961.jpg">
-<meta property="og:image" content="http://www.iosxxoo.com/media/14664804932763/14664830375943.jpg">
-<meta property="og:image" content="http://www.iosxxoo.com/media/14664804932763/14664933866025.jpg">
-<meta property="og:image" content="http://www.iosxxoo.com/media/14664804932763/14664984968407.jpg">
-<meta property="og:image" content="http://www.iosxxoo.com/media/14664804932763/14664986780926.jpg">
-<meta property="og:updated_time" content="2016-06-21T08:49:38.000Z">
+那么有没有思考">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1727535-94b99084b37fa4af.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1727535-f155bd22b4f0e51c.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1727535-a55f9cc1faf4cb88.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1727535-ddd8ea3278a43bde.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1727535-1bc5db9ed535c9dd.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1727535-af650708d527c6b6.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1727535-0892d44209762b44.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2016-06-21T09:13:34.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="如何深入理解学习alloc、init">
-<meta name="twitter:description" content="前言这是一篇我记录对alloc、init分析思考的笔记。如果读者想看懂我的第二个思考，可能需要您至少了解内存的分段分页管理，如果您对其一点都不知道，可以先看这篇软文简单了解一下。另外很重要的一点是，请保持思考。
+<meta name="twitter:description" content="前言这是一篇我记录对alloc、init分析思考的笔记。如果读者想看懂我的第二个思考，可能需要您至少了解内存的分段分页管理，如果您对其一点都不知道，可以先看这篇软文简单了解一下。另外很重要的一点是，请先思考。
 思考1.对象为什么要alloc，init又是干嘛的？很多人都知道，初始化一个对象应该这么写:
 1MyClass* myObj = [MyClass alloc] init];
-那么有没有思">
-<meta name="twitter:image" content="http://www.iosxxoo.com/media/14664804932763/14664805905977.jpg">
+那么有没有思考">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1727535-94b99084b37fa4af.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 
@@ -357,7 +357,7 @@
       
 
       
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这是一篇我记录对alloc、init分析思考的笔记。如果读者想看懂我的第二个思考，可能需要您至少了解内存的分段分页管理，如果您对其一点都不知道，可以先看<a href="http://www.jianshu.com/p/3c37ba749bf4" target="_blank" rel="external">这篇</a>软文简单了解一下。另外很重要的一点是，请保持思考。</p>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这是一篇我记录对alloc、init分析思考的笔记。如果读者想看懂我的第二个思考，可能需要您至少了解内存的分段分页管理，如果您对其一点都不知道，可以先看<a href="http://www.jianshu.com/p/3c37ba749bf4" target="_blank" rel="external">这篇</a>软文简单了解一下。另外很重要的一点是，请先思考。</p>
 <h1 id="思考1-对象为什么要alloc，init又是干嘛的？"><a href="#思考1-对象为什么要alloc，init又是干嘛的？" class="headerlink" title="思考1.对象为什么要alloc，init又是干嘛的？"></a>思考1.对象为什么要alloc，init又是干嘛的？</h1><p>很多人都知道，初始化一个对象应该这么写:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MyClass* myObj = [MyClass alloc] init];</span><br></pre></td></tr></table></figure>
 <p>那么有没有思考过为什么呢？其实我这么写也是完全可以的：</p>
@@ -378,10 +378,10 @@
 <p>最后提醒一下，不要这样写:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">MyClass* myObj = [MyClass alloc];</span><br><span class="line">myObj=[myObj init];</span><br></pre></td></tr></table></figure>
 <p>因为你可能会忘记在第二行加init，并且代码也会增长。</p>
-<h1 id="思考2-关于alloc的思考"><a href="#思考2-关于alloc的思考" class="headerlink" title="思考2.关于alloc的思考"></a>思考2.关于alloc的思考</h1><p>在思考1中我们说了：alloc分配了<code>一坨``内存</code>给对象，让它不释放，并且把地址返回给指针。这里主要有两个问题：</p>
+<h1 id="思考2-关于alloc的思考"><a href="#思考2-关于alloc的思考" class="headerlink" title="思考2.关于alloc的思考"></a>思考2.关于alloc的思考</h1><p>在思考1中我们说了：alloc分配了<code>一坨</code> <code>内存</code>给对象，让它不释放，并且把地址返回给指针。这里主要有两个问题：</p>
 <ul>
 <li>调用alloc后内存是直接映射到堆还是只分配给了虚拟内存？</li>
-<li>一坨内存的一坨是多大？</li>
+<li>一坨内存到底是多大？</li>
 </ul>
 <p>我们依次来展开。<br>可能有些读者不明白第一个问题是什么意思，这里需要额外讲一些关于内存的东西，其实这是iOS开发很重要的东西，不管是面试还是学习都可能会用到。</p>
 <hr>
@@ -405,28 +405,30 @@
 <p>2.Clean Memory。<br>因为用这样的方法创建的是一个常量字符串，常量字符串是放在只读数据段的，如果这块内存被释放了，而我们又访问它的时候，操作系统可以在只读数据段中把值再读取出来重建这块内存。(ps:所以用这种方法创建的string是没有引用计数的。)</p>
 <p><strong>接下来的知识就是引出思考问题1、2比较重要的点了：</strong></p>
 <p>3.Clean Memory。<br>这个时候buf指向的100M内存区域是Clean Memory的，因为<strong>操作系统是很懒的，只有当我们要用到这块区域的时候才会映射到物理内存，没有使用的时候只会分配一块虚拟内存给buf。</strong>读起来很绕口，上张图：</p>
-<p><img src="media/14664804932763/14664805905977.jpg" alt=""></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1727535-94b99084b37fa4af.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <p>可以看到虚拟内存和物理内存没有映射关系，所以是Clean Memory的。</p>
-<p>4.Dirty &amp; Clean Memory混合。<br>前3M是Dirty Memory，后97M是Clean Memory。这句for语句执行完成后，buf的前3M内存被赋值，也就是buf的前3M被使用了，所以这个时候的映射关系是这样的：<br><img src="media/14664804932763/14664810118315.jpg" alt=""></p>
-<h2 id="额外的东西Done"><a href="#额外的东西Done" class="headerlink" title="额外的东西Done."></a>额外的东西Done.</h2><h2 id="回到主线"><a href="#回到主线" class="headerlink" title="回到主线"></a>回到主线</h2><ul>
+<p>4.Dirty &amp; Clean Memory混合。<br>前3M是Dirty Memory，后97M是Clean Memory。这句for语句执行完成后，buf的前3M内存被赋值，也就是buf的前3M被使用了，所以这个时候的映射关系是这样的：<br><img src="http://upload-images.jianshu.io/upload_images/1727535-f155bd22b4f0e51c.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>额外的东西Done.</p>
+<hr>
+<h2 id="回到主线"><a href="#回到主线" class="headerlink" title="回到主线"></a>回到主线</h2><ul>
 <li>调用alloc后内存是直接映射到堆(物理内存)还是只分配给了虚拟内存？</li>
 <li>一坨内存的一坨是多大？</li>
 </ul>
-<p>这个时候我们的第一个问题读者应该能明白了。那么我们怎么验证alloc是直接映射到堆上还是只分配给虚拟内存呢？这个问题可把我难倒了好几天，最后xo哥想到了一剂良药来验证，那就是用instrument，冷不冷:)。</p>
-<h2 id="使用instrument来验证"><a href="#使用instrument来验证" class="headerlink" title="使用instrument来验证"></a>使用instrument来验证</h2><p>这里需要一丁点代码。</p>
+<p>这个时候我们的第一个问题读者应该能明白了。那么我们怎么验证alloc是直接映射到堆上还是只分配给虚拟内存呢？这个问题让我想了好些天，最后xo哥想到了一剂良药来验证，那就是用instrument来推反，冷不冷:)。</p>
+<h2 id="使用instrument来证反"><a href="#使用instrument来证反" class="headerlink" title="使用instrument来证反"></a>使用instrument来证反</h2><p>我们假设的论点是：对象收到alloc消息后只在虚拟内存分配空间。<br>这里需要一丁点代码。</p>
 <p>1.我们随便新建个工程。<br>2.然后做个model类：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#import &lt;Foundation/Foundation.h&gt;</span><br><span class="line"></span><br><span class="line">@interface XOModel : NSObject</span><br><span class="line">&#123;</span><br><span class="line">    int a1;</span><br><span class="line">    NSString *a2;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
 <p>3.在controller里给view加一个点击事件：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">- (void)touchesBegan:(NSSet&lt;UITouch *&gt; *)touches withEvent:(UIEvent *)event &#123;</span><br><span class="line">    for (int i = 0; i &lt; 100000; ++i) &#123;</span><br><span class="line">        XOModel *model = [XOModel alloc]; // 注意这句只有alloc</span><br><span class="line">        [self.array addObject:model];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>4.打开instrument的alloction，运行触发一下点击事件，查看如下：<br><img src="media/14664804932763/14664828087961.jpg" alt=""><br>(图解：Persistent bytes表示所有的这类东西在堆里的大小，Persistent表示所有的这类东西的个数.)</p>
-<p>我们发现发现在Persistent bytes(堆)里实实在在地分配给了XOModel 3.05MB的空间。<br>我们再触发一下点击事件：<br><img src="media/14664804932763/14664830375943.jpg" alt=""></p>
+<p>4.打开instrument的alloction，运行触发一下点击事件，查看如下：<br><img src="http://upload-images.jianshu.io/upload_images/1727535-a55f9cc1faf4cb88.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>(图解：Persistent bytes表示所有的这类东西在堆里的大小，Persistent表示所有的这类东西的个数.)</p>
+<p>我们发现发现在Persistent bytes(堆)里实实在在地分配给了XOModel 3.05MB的空间。<br>我们再触发一下点击事件：<br><img src="http://upload-images.jianshu.io/upload_images/1727535-ddd8ea3278a43bde.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <p>发现堆分配给了XOModel的大小空间变成了原来的两倍6.10MB。</p>
-<p>过渡结论：如果对象收到alloc消息只分配大小给虚拟内存，那么persistent bytes(堆)里是不会分配给XOModel大小的，也就是说这里的persistent bytes大小应该是0。所以问题1的结论如下：</p>
+<p>结论过渡：如果对象收到alloc消息只在虚拟内存分配空间，那么persistent bytes(堆)里是不会分配给XOModel大小的，也就是说这里的persistent bytes大小应该是0。所以问题1的结论如下：</p>
 <p>结论：alloc不只分配在虚拟内存，同时会在物理内存建立映射。</p>
 <h2 id="对象的内存分配"><a href="#对象的内存分配" class="headerlink" title="对象的内存分配"></a>对象的内存分配</h2><p>最后剩下我们的最后一个问题：<strong>类对象收到alloc消息后，操作系统会分配出来的一坨内存是多大？</strong></p>
 <p>3.05M的大小是100000个XOModel对象的总和，那么一个XOModel的实例对象，操作系统会给他分配多大的空间呢？很简单嘛，3.05M/100000就得到了，等等，难道你真准备这样去算？好吧，其实一开始我真这样想过，但是这肯定是算不出准确答案的，关键是你要去思考。</p>
 <p>这里有两种办法，我采用的第二种办法。</p>
-<h3 id="第一种验证方法还是instrument"><a href="#第一种验证方法还是instrument" class="headerlink" title="第一种验证方法还是instrument"></a>第一种验证方法还是instrument</h3><p>我们可以修改一下触发的代码，然后重新刷新instrument，具体操作同上，不重复了：</p>
+<h3 id="第一种验证方法还是instrument"><a href="#第一种验证方法还是instrument" class="headerlink" title="第一种验证方法还是instrument"></a>第一种验证方法还是instrument</h3><p>我们可以修改一下触发的代码，然后重新刷新instrument查看XOModel大小，具体操作同上，不重复了：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">- (void)touchesBegan:(NSSet&lt;UITouch *&gt; *)touches withEvent:(UIEvent *)event &#123;</span><br><span class="line">    for (int i = 0; i &lt; 1; ++i) &#123; // 修改处</span><br><span class="line">        XOModel *model = [XOModel alloc]; // 注意这句只有alloc</span><br><span class="line">        [self.array addObject:model];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="第二种验证办法借用runtime"><a href="#第二种验证办法借用runtime" class="headerlink" title="第二种验证办法借用runtime"></a>第二种验证办法借用runtime</h3><p>我们可以借助runtime来查看一个类对象所需要的内存大小。值得一提的是我最开始用的方法是class_getInstanceSize，原型如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">/** </span><br><span class="line"> * Returns the size of instances of a class.</span><br><span class="line"> * </span><br><span class="line"> * @param cls A class object.</span><br><span class="line"> * </span><br><span class="line"> * @return The size in bytes of instances of the class \e cls, or \c 0 if \e cls is \c Nil.</span><br><span class="line"> */</span><br><span class="line">OBJC_EXPORT size_t class_getInstanceSize(Class cls) </span><br><span class="line">     __OSX_AVAILABLE_STARTING(__MAC_10_5, __IPHONE_2_0);</span><br></pre></td></tr></table></figure>
@@ -448,7 +450,7 @@
 <li>32位机子上指针大小为4字节，64位机子为8字节。</li>
 <li><strong>字节对齐</strong>。</li>
 </ol>
-<p>第一点就不说了，不知道的话您多半也没耐心看到现在了。<br>第二点贴个文档图，iOS7过后部分苹果机就开始从32位操作系统转到64位了，所以部分数据类型的大小也有变化，这里我们主要关注例子中的指针：<br><img src="media/14664804932763/14664933866025.jpg" alt=""></p>
+<p>第一点就不说了，不知道的话您多半也没耐心看到现在了。<br>第二点贴个文档图，iOS7过后部分苹果机就开始从32位操作系统转到64位了，所以部分数据类型的大小也有变化，这里我们主要关注例子中的指针：<br><img src="http://upload-images.jianshu.io/upload_images/1727535-1bc5db9ed535c9dd.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <p>现在，基于这两点对样例分析。</p>
 <ul>
 <li>第一个样例(类对象中一个int，一个NSString指针，一个isa指针)，64位操作系统上应该是4+8+8=20，然而输出是32，不对。</li>
@@ -463,11 +465,21 @@
 <blockquote>
 <p>当我们分配一块内存的时候，假设需要的内存小于16个字节，操作系统会直接分配16个字节；加入需要的内存大于16个字节，操作系统会分配a*16个字节。举个栗子，如果你调用malloc并且需要4个字节，系统会给你一块16个字节的内存块；如果你调用malloc并且需要24个字节，系统会给你一块32个字节的内存块。</p>
 </blockquote>
-<p>现在再看我们的栗子，就可以直接上图了：<br>第一个例子不对齐应该是20字节，对齐就是32字节。<br><img src="media/14664804932763/14664984968407.jpg" alt=""></p>
-<p>第二个例子不对其应该是8字节，对齐就是16字节：<br><img src="media/14664804932763/14664986780926.jpg" alt=""></p>
+<p>现在再看我们的栗子，就可以直接上图了：<br>第一个例子不对齐应该是20字节，对齐就是32字节。<br><img src="http://upload-images.jianshu.io/upload_images/1727535-af650708d527c6b6.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>第二个例子不对其应该是8字节，对齐就是16字节：<br><img src="http://upload-images.jianshu.io/upload_images/1727535-0892d44209762b44.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <p>ps：在32位机器上可能会有不一样的结果，因为指针大小不同，但是32位的苹果机也是16字节对齐的。</p>
 <p>至此我们对alloc的探究就结束了。</p>
-<h1 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h1><p>这次的探究算是比较彻底了，过程当中也学到了很多东西。在这个浮躁的社会，打好基础、保持思考才不会磨灭掉你对它最初的兴趣。</p>
+<h1 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h1><p>这次的探究算是比较彻底了，过程当中也学到了很多东西，在这个浮躁的社会，学贵在道，术次之，打好基础、保持思考才不会磨灭掉你对它最初的兴趣。</p>
+<p>参考链接：</p>
+<ul>
+<li><a href="http://www.imooc.com/video/11075" target="_blank" rel="external">iOS内存管理及优化-腾讯庄延军</a></li>
+<li><a href="http://stackoverflow.com/questions/761969/checking-the-size-of-an-object-in-objective-c" target="_blank" rel="external">Checking the size of an object in Objective-C - Stack Overflow</a></li>
+<li><a href="http://stackoverflow.com/questions/14016877/does-class-getinstancesize-have-a-known-bug-about-returning-incorrect-sizes" target="_blank" rel="external">Does class_getInstanceSize have a known bug about returning incorrect sizes? - Stack Overflow</a></li>
+<li><a href="https://developer.apple.com/library/mac/documentation/Performance/Conceptual/ManagingMemory/Articles/MemoryAlloc.html" target="_blank" rel="external">Memory Usage Performance Guidelines - 苹果文档</a></li>
+<li><a href="http://baike.baidu.com/view/1523557.htm" target="_blank" rel="external">字节对齐-百度百科</a></li>
+</ul>
+<h2 id="Done"><a href="#Done" class="headerlink" title="Done"></a>Done</h2><p>作者: <a href="http://weibo.com/u/3184193244?is_all=1" target="_blank" rel="external">@biggergao</a><br>个人博客: <a href="http://www.iosxxoo.com/">Mr.码了戈壁</a></p>
+<p>2016年06月21日</p>
 
       
     </div>
@@ -664,7 +676,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#思考1-对象为什么要alloc，init又是干嘛的？"><span class="nav-number">2.</span> <span class="nav-text">思考1.对象为什么要alloc，init又是干嘛的？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#思考2-关于alloc的思考"><span class="nav-number">3.</span> <span class="nav-text">思考2.关于alloc的思考</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#额外的东西"><span class="nav-number">3.1.</span> <span class="nav-text">额外的东西</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#额外的东西Done"><span class="nav-number">3.2.</span> <span class="nav-text">额外的东西Done.</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#回到主线"><span class="nav-number">3.3.</span> <span class="nav-text">回到主线</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用instrument来验证"><span class="nav-number">3.4.</span> <span class="nav-text">使用instrument来验证</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对象的内存分配"><span class="nav-number">3.5.</span> <span class="nav-text">对象的内存分配</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一种验证方法还是instrument"><span class="nav-number">3.5.1.</span> <span class="nav-text">第一种验证方法还是instrument</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第二种验证办法借用runtime"><span class="nav-number">3.5.2.</span> <span class="nav-text">第二种验证办法借用runtime</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#字节对齐"><span class="nav-number">3.5.2.1.</span> <span class="nav-text">字节对齐</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#结语"><span class="nav-number">4.</span> <span class="nav-text">结语</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#思考1-对象为什么要alloc，init又是干嘛的？"><span class="nav-number">2.</span> <span class="nav-text">思考1.对象为什么要alloc，init又是干嘛的？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#思考2-关于alloc的思考"><span class="nav-number">3.</span> <span class="nav-text">思考2.关于alloc的思考</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#额外的东西"><span class="nav-number">3.1.</span> <span class="nav-text">额外的东西</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#回到主线"><span class="nav-number">3.2.</span> <span class="nav-text">回到主线</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用instrument来证反"><span class="nav-number">3.3.</span> <span class="nav-text">使用instrument来证反</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对象的内存分配"><span class="nav-number">3.4.</span> <span class="nav-text">对象的内存分配</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一种验证方法还是instrument"><span class="nav-number">3.4.1.</span> <span class="nav-text">第一种验证方法还是instrument</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第二种验证办法借用runtime"><span class="nav-number">3.4.2.</span> <span class="nav-text">第二种验证办法借用runtime</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#字节对齐"><span class="nav-number">3.4.2.1.</span> <span class="nav-text">字节对齐</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#结语"><span class="nav-number">4.</span> <span class="nav-text">结语</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Done"><span class="nav-number">4.1.</span> <span class="nav-text">Done</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
