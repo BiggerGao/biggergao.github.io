@@ -97,7 +97,7 @@
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1727535-1bc5db9ed535c9dd.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1727535-af650708d527c6b6.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1727535-0892d44209762b44.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2016-06-21T09:13:34.000Z">
+<meta property="og:updated_time" content="2016-06-21T09:28:36.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="如何深入理解学习alloc、init">
 <meta name="twitter:description" content="前言这是一篇我记录对alloc、init分析思考的笔记。如果读者想看懂我的第二个思考，可能需要您至少了解内存的分段分页管理，如果您对其一点都不知道，可以先看这篇软文简单了解一下。另外很重要的一点是，请先思考。
@@ -366,7 +366,7 @@
 <blockquote>
 <p><strong>alloc</strong> allocates a chunk of memory to hold the object, and returns the pointer.</p>
 </blockquote>
-<p>就是说alloc分配了<code>一坨``内存</code>给对象，让它不释放，并且把地址返回给指针。</p>
+<p>就是说alloc分配了<code>一坨</code> <code>内存</code>给对象，让它不释放，并且把地址返回给指针。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MyClass *myObj = [MyClass alloc];</span><br></pre></td></tr></table></figure>
 <p>那么这样过后myobj不能被使用呢？这是因为这片内存还没有被正确的设置。</p>
 <blockquote>
