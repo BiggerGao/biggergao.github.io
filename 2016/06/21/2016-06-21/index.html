@@ -88,20 +88,20 @@
 <meta property="og:description" content="原文链接: http://www.iosxxoo.com/2016/06/21/2016-06-21/
 前言这是一篇我记录对alloc、init分析思考的笔记。如果读者想看懂我的第二个思考，可能需要您至少了解内存的分段分页管理，如果您对其一点都不知道，可以先看这篇软文简单了解一下。另外很重要的一点是，请先思考。
 思考1.对象为什么要alloc，init又是干嘛的？很多人都知道，初始化一个对象应该这">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1727535-94b99084b37fa4af.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1727535-f155bd22b4f0e51c.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1727535-a55f9cc1faf4cb88.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1727535-ddd8ea3278a43bde.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1727535-1bc5db9ed535c9dd.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1727535-af650708d527c6b6.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1727535-0892d44209762b44.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2016-06-21T11:02:49.000Z">
+<meta property="og:image" content="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-21-14664805905977.jpg">
+<meta property="og:image" content="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-21-14664810118315.jpg">
+<meta property="og:image" content="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-21-14664828087961.jpg">
+<meta property="og:image" content="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-21-14664830375943.jpg">
+<meta property="og:image" content="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-21-14664933866025.jpg">
+<meta property="og:image" content="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-21-14664984968407.jpg">
+<meta property="og:image" content="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-21-14664986780926.jpg">
+<meta property="og:updated_time" content="2016-06-23T06:47:40.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="alloc、init你弄懂50%了吗？">
 <meta name="twitter:description" content="原文链接: http://www.iosxxoo.com/2016/06/21/2016-06-21/
 前言这是一篇我记录对alloc、init分析思考的笔记。如果读者想看懂我的第二个思考，可能需要您至少了解内存的分段分页管理，如果您对其一点都不知道，可以先看这篇软文简单了解一下。另外很重要的一点是，请先思考。
 思考1.对象为什么要alloc，init又是干嘛的？很多人都知道，初始化一个对象应该这">
-<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1727535-94b99084b37fa4af.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta name="twitter:image" content="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-21-14664805905977.jpg">
 
 
 
@@ -403,9 +403,9 @@
 <p>2.Clean Memory。<br>因为用这样的方法创建的是一个常量字符串，常量字符串是放在只读数据段的，如果这块内存被释放了，而我们又访问它的时候，操作系统可以在只读数据段中把值再读取出来重建这块内存。(ps:所以用这种方法创建的string是没有引用计数的。)</p>
 <p><strong>接下来的知识就是引出思考问题1、2比较重要的点了：</strong></p>
 <p>3.Clean Memory。<br>这个时候buf指向的100M内存区域是Clean Memory的，因为<strong>操作系统是很懒的，只有当我们要用到这块区域的时候才会映射到物理内存，没有使用的时候只会分配一块虚拟内存给buf。</strong>读起来很绕口，上张图：</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/1727535-94b99084b37fa4af.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-21-14664805905977.jpg" alt=""></p>
 <p>可以看到虚拟内存和物理内存没有映射关系，所以是Clean Memory的。</p>
-<p>4.Dirty &amp; Clean Memory混合。<br>前3M是Dirty Memory，后97M是Clean Memory。这句for语句执行完成后，buf的前3M内存被赋值，也就是buf的前3M被使用了，所以这个时候的映射关系是这样的：<br><img src="http://upload-images.jianshu.io/upload_images/1727535-f155bd22b4f0e51c.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>4.Dirty &amp; Clean Memory混合。<br>前3M是Dirty Memory，后97M是Clean Memory。这句for语句执行完成后，buf的前3M内存被赋值，也就是buf的前3M被使用了，所以这个时候的映射关系是这样的：<br><img src="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-21-14664810118315.jpg" alt=""></p>
 <p>额外的东西Done.</p>
 <hr>
 <h2 id="回到主线"><a href="#回到主线" class="headerlink" title="回到主线"></a>回到主线</h2><ul>
@@ -418,8 +418,8 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#import &lt;Foundation/Foundation.h&gt;</span><br><span class="line"></span><br><span class="line">@interface XOModel : NSObject</span><br><span class="line">&#123;</span><br><span class="line">    int a1;</span><br><span class="line">    NSString *a2;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
 <p>3.在controller里给view加一个点击事件：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">- (void)touchesBegan:(NSSet&lt;UITouch *&gt; *)touches withEvent:(UIEvent *)event &#123;</span><br><span class="line">    for (int i = 0; i &lt; 100000; ++i) &#123;</span><br><span class="line">        XOModel *model = [XOModel alloc]; // 注意这句只有alloc</span><br><span class="line">        [self.array addObject:model];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>4.打开instrument的alloction，运行触发一下点击事件，查看如下：<br><img src="http://upload-images.jianshu.io/upload_images/1727535-a55f9cc1faf4cb88.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>(图解：Persistent bytes表示所有的这类东西在堆里的大小，Persistent表示所有的这类东西的个数.)</p>
-<p>我们发现发现在Persistent bytes(堆)里实实在在地分配给了XOModel 3.05MB的空间。<br>我们再触发一下点击事件：<br><img src="http://upload-images.jianshu.io/upload_images/1727535-ddd8ea3278a43bde.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>4.打开instrument的alloction，运行触发一下点击事件，查看如下：<br><img src="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-21-14664828087961.jpg" alt=""><br>(图解：Persistent bytes表示所有的这类东西在堆里的大小，Persistent表示所有的这类东西的个数.)</p>
+<p>我们发现发现在Persistent bytes(堆)里实实在在地分配给了XOModel 3.05MB的空间。<br>我们再触发一下点击事件：<br><img src="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-21-14664830375943.jpg" alt=""></p>
 <p>发现堆分配给了XOModel的大小空间变成了原来的两倍6.10MB。</p>
 <p>结论过渡：如果对象收到alloc消息只在虚拟内存分配空间，那么persistent bytes(堆)里是不会分配给XOModel大小的，也就是说这里的persistent bytes大小应该是0。所以问题1的结论如下：</p>
 <p>结论：alloc不只分配在虚拟内存，同时会在物理内存建立映射。</p>
@@ -448,7 +448,7 @@
 <li>32位机子上指针大小为4字节，64位机子为8字节。</li>
 <li><strong>字节对齐</strong>。</li>
 </ol>
-<p>第一点就不说了，不知道的话您多半也没耐心看到现在了。<br>第二点贴个文档图，iOS7过后部分苹果机就开始从32位操作系统转到64位了，所以部分数据类型的大小也有变化，这里我们主要关注例子中的指针：<br><img src="http://upload-images.jianshu.io/upload_images/1727535-1bc5db9ed535c9dd.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>第一点就不说了，不知道的话您多半也没耐心看到现在了。<br>第二点贴个文档图，iOS7过后部分苹果机就开始从32位操作系统转到64位了，所以部分数据类型的大小也有变化，这里我们主要关注例子中的指针：<br><img src="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-21-14664933866025.jpg" alt=""></p>
 <p>现在，基于这两点对样例分析。</p>
 <ul>
 <li>第一个样例(类对象中一个int，一个NSString指针，一个isa指针)，64位操作系统上应该是4+8+8=20，然而输出是32，不对。</li>
@@ -463,8 +463,8 @@
 <blockquote>
 <p>当我们分配一块内存的时候，假设需要的内存小于16个字节，操作系统会直接分配16个字节；加入需要的内存大于16个字节，操作系统会分配a*16个字节。举个栗子，如果你调用malloc并且需要4个字节，系统会给你一块16个字节的内存块；如果你调用malloc并且需要24个字节，系统会给你一块32个字节的内存块。</p>
 </blockquote>
-<p>现在再看我们的栗子，就可以直接上图了：<br>第一个例子不对齐应该是20字节，对齐就是32字节。<br><img src="http://upload-images.jianshu.io/upload_images/1727535-af650708d527c6b6.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>第二个例子不对其应该是8字节，对齐就是16字节：<br><img src="http://upload-images.jianshu.io/upload_images/1727535-0892d44209762b44.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>现在再看我们的栗子，就可以直接上图了：<br>第一个例子不对齐应该是20字节，对齐就是32字节。<br><img src="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-21-14664984968407.jpg" alt=""></p>
+<p>第二个例子不对其应该是8字节，对齐就是16字节：<br><img src="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-21-14664986780926.jpg" alt=""></p>
 <p>ps：在32位机器上可能会有不一样的结果，因为指针大小不同，但是32位的苹果机也是16字节对齐的。</p>
 <p>至此我们对alloc的探究就结束了。</p>
 <h1 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h1><p>这次的探究算是比较彻底了，过程当中也学到了很多东西，在这个浮躁的社会，学贵在道，术次之，打好基础、保持思考才不会磨灭掉你对它最初的兴趣。</p>
