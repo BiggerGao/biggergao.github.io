@@ -1,0 +1,963 @@
+<!doctype html>
+
+
+
+
+<html class="theme-next pisces">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="信息安全," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="前言反编译别人的程序不是什么值得炫耀的事，希望大家最好只是兴趣探索，而不是利益驱动。本文主要目的是绕开一个简单的激活程序。
+什么是反编译我们知道，Android的程序打包后会生成一个APK文件，这个文件可以直接安装到任何Android手机上，因此，反编译就是对这个APK进行反编译。Android的反编译分成两个部分：
+
+一个是对代码反编译，也就是java文件的反编译。
+一个是对资源反编译，也就是r">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何在Mac上进行Android反编译">
+<meta property="og:url" content="http://www.iosxxoo.com/2016/06/29/2016-06-29/index.html">
+<meta property="og:site_name" content="Mr. 码了戈壁">
+<meta property="og:description" content="前言反编译别人的程序不是什么值得炫耀的事，希望大家最好只是兴趣探索，而不是利益驱动。本文主要目的是绕开一个简单的激活程序。
+什么是反编译我们知道，Android的程序打包后会生成一个APK文件，这个文件可以直接安装到任何Android手机上，因此，反编译就是对这个APK进行反编译。Android的反编译分成两个部分：
+
+一个是对代码反编译，也就是java文件的反编译。
+一个是对资源反编译，也就是r">
+<meta property="og:image" content="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-29-14671931031555.jpg">
+<meta property="og:image" content="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-29-14672064693724.jpg">
+<meta property="og:image" content="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-29-14671961739189.jpg">
+<meta property="og:image" content="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-29-14671967560978.jpg">
+<meta property="og:image" content="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-29-14671970487337.jpg">
+<meta property="og:image" content="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-29-14672033735618.jpg">
+<meta property="og:image" content="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-29-14672041529683.jpg">
+<meta property="og:image" content="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-29-14672043553620.jpg">
+<meta property="og:image" content="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-29-14672054763099.jpg">
+<meta property="og:image" content="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-29-14672044549355.jpg">
+<meta property="og:image" content="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-29-ic_launcher.png">
+<meta property="og:image" content="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-29-14672047595317.jpg">
+<meta property="og:image" content="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-29-14672058490600.jpg">
+<meta property="og:image" content="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-29-14672068718677.jpg">
+<meta property="og:image" content="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-29-14672069194403.jpg">
+<meta property="og:image" content="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-29-1.gif">
+<meta property="og:updated_time" content="2016-06-29T14:06:52.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="如何在Mac上进行Android反编译">
+<meta name="twitter:description" content="前言反编译别人的程序不是什么值得炫耀的事，希望大家最好只是兴趣探索，而不是利益驱动。本文主要目的是绕开一个简单的激活程序。
+什么是反编译我们知道，Android的程序打包后会生成一个APK文件，这个文件可以直接安装到任何Android手机上，因此，反编译就是对这个APK进行反编译。Android的反编译分成两个部分：
+
+一个是对代码反编译，也就是java文件的反编译。
+一个是对资源反编译，也就是r">
+<meta name="twitter:image" content="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-29-14671931031555.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: false,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 如何在Mac上进行Android反编译 | Mr. 码了戈壁 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?53bbc81c9374cbb1269c1ce62059be9b";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta custom-logo">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Mr. 码了戈壁</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">勤学如初春之苗，不见其长，日有所增</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-heartbeat fa-fw"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                如何在Mac上进行Android反编译
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-06-29T21:53:26+08:00" content="2016-06-29">
+              2016-06-29
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/06/29/2016-06-29/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/29/2016-06-29/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/06/29/2016-06-29/" class="leancloud_visitors" data-flag-title="如何在Mac上进行Android反编译">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>反编译别人的程序不是什么值得炫耀的事，希望大家最好只是兴趣探索，而不是利益驱动。本文主要目的是绕开一个简单的激活程序。</p>
+<h2 id="什么是反编译"><a href="#什么是反编译" class="headerlink" title="什么是反编译"></a>什么是反编译</h2><p>我们知道，Android的程序打包后会生成一个APK文件，这个文件可以直接安装到任何Android手机上，因此，反编译就是对这个APK进行反编译。Android的反编译分成两个部分：</p>
+<ol>
+<li>一个是对<strong>代码</strong>反编译，也就是java文件的反编译。</li>
+<li>一个是对<strong>资源</strong>反编译，也就是res文件的反编译。</li>
+</ol>
+<h2 id="所需的工具"><a href="#所需的工具" class="headerlink" title="所需的工具"></a>所需的工具</h2><p><img src="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-29-14671931031555.jpg" alt=""></p>
+<ul>
+<li><p>Android Studio：安卓开发IDE</p>
+<p>  下载地址：<a href="https://developer.android.com/studio/index.html" target="_blank" rel="external">https://developer.android.com/studio/index.html</a></p>
+</li>
+</ul>
+<p><strong>反编译代码的工具：</strong></p>
+<ul>
+<li><p>dex2jar: 把dex文件转成jar文件</p>
+<p>  下载地址：<a href="https://sourceforge.net/projects/dex2jar/files/" target="_blank" rel="external">https://sourceforge.net/projects/dex2jar/files/</a></p>
+</li>
+<li><p>jd-gui: 这个工具用于将jar文件转换成java代码 </p>
+<p>下载地址：<a href="http://jd.benow.ca/" target="_blank" rel="external">http://jd.benow.ca/</a></p>
+</li>
+</ul>
+<p><strong>反编译资源的工具：</strong></p>
+<ul>
+<li><p>APKTool: 本文重要工具，APK逆向工具，使用简单</p>
+<p>  下载地址: <a href="http://ibotpeaches.github.io/Apktool/install/" target="_blank" rel="external">http://ibotpeaches.github.io/Apktool/install/</a></p>
+</li>
+</ul>
+<h2 id="热身准备"><a href="#热身准备" class="headerlink" title="热身准备"></a>热身准备</h2><p>首先我们需要一个APK，这里我自己写了一个，源码下载地址：<a href="http://download.csdn.net/detail/u012891055/9563180" target="_blank" rel="external">http://download.csdn.net/detail/u012891055/9563180</a>，打包成APK后下载到手机上。</p>
+<p>它的主要功能是模拟邮箱激活，如果我们输入了错误的数据则无法通过激活。所以我们的目的很简单，就是让这个判断逻辑失效。</p>
+<p><img src="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-29-14672064693724.jpg" alt=""></p>
+<h3 id="主要源码说明："><a href="#主要源码说明：" class="headerlink" title="主要源码说明："></a>主要源码说明：</h3><p><code>第51行</code>存储的正确的两个激活号码，通过<code>:</code>将账号密码隔开，如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">private static final String[] DUMMY_CREDENTIALS = new String[]&#123;</span><br><span class="line">            &quot;foo@163.com:20135115&quot;,</span><br><span class="line">            &quot;bar@163.com:20135115&quot;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>现在只有激活码正确才能通过激活。</p>
+<p><code>第331行</code>是Execute函数，逻辑判断的部分。</p>
+<pre><code>    @Override
+    protected void onPostExecute(final Boolean success) {
+        mAuthTask = null;
+        showProgress(false);
+
+        if (success) {
+            new AlertDialog.Builder(LoginActivity.this)
+                    .setTitle(&quot;恭喜您&quot;)
+                    .setMessage(&quot;成功激活!&quot;)
+                    .show();
+//                finish();
+        } else {
+            mPasswordView.setError(getString(R.string.error_incorrect_password));
+            mPasswordView.requestFocus();
+        }
+    }
+</code></pre><h2 id="反编译代码"><a href="#反编译代码" class="headerlink" title="反编译代码"></a>反编译代码</h2><p>dex2jar解压下来文件很多，在mac上我们需要用到dex2jar的是这三个东西(windows上对应用bat文件)：</p>
+<ul>
+<li>d2j_invoke.sh</li>
+<li>d2j-dex2jar.sh</li>
+<li>lib</li>
+</ul>
+<p><img src="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-29-14671961739189.jpg" alt=""></p>
+<p><code>AndroidStudio</code>打包好的<code>APK文件</code>的后缀，需改为<code>.zip</code>，然后<code>解压</code>。从解压的文件中找到<strong>classes.dex</strong>文件，并将其放入<strong>dex2jar</strong>同一目录下，如下：<br><img src="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-29-14671967560978.jpg" alt=""></p>
+<p>并在cmd中也进入到同样的目录，然后执行：</p>
+<pre><code>sh d2j-dex2jar.sh classes.dex
+</code></pre><p>执行如下：</p>
+<p><img src="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-29-14671970487337.jpg" alt=""></p>
+<p>然后我们会得到一个classes-dex2jar.jar文件，我们借助JD-GUI工具打开即可，打开如下：<br><img src="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-29-14672033735618.jpg" alt=""></p>
+<p>可以看到代码非常清晰，这样我们就可以看到整个APP的代码逻辑了。</p>
+<h2 id="反编译资源"><a href="#反编译资源" class="headerlink" title="反编译资源"></a>反编译资源</h2><p>apktool下载完成后有一个.sh文件和.jar文件，我们把APK放进来，如下：<br><img src="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-29-14672041529683.jpg" alt=""></p>
+<p>在cmd中进入apktool目录，执行命令：</p>
+<pre><code>sh apktool.sh apktool d FooApp.apk
+</code></pre><p>d是decode的意思，表示我们要对FooApp解码，结果如下：</p>
+<p><img src="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-29-14672043553620.jpg" alt=""></p>
+<p>然后你会惊喜的发现多了一个FooApp文件夹。<br><img src="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-29-14672054763099.jpg" alt=""></p>
+<p>主要目录说明：</p>
+<ul>
+<li>AndroidManifest.xml：描述文件</li>
+<li>res：资源文件</li>
+<li>smail：反编译出来的所有代码，语法与java不同，类似汇编，是Android虚拟机所使用的寄存器语言</li>
+</ul>
+<h3 id="修改App-icon"><a href="#修改App-icon" class="headerlink" title="修改App icon"></a>修改App icon</h3><p>打开我们的描述文件，高清无码：<br><img src="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-29-14672044549355.jpg" alt=""><br>可以看到我们的App icon名称为ic_launcher,我们找到所有mipmap开头的文件夹，替换成下图即可：</p>
+<p><img src="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-29-ic_launcher.png" alt="ic_launche"></p>
+<p><img src="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-29-14672047595317.jpg" alt=""></p>
+<p>在最后重新打包后我们的App icon就会被修改了，不过在重新打包之前，我们还有最重要的一件事没有做，那就是修改激活码判断逻辑。</p>
+<h3 id="修改逻辑"><a href="#修改逻辑" class="headerlink" title="修改逻辑"></a>修改逻辑</h3><p>我们通过源码或者JD-GUI查看反编译的代码可以看到激活码判断逻辑如下：</p>
+<pre><code>    @Override
+    protected void onPostExecute(final Boolean success) {
+        mAuthTask = null;
+        showProgress(false);
+
+        if (success) { 
+        // 激活码正确
+            new AlertDialog.Builder(LoginActivity.this)
+                    .setTitle(&quot;恭喜您&quot;)
+                    .setMessage(&quot;成功激活!&quot;)
+                    .show();
+//                finish();
+        } else {
+            mPasswordView.setError(getString(R.string.error_incorrect_password));
+            mPasswordView.requestFocus();
+        }
+    }
+</code></pre><p>所以我们只需要找到反编译后的<code>if(success)</code>的语句，并将其修改成<code>if(!success)</code>即可，如下：</p>
+<pre><code>if (success)//修改成if(!success)
+{
+...
+} else {
+...
+}
+</code></pre><p>这样我们就成功的颠倒了以前的逻辑，我们输入一个错误的激活码，就会被判断成正确的。挺简单的，是吧。</p>
+<p>现在我们来动手修改：</p>
+<ol>
+<li>打开smail里的<code>LoginActivity$UserLoginTask.smali</code>文件.</li>
+<li><p>全局搜索<code>if-eqz</code>，通过<code>AlertDialog</code>关键字辅助定位，发现在<code>第228行</code>：<br><img src="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-29-14672058490600.jpg" alt=""></p>
+</li>
+<li><p>ok，就是这里了，然后将<code>if-eqz</code>修改成<code>if-nez</code>，他们对应<code>Java</code>的语法如下：</p>
+</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Smail 语法</th>
+<th>Java 语法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>if-eqz v0,</td>
+<td>if(v0 == 0)</td>
+</tr>
+<tr>
+<td>if-nez v0,</td>
+<td>if(v0 != 0)</td>
+</tr>
+</tbody>
+</table>
+<p>ok，大功告成，现在就可以重新打包了。关于smail语法，有兴趣的直接Google就行了。</p>
+<h3 id="重新打包"><a href="#重新打包" class="headerlink" title="重新打包"></a>重新打包</h3><p>我们大概修改后两个地方，其实重新打包也十分简单，在cmd中执行以下命令即可：</p>
+<pre><code>sh apktool.sh b FooAPP -o NewFooApp.apk
+</code></pre><p>其中b是build的意思，表示我们要将FooAPP文件夹打包成APK文件，-o用于指定新生成的APK文件名，这里新的文件叫作NewFooApp.apk。执行结果如下图所示：<br><img src="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-29-14672068718677.jpg" alt=""></p>
+<p>然后你会发现同级目录下生成了新的apk文件：<br><img src="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-29-14672069194403.jpg" alt=""></p>
+<p>但是要注意，这个apk现在还是不能安装的，因为我们没有对它进行签名，重新签名后它就是个名副其实的盗版软件了，大家一定要强烈谴责这种行为。</p>
+<h3 id="重新签名"><a href="#重新签名" class="headerlink" title="重新签名"></a>重新签名</h3><p>重新签名也是很简单的，我直接用的一个已有签名文件，使用Android Studio或者Eclipse都可以非常简单地生成一个签名文件。</p>
+<p>在cmd中执行格式如下：</p>
+<pre><code>jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore 签名文件名 -storepass 签名密码 待签名的APK文件名 签名的别名
+</code></pre><p>然后我们就可以用这个apk进行安装了，为了追求更快的运行速度，我们可以对其进行一次字节对齐，这里就不说了。</p>
+<h2 id="使用盗版APK"><a href="#使用盗版APK" class="headerlink" title="使用盗版APK"></a>使用盗版APK</h2><p>我们用<code>NewFooApp.apk</code>安装好盗版app后，发现图标变成了篮球，并且随便输入数据都能通过激活了：<br><img src="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-29-1.gif" alt="1"></p>
+<p>怎么样？总的来说还是挺有意思的吧，不过别用歪了。</p>
+<p>参考链接：</p>
+<p><a href="http://blog.csdn.net/guolin_blog/article/details/49738023" target="_blank" rel="external">Android安全攻防战，反编译与混淆技术完全解析（上）- 郭霖</a></p>
+<p><a href="https://www.amazon.cn/%E5%9B%BE%E4%B9%A6/dp/B016OWWLN6" target="_blank" rel="external">Android安全技术解密与防范 - 周圣韬</a></p>
+<h2 id="Done"><a href="#Done" class="headerlink" title="Done"></a>Done</h2><p>作者: <a href="http://weibo.com/u/3184193244?is_all=1" target="_blank" rel="external">@biggergao</a><br>个人博客: <a href="http://www.jianshu.com/users/f7ed0237c2ed" target="_blank" rel="external">Mr.码了戈壁</a></p>
+<p>2016年06月21日</p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+<div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton", disable="enable", onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}", style="cursor: pointer; border: 0; outline: 0; border-radius: 100%; padding: 0; margin: 0; letter-spacing: normal; text-transform: none; text-indent: 0px; text-shadow: none">
+    <span onmouseover="this.style.color='rgb(236,96,0)';this.style.background='rgb(204,204,204)'" onMouseOut="this.style.color='#fff';this.style.background='rgb(236,96,0)'" style="display: inline-block; width: 70px; height: 70px; border-radius: 100%; line-height: 81px; color: #fff; font: 400 35px/75px 'microsofty'; background: rgb(236,96,0)">赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat-reward-image.png" alt="BiggerJoe WeChat Pay" style="width: 200px; max-width: 100%; display: inline-block"/>
+        <p>微信打赏</p>
+      </div>
+    
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay-reward-image.png" alt="BiggerJoe Alipay" style="width: 200px; max-width: 100%; display: inline-block"/>
+        <p>支付宝打赏</p>
+      </div>
+    
+  </div>
+</div>
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/信息安全/" rel="tag">#信息安全</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/06/25/2016-06-25/" rel="next" title="成功举办科技聚会的八个秘密(译)">
+                <i class="fa fa-chevron-left"></i> 成功举办科技聚会的八个秘密(译)
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/06/29/2016-06-29/"
+           data-title="如何在Mac上进行Android反编译" data-url="http://www.iosxxoo.com/2016/06/29/2016-06-29/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="BiggerJoe" />
+          <p class="site-author-name" itemprop="name">BiggerJoe</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">12</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/biggergao" target="_blank" title="github">
+                  
+                    <i class="fa fa-github"></i>
+                  
+                  github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/p/1005053184193244/home?from=page_100505&mod=TAB&is_all=1#place" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是反编译"><span class="nav-number">2.</span> <span class="nav-text">什么是反编译</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#所需的工具"><span class="nav-number">3.</span> <span class="nav-text">所需的工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#热身准备"><span class="nav-number">4.</span> <span class="nav-text">热身准备</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#主要源码说明："><span class="nav-number">4.1.</span> <span class="nav-text">主要源码说明：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#反编译代码"><span class="nav-number">5.</span> <span class="nav-text">反编译代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#反编译资源"><span class="nav-number">6.</span> <span class="nav-text">反编译资源</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#修改App-icon"><span class="nav-number">6.1.</span> <span class="nav-text">修改App icon</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改逻辑"><span class="nav-number">6.2.</span> <span class="nav-text">修改逻辑</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重新打包"><span class="nav-number">6.3.</span> <span class="nav-text">重新打包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重新签名"><span class="nav-number">6.4.</span> <span class="nav-text">重新签名</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用盗版APK"><span class="nav-number">7.</span> <span class="nav-text">使用盗版APK</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Done"><span class="nav-number">8.</span> <span class="nav-text">Done</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">BiggerJoe</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"biggergao"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("dqDCc8klwJ6PAUVvn4xcfBa7-gzGzoHsz", "ea0LTKykNKfvwPA1IID81nXu");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+</body>
+</html>
