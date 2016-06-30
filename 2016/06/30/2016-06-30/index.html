@@ -62,7 +62,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="操作系统," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -78,42 +78,46 @@
 
 
 
-<meta name="description" content="历史在早期的计算机，程序是直接运行在物理内存上的，也就是说，程序所访问的地址都是物理内存。但是我们往往需要同时运行多个程序，所以就有一个很明显的问题如何把计算机上有限的物理内存分配给多个程序使用？
-举个例子假如我们计算机有128M内存，现在：
+<meta name="description" content="前言我们说的虚表其实有很多种叫法：
 
-程序A需要10M内存
-程序B需要100M内存
-程序C需要20M内存
+virtual method table（VMT）
+virtual function table(vftable)
+virtual call table
+dispatch table
+vtable
 
-如果我们需要同时运行A和B，那么比较直接的做法是这样的，0-10M分给A，10-11">
+这些都是虚表的意思。虚表是一种利用程序语言实现的dynamic dispatch机制，或者说runtime method binding机制，也就是我们说的多态。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="简单说说内存管理">
-<meta property="og:url" content="http://www.iosxxoo.com/2016/05/22/2016-06-04/index.html">
+<meta property="og:title" content="C++虚表，谁都能搞懂">
+<meta property="og:url" content="http://www.iosxxoo.com/2016/06/30/2016-06-30/index.html">
 <meta property="og:site_name" content="Mr. 码了戈壁">
-<meta property="og:description" content="历史在早期的计算机，程序是直接运行在物理内存上的，也就是说，程序所访问的地址都是物理内存。但是我们往往需要同时运行多个程序，所以就有一个很明显的问题如何把计算机上有限的物理内存分配给多个程序使用？
-举个例子假如我们计算机有128M内存，现在：
+<meta property="og:description" content="前言我们说的虚表其实有很多种叫法：
 
-程序A需要10M内存
-程序B需要100M内存
-程序C需要20M内存
+virtual method table（VMT）
+virtual function table(vftable)
+virtual call table
+dispatch table
+vtable
 
-如果我们需要同时运行A和B，那么比较直接的做法是这样的，0-10M分给A，10-11">
-<meta property="og:image" content="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-042016-06-04-1.png">
-<meta property="og:image" content="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-042016-06-04-2.png">
-<meta property="og:image" content="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-042016-06-04-3.png">
-<meta property="og:image" content="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-042016-06-04-4.png">
-<meta property="og:updated_time" content="2016-06-07T17:03:08.000Z">
+这些都是虚表的意思。虚表是一种利用程序语言实现的dynamic dispatch机制，或者说runtime method binding机制，也就是我们说的多态。">
+<meta property="og:image" content="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-30-14672741368548.jpg">
+<meta property="og:image" content="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-30-14672741881975.jpg">
+<meta property="og:image" content="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-30-vtable.png">
+<meta property="og:image" content="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-30-14672754961225.jpg">
+<meta property="og:image" content="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-30-donkey.png">
+<meta property="og:updated_time" content="2016-06-30T08:49:16.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="简单说说内存管理">
-<meta name="twitter:description" content="历史在早期的计算机，程序是直接运行在物理内存上的，也就是说，程序所访问的地址都是物理内存。但是我们往往需要同时运行多个程序，所以就有一个很明显的问题如何把计算机上有限的物理内存分配给多个程序使用？
-举个例子假如我们计算机有128M内存，现在：
+<meta name="twitter:title" content="C++虚表，谁都能搞懂">
+<meta name="twitter:description" content="前言我们说的虚表其实有很多种叫法：
 
-程序A需要10M内存
-程序B需要100M内存
-程序C需要20M内存
+virtual method table（VMT）
+virtual function table(vftable)
+virtual call table
+dispatch table
+vtable
 
-如果我们需要同时运行A和B，那么比较直接的做法是这样的，0-10M分给A，10-11">
-<meta name="twitter:image" content="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-042016-06-04-1.png">
+这些都是虚表的意思。虚表是一种利用程序语言实现的dynamic dispatch机制，或者说runtime method binding机制，也就是我们说的多态。">
+<meta name="twitter:image" content="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-30-14672741368548.jpg">
 
 
 
@@ -131,7 +135,7 @@
   };
 </script>
 
-  <title> 简单说说内存管理 | Mr. 码了戈壁 </title>
+  <title> C++虚表，谁都能搞懂 | Mr. 码了戈壁 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -291,7 +295,7 @@
             
             
               
-                简单说说内存管理
+                C++虚表，谁都能搞懂
               
             
           </h1>
@@ -303,19 +307,38 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-22T20:38:17+08:00" content="2016-05-22">
-              2016-05-22
+            <time itemprop="dateCreated" datetime="2016-06-30T16:39:42+08:00" content="2016-06-30">
+              2016-06-30
             </time>
           </span>
 
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/c/" itemprop="url" rel="index">
+                    <span itemprop="name">c++</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
           
 
           
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/05/22/2016-06-04/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/22/2016-06-04/" itemprop="commentsCount"></span>
+                <a href="/2016/06/30/2016-06-30/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/30/2016-06-30/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -325,7 +348,7 @@
 
           
           
-             <span id="/2016/05/22/2016-06-04/" class="leancloud_visitors" data-flag-title="简单说说内存管理">
+             <span id="/2016/06/30/2016-06-30/" class="leancloud_visitors" data-flag-title="C++虚表，谁都能搞懂">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -347,47 +370,53 @@
       
 
       
-        <h2 id="历史"><a href="#历史" class="headerlink" title="历史"></a>历史</h2><p>在早期的计算机，程序是直接运行在物理内存上的，也就是说，程序所访问的地址都是物理内存。但是我们往往需要同时运行多个程序，所以就有一个很明显的问题<code>如何把计算机上有限的物理内存分配给多个程序使用</code>？</p>
-<h2 id="举个例子"><a href="#举个例子" class="headerlink" title="举个例子"></a>举个例子</h2><p>假如我们计算机有128M内存，现在：</p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>我们说的虚表其实有很多种叫法：</p>
 <ul>
-<li>程序A需要10M内存</li>
-<li>程序B需要100M内存</li>
-<li>程序C需要20M内存</li>
+<li>virtual method table（VMT）</li>
+<li>virtual function table(vftable)</li>
+<li>virtual call table</li>
+<li>dispatch table</li>
+<li>vtable</li>
 </ul>
-<p>如果我们需要同时运行A和B，那么比较直接的做法是这样的，0-10M分给A，10-110M分给B，如下：<br><img src="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-042016-06-04-1.png" alt="2016-06-04-1"></p>
-<p>这样分配，问题会有很多，大致有以下三个：</p>
+<p>这些都是虚表的意思。虚表是一种利用程序语言实现的dynamic dispatch机制，或者说runtime method binding机制，也就是我们说的多态。</p>
+<p>注：笔者在本文使用C++语言，并且统一用<strong>vTable</strong>来表示虚表。</p>
+<h2 id="虚函数"><a href="#虚函数" class="headerlink" title="虚函数"></a>虚函数</h2><p>用virtual关键字修饰的函数就叫<strong>虚函数</strong>。</p>
+<p>因为vTable(虚表)是C++利用runtime来实现多态的工具，所以我们需要借助<strong>virtual关键字</strong>将函数代码地址存入vTable来躲开静态编译期。这里我们先不深入探究，后面我会细说。</p>
+<p>首先我们先来看一个没有虚函数，即没有用到vTable的例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;ctime&gt;</span><br><span class="line">using std::cout;</span><br><span class="line">using std::endl;</span><br><span class="line"></span><br><span class="line">struct Animal &#123; void makeSound() &#123; cout &lt;&lt; &quot;动物叫了&quot; &lt;&lt; endl; &#125; &#125;;</span><br><span class="line"></span><br><span class="line">struct Cow : public Animal &#123; void makeSound() &#123; cout &lt;&lt; &quot;牛叫了&quot; &lt;&lt; endl; &#125; &#125;;</span><br><span class="line">struct Pig : public Animal &#123; void makeSound() &#123; cout &lt;&lt; &quot;猪叫了&quot; &lt;&lt; endl; &#125; &#125;;</span><br><span class="line">struct Donkey : public Animal &#123; void makeSound() &#123; cout &lt;&lt; &quot;驴叫了&quot; &lt;&lt; endl; &#125; &#125;;</span><br><span class="line"></span><br><span class="line">int main(int argc, const char * argv[])</span><br><span class="line">&#123;</span><br><span class="line">    srand((unsigned)time(0));</span><br><span class="line">    int count = 4;</span><br><span class="line">    while (count --) &#123;</span><br><span class="line">        Animal *animal = nullptr;</span><br><span class="line">        switch (rand() % 3) &#123;</span><br><span class="line">            case 0:</span><br><span class="line">                animal = new Cow;</span><br><span class="line">                break;</span><br><span class="line">            case 1:</span><br><span class="line">                animal = new Pig;</span><br><span class="line">                break;</span><br><span class="line">            case 2:</span><br><span class="line">                animal = new Donkey;</span><br><span class="line">                break;</span><br><span class="line">        &#125;</span><br><span class="line">        animal-&gt;makeSound();</span><br><span class="line">        delete animal;</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>程序中有一个<code>基类Animal</code>，它有一个<code>makeSound()函数</code>。有三个继承自Animal的子类，分别是<code>牛、猪、驴</code>，并且实现了自己的<code>makeSound()方法</code>。很简单的代码，是吧。</p>
+<p>我们运行程序，你觉得输出结果会是什么呢？不错，这里会连续执行4次Animal的makeSound()方法，结果如下：</p>
+<p><img src="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-30-14672741368548.jpg" alt=""></p>
+<p>为什么？因为我们的基类Animal的makeSound()方法<strong>没有使用Virtual</strong>修饰，所以在静态编译时就makeSound()的实现就定死了。调用makeSound()方法时，编译器发现这是Animal指针，就会直接jump到makeSound()的代码段地址进行调用。</p>
+<p>ok，那么我们把Animal的makeSound()改为虚函数，如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">struct Animal &#123; virtual void makeSound() &#123; cout &lt;&lt; &quot;动物叫了&quot; &lt;&lt; endl; &#125; &#125;;</span><br></pre></td></tr></table></figure>
+<p>运行会是怎样？如你所料，多态已经成功实现：<br><img src="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-30-14672741881975.jpg" alt=""></p>
+<p>接下来就是大家最关心的部分，这是怎么回事？编译器到底做了什么？</p>
+<h2 id="虚表"><a href="#虚表" class="headerlink" title="虚表"></a>虚表</h2><p>为了说明方便，我们需要修改一下<strong>基类Animal</strong>的代码，不改变其他子类，修改如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">struct Animal &#123;</span><br><span class="line">    virtual void makeSound() &#123; cout &lt;&lt; &quot;动物叫了&quot; &lt;&lt; endl; &#125;</span><br><span class="line">    virtual void walk() &#123;&#125;</span><br><span class="line">    void sleep() &#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">struct Cow : public Animal &#123; void makeSound() &#123; cout &lt;&lt; &quot;牛叫了&quot; &lt;&lt; endl; &#125; &#125;;</span><br><span class="line">struct Pig : public Animal &#123; void makeSound() &#123; cout &lt;&lt; &quot;猪叫了&quot; &lt;&lt; endl; &#125; &#125;;</span><br><span class="line">struct Donkey : public Animal &#123; void makeSound() &#123; cout &lt;&lt; &quot;驴叫了&quot; &lt;&lt; endl; &#125; &#125;;</span><br></pre></td></tr></table></figure>
+<p>首先我们需要知道几个关键点：</p>
 <ol>
-<li><strong>地址空间不隔离</strong>： 恶意程序可以很容易改写其他程序的内存数据，如A可以通过类似<code>*(p + 1024 * 1024 * 10) = xxx</code>来访问到B里的内存，这是很危险的。</li>
-<li><strong>内存使用率低</strong>： 比如我们在A、B同时运行的时候，突然要运行C。这个时候内存已经不够，我们可以采取的一个办法是把某个程序的数据暂时写到磁盘里，等到需要的时候再读回来。这个时候问题来了，由于地址空间是连续的，我们取出A也没法把C放入内存运行，只能取出B，可以看到这是一个巨大的IO操作，会导致效率十分低下。</li>
-<li><strong>程序运行的地址不确定</strong>：因为程序每次需要装入运行时我们都需要一块足够大的空闲区域，这个区域是不确定的，就需要程序重定位。</li>
+<li>函数只要有virtual，我们就需要把它添加进vTable。</li>
+<li>每个类(而不是类实例)都有自己的虚表，因此vTable就变成了vTables。</li>
+<li>虚表存放的位置一般存放在模块的常量段中，从始至终都只有一份。<a href="http://blog.csdn.net/houdy/article/details/1496161" target="_blank" rel="external">详情可在此参考</a></li>
 </ol>
-<p>怎么办？还是那个熟悉的配方，熟悉的味道：<strong>增加中间层。</strong></p>
-<blockquote>
-<p>一切计算机的问题都可以通过增加中间层来解决。</p>
-</blockquote>
-<p>思想：我们把程序的地址视为一种<strong>虚拟地址</strong>，然后通过映射的方式将这个虚拟地址转换成实际的物理地址。只要我们妥善的处理<strong>映射的方式</strong>，就能达到空间隔离的效果。</p>
-<h2 id="分段管理"><a href="#分段管理" class="headerlink" title="分段管理"></a>分段管理</h2><p>这个时候分段的管理方法就出现了，先上图：<br><img src="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-042016-06-04-2.png" alt="2016-06-04-2"></p>
-<p>分段管理：把一段程序<strong>所需要的内存大小</strong>的虚拟空间映射到某个地址空间。<br>零散论点：分段的虚拟空间大小不一定相等，这是一个和分页不同的特点。<br>如上图，我们A需要10M的大小，那么我们的虚拟空间就是从0x00000000开始到0x00A00000结束。所以：</p>
-<ol>
-<li>如果A访问的地址空间超过了0x00A00000，那么硬件就会判断这是个非法访问，就会拒绝这个请求，从而实现了隔离。</li>
-<li>对于程序来说，我们只在0x00000000到0x00A00000来编写程序、放置变量，所以程序不需要再重定位。</li>
-</ol>
-<p>分段解决了但是分段还是没有解决我们第二个问题-内存使用效率问题。人们很自然的就想到了更小粒度的内存分割和映射方法，于是，<strong>分页</strong>出现了。</p>
-<h2 id="分页管理"><a href="#分页管理" class="headerlink" title="分页管理"></a>分页管理</h2><p>分页的基本方法是把地址空间人为的分成固定大小的页，一般都是4KB。<br>首先我们要知道三种页：</p>
-<ul>
-<li>磁盘页：磁盘中的页。</li>
-<li>虚拟页：虚拟空间的页。</li>
-<li>物理页：物理内存中的页。</li>
-</ul>
-<p>程序会放在虚拟页中，最后进行映射。<br><img src="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-042016-06-04-3.png" alt="2016-06-04-3"></p>
-<p>我们把程序中常用的数据和代码页装到内存中(虚拟页中0、1、7)，把不常用的放在磁盘页(虚拟页中2、3)，暂未用到的不映射(虚拟页中的4、5、6)。</p>
-<h3 id="页错误"><a href="#页错误" class="headerlink" title="页错误"></a>页错误</h3><p>如果进程需要使用虚拟页的2、3，但是这时它们在磁盘页中，硬件会捕获这个消息，这就是所谓的<strong>页错误</strong>。</p>
-<p>这时操作系统会用自己的办法(用空再写，就是TLB那块)把磁盘中表示虚拟页2、3的数据读出来并且装入内存。</p>
-<p>以页为单位来存取和交换这些数据非常方便，硬件本身就支持这种以页为单位的操作方式。</p>
-<h3 id="MMU"><a href="#MMU" class="headerlink" title="MMU"></a>MMU</h3><p>映射需要硬件来实现，几乎所有的硬件都采用一个叫MMU的部件来进行映射，如图所示。<br><img src="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-042016-06-04-4.png" alt="2016-06-04-4"></p>
-<h2 id="写在结尾"><a href="#写在结尾" class="headerlink" title="写在结尾"></a>写在结尾</h2><p>希望您有所收获，谢谢。</p>
-<h2 id="Done"><a href="#Done" class="headerlink" title="Done"></a>Done</h2><p>作者 <a href="http://weibo.com/u/3184193244?is_all=1" target="_blank" rel="external">@biggergao</a></p>
-<p>2016年06月04日</p>
+<p>我们怎么理解？从本例来看，我们的Animal、Cow、Pig、Donkey类都有自己的虚表，并且虚表里都有两个地址指针指向makeSound()和walk()的函数地址。一个指针4个字节，因此每个vTable的大小都是8个字节。如图：</p>
+<p><img src="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-30-vtable.png" alt="vtable"></p>
+<p>他们的虚表中记录着不同函数的地址值。可以看到Cow、Pig、Donkey<strong>重写了makeSound()函数</strong>但是没有重写walk()函数。因此在调用makeSound()时，就会直接jump到自己实现的code Address。而调用walk()时，则会jump到Animal父类walk的Code Address。</p>
+<h2 id="虚指针"><a href="#虚指针" class="headerlink" title="虚指针"></a>虚指针</h2><p>现在我们已经知道虚表的数据结构了，那么我们在堆里实例化类对象时是怎么样调用到相应的函数的呢？这就要借助到虚指针了(vPointer)。</p>
+<p>虚指针是类实例对象指向虚表的指针，存在于对象头部,大小为4个字节，比如我们的Donkey类的实例化对象数据结构就如下：<br><img src="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-30-14672754961225.jpg" alt=""></p>
+<p>我们修改main函数里的代码，如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">int main(int argc, const char * argv[])</span><br><span class="line">&#123;</span><br><span class="line">    int count = 2;</span><br><span class="line">    while (count --) &#123;</span><br><span class="line">        Animal *animal = new Donkey;</span><br><span class="line">        animal-&gt;makeSound();</span><br><span class="line">        delete animal;</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们在堆中生成了两个Donkey实例，运行结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">驴叫了</span><br><span class="line">驴叫了</span><br><span class="line">Program ended with exit code: 0</span><br></pre></td></tr></table></figure>
+<p>没问题。然后我们再来看看堆里的结构，就变成了这样：</p>
+<p><img src="http://7xtb7p.com1.z0.glb.clouddn.com/2016-06-30-donkey.png" alt="donkey"></p>
+<p>还有什么是这张图不能说明的呢？</p>
+<p>Enjoy it :)</p>
+<p>参考链接：</p>
+<p><a href="https://www.youtube.com/watch?v=aWDBwLzWrVM" target="_blank" rel="external">C++ vTable Preview</a><br><a href="https://www.youtube.com/watch?v=Eaz0P_gJ9FE" target="_blank" rel="external">C++ vPointers and vTables</a><br><a href="https://en.wikipedia.org/wiki/Virtual_method_table" target="_blank" rel="external">Virtual method table</a><br><a href="http://blog.csdn.net/houdy/article/details/1496161" target="_blank" rel="external">虚函数表放在哪里</a></p>
+<h2 id="Done"><a href="#Done" class="headerlink" title="Done"></a>Done</h2><p>作者: <a href="http://weibo.com/u/3184193244?is_all=1" target="_blank" rel="external">@biggergao</a><br>个人博客: <a href="http://www.jianshu.com/users/f7ed0237c2ed" target="_blank" rel="external">Mr.码了戈壁</a></p>
+<p>2016年06月30日</p>
 
       
     </div>
@@ -427,28 +456,18 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/操作系统/" rel="tag">#操作系统</a>
-          
-        </div>
-      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/05/22/2016-05-22/" rel="next" title="5分钟学会枚举的正确使用姿势-Enumeration宏">
-                <i class="fa fa-chevron-left"></i> 5分钟学会枚举的正确使用姿势-Enumeration宏
+              <a href="/2016/06/29/2016-06-29/" rel="next" title="手把手教你搞懂Android反编译">
+                <i class="fa fa-chevron-left"></i> 手把手教你搞懂Android反编译
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/05/22/2016-06-14/" rel="prev" title="白话数据库范式">
-                白话数据库范式 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -474,8 +493,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/05/22/2016-06-04/"
-           data-title="简单说说内存管理" data-url="http://www.iosxxoo.com/2016/05/22/2016-06-04/">
+      <div class="ds-thread" data-thread-key="2016/06/30/2016-06-30/"
+           data-title="C++虚表，谁都能搞懂" data-url="http://www.iosxxoo.com/2016/06/30/2016-06-30/">
       </div>
     
   </div>
@@ -586,7 +605,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#历史"><span class="nav-number">1.</span> <span class="nav-text">历史</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#举个例子"><span class="nav-number">2.</span> <span class="nav-text">举个例子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分段管理"><span class="nav-number">3.</span> <span class="nav-text">分段管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分页管理"><span class="nav-number">4.</span> <span class="nav-text">分页管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#页错误"><span class="nav-number">4.1.</span> <span class="nav-text">页错误</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MMU"><span class="nav-number">4.2.</span> <span class="nav-text">MMU</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#写在结尾"><span class="nav-number">5.</span> <span class="nav-text">写在结尾</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Done"><span class="nav-number">6.</span> <span class="nav-text">Done</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#虚函数"><span class="nav-number">2.</span> <span class="nav-text">虚函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#虚表"><span class="nav-number">3.</span> <span class="nav-text">虚表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#虚指针"><span class="nav-number">4.</span> <span class="nav-text">虚指针</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Done"><span class="nav-number">5.</span> <span class="nav-text">Done</span></a></li></ol></div>
             
           </div>
         </section>
